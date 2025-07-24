@@ -172,12 +172,12 @@ export class MarkdownGenerator {
       }
 
       for (const element of group.elements) {
-        content += `${elementHeaderMark} \`${element.name}\`\n\n`;
-
-        // Add element standard link if available
+        // Make element name clickable if standard link is available
         if (element.ref && this.data.metadata.baseUrl) {
           const fullUrl = this.data.metadata.baseUrl + element.ref;
-          content += `[📖 View in Standard](${fullUrl})\n\n`;
+          content += `${elementHeaderMark} [\`${element.name}\`](${fullUrl})\n\n`;
+        } else {
+          content += `${elementHeaderMark} \`${element.name}\`\n\n`;
         }
 
         if (element.attributes.length === 0) {
@@ -202,7 +202,15 @@ export class MarkdownGenerator {
     for (const attribute of attributes) {
       const type = this.formatAttributeType(attribute);
       const description = this.formatAttributeDescription(attribute);
-      table += `| **${attribute.name}** | ${type} | ${description} |\n`;
+      
+      // Make attribute name clickable if it has a ref link
+      let attributeName = attribute.name;
+      if (attribute.ref && this.data.metadata.baseUrl) {
+        const fullUrl = this.data.metadata.baseUrl + attribute.ref;
+        attributeName = `[${attribute.name}](${fullUrl})`;
+      }
+      
+      table += `| **${attributeName}** | ${type} | ${description} |\n`;
     }
 
     return table;
@@ -235,10 +243,7 @@ export class MarkdownGenerator {
       description += ` *Context: ${attribute.context}*`;
     }
 
-    if (attribute.ref && this.data.metadata.baseUrl) {
-      const fullUrl = this.data.metadata.baseUrl + attribute.ref;
-      description += ` [📖 Standard](${fullUrl})`;
-    }
+    // Note: Link is now in the attribute name, not in description
 
     return description;
   }
@@ -359,12 +364,12 @@ export class MarkdownGenerator {
     }
 
     for (const element of group.elements) {
-      content += `${elementHeaderMark} \`${element.name}\`\n\n`;
-
-      // Add element standard link if available
+      // Make element name clickable if standard link is available
       if (element.ref && this.data.metadata.baseUrl) {
         const fullUrl = this.data.metadata.baseUrl + element.ref;
-        content += `[📖 View in Standard](${fullUrl})\n\n`;
+        content += `${elementHeaderMark} [\`${element.name}\`](${fullUrl})\n\n`;
+      } else {
+        content += `${elementHeaderMark} \`${element.name}\`\n\n`;
       }
 
       if (element.attributes.length === 0) {
@@ -402,14 +407,15 @@ export class MarkdownGenerator {
     const headerLevel = this.options.headerLevel || 1;
     const headerMark = '#'.repeat(headerLevel);
 
-    let content = `${headerMark} \`${element.name}\`\n\n`;
-    content += `*Part of: ${groupName}*\n\n`;
-
-    // Add element standard link if available
+    // Make element name clickable if standard link is available
+    let content: string;
     if (element.ref && this.data.metadata.baseUrl) {
       const fullUrl = this.data.metadata.baseUrl + element.ref;
-      content += `[📖 View in Standard](${fullUrl})\n\n`;
+      content = `${headerMark} [\`${element.name}\`](${fullUrl})\n\n`;
+    } else {
+      content = `${headerMark} \`${element.name}\`\n\n`;
     }
+    content += `*Part of: ${groupName}*\n\n`;
 
     if (element.attributes.length === 0) {
       content += '*No attributes*\n\n';

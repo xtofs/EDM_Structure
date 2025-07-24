@@ -14,6 +14,7 @@
     "lint": "eslint src/**/*.ts",
     "format": "prettier --write src/**/*.ts",
     "clean": "rimraf dist",
+    "generate": "npx ts-node generate.ts",
     "generate-docs": "node dist/cli.js data/odata-edm-structure.json -o generated/OData_EDM_Structure_Generated.md --stats"
   },
   "keywords": [
