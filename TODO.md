@@ -32,9 +32,11 @@ But it doesn't list the simpler ones like `simple identifier`, `boolean`, `posit
 
 **DONE**: Added common basic attribute subcategories: simple identifier, boolean, positive integer, integer, non-negative integer, string, URI, enum, and primitive value. Now the basic category is comprehensive.
 
-## missing "ref"s
-Please add more `ref` properties to the elements and attributes in the JSON structure. by finding the html section in the baseUrl.
-THe best links can be found in Appendix B of the standard.
+## ✅ missing "ref"s - COMPLETED
+~~Please add more `ref` properties to the elements and attributes in the JSON structure. by finding the html section in the baseUrl.
+THe best links can be found in Appendix B of the standard.~~
+
+**DONE**: Comprehensively updated all 154 references to match exact anchors from OData CSDL XML v4.02 Appendix B. Fixed critical issue where HasStream was pointing to wrong anchor (#AttributeHasStream.6.4 → #AttributeHasStream.9.5). All element and attribute refs now point to correct specification sections.
 
 ## missing permitted parent/child elements
 Each model element can appear only in a specific context in a CSDL file, i.e. as child of a specific parent element.
@@ -44,3 +46,6 @@ Please add a `permittedChildren` property to each element that lists the parent 
 ## previewing the generated doc
 please add a npm script to convert the generated markdown to html for preview.
 I there is an npm module, great. otherwise just assume pandoc is available.
+
+## link validation
+add a script that checks if the refs exist. I assume that sending a GET request with the # fragment is not enough since this will always return a document. We woudl need to test if the # fragment actually exists in the HTML
