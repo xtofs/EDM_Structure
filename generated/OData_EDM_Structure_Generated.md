@@ -97,359 +97,359 @@ Path expressions in form of a sequence of model elements represented in XML/JSON
 
 Core schema definition elements
 
-#### [`edm:Schema`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Schema)
+#### [`edm:Schema`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmSchema.7)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Namespace** | Basic (simple identifier) | A simple identifier used to uniquely identify the element within its containing scope. |
-| **Alias** | Basic (simple identifier) | The alias of a schema MAY be used instead of the namespaceto identify model elements of that schema. |
+| **[Namespace](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeNamespace.5.1)** | Basic (simple identifier) | A simple identifier used to uniquely identify the element within its containing scope. |
+| **[Alias](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeAlias.5.2)** | Basic (simple identifier) | The alias of a schema MAY be used instead of the namespaceto identify model elements of that schema. |
 
-#### [`edm:Annotations`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Annotations)
+#### [`edm:Annotations`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmAnnotations.8)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Target** | Path (Absolute Path) | target path expression *Context: can reference any model element* |
-| **Qualifier** | Basic (simple identifier) |  |
+| **[Target](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeTarget.8.1)** | Path (Absolute Path) | target path expression *Context: can reference any model element* |
+| **[Qualifier](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeQualifier.6.2)** | Basic (simple identifier) |  |
 
 ### Entity Model Elements
 
 Core entity and type definition elements
 
-#### [`edm:EntityType`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_EntityType)
+#### [`edm:EntityType`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmEntityType.9)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Name** | Basic (simple identifier) | The entity type’s name that MUST be unique within its schema. |
+| **[Name](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeName.9.1)** | Basic (simple identifier) | The entity type’s name that MUST be unique within its schema. |
 | **[BaseType](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeBaseType.9.2)** | Reference (Absolute Reference) | qualified name of an edm:EntityType |
-| **Abstract** | Basic | boolean |
-| **OpenType** | Basic | boolean |
-| **HasStream** | Basic | boolean |
+| **[Abstract](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeAbstract.9.3)** | Basic | boolean |
+| **[OpenType](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeOpenType.9.4)** | Basic | boolean |
+| **[HasStream](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeHasStream.9.5)** | Basic | boolean |
 
-#### [`edm:Key`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Key)
+#### [`edm:Key`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmKey.10)
 
 *No attributes*
 
-#### [`edm:PropertyRef`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_PropertyRef)
+#### [`edm:PropertyRef`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmPropertyRef.11)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Name** | Path (Relative Path) | path to structural property *Context: relative to the containing entity/complex type* |
-| **Alias** | Basic (simple identifier) |  |
+| **[Name](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeName.9.1)** | Path (Relative Path) | path to structural property *Context: relative to the containing entity/complex type* |
+| **[Alias](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeAlias.5.2)** | Basic (simple identifier) |  |
 
-#### [`edm:Property`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Property)
+#### [`edm:Property`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmProperty.12)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Name** | Basic (simple identifier) |  |
+| **[Name](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeName.9.1)** | Basic (simple identifier) |  |
 | **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeType.12.2)** | Reference | qualified type name or collection |
-| **Nullable** | Basic | boolean |
-| **DefaultValue** | Basic | primitive value |
+| **[Nullable](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeNullable.12.3)** | Basic | boolean |
+| **[DefaultValue](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeDefaultValue.12.4)** | Basic | primitive value |
 
-#### [`edm:NavigationProperty`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_NavigationProperty)
-
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| **Name** | Basic (simple identifier) |  |
-| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Type)** | Reference (Absolute Reference) | qualified entity type name or collection thereof |
-| **Nullable** | Basic | boolean |
-| **Partner** | Path (Relative Path) | path to partner navigation property *Context: relative to the target entity type specified in Type attribute* |
-| **ContainsTarget** | Basic | boolean |
-
-#### [`edm:ReferentialConstraint`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_ReferentialConstraint)
+#### [`edm:NavigationProperty`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmNavigationProperty.13)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Property** | Path (Relative Path) | path to dependent property *Context: relative to the containing navigation property's source entity type* |
-| **ReferencedProperty** | Path (Relative Path) | path to principal property *Context: relative to the containing navigation property's target entity type* |
+| **[Name](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeName.9.1)** | Basic (simple identifier) |  |
+| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeType.12.2)** | Reference (Absolute Reference) | qualified entity type name or collection thereof |
+| **[Nullable](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeNullable.12.3)** | Basic | boolean |
+| **[Partner](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributePartner.13.4)** | Path (Relative Path) | path to partner navigation property *Context: relative to the target entity type specified in Type attribute* |
+| **[ContainsTarget](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeContainsTarget.13.5)** | Basic | boolean |
 
-#### [`edm:OnDelete`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_OnDelete)
-
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| **Action** | Basic | action enum: Cascade, None, SetNull, SetDefault |
-
-#### [`edm:ComplexType`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_ComplexType)
+#### [`edm:ReferentialConstraint`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmReferentialConstraint.14)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Name** | Basic (simple identifier) |  |
-| **[BaseType](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_BaseType)** | Reference (Absolute Reference) | qualified name of a edm:ComplexType |
-| **Abstract** | Basic | boolean |
-| **OpenType** | Basic | boolean |
+| **[Property](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeProperty.14.1)** | Path (Relative Path) | path to dependent property *Context: relative to the containing navigation property's source entity type* |
+| **[ReferencedProperty](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeReferencedProperty.14.2)** | Path (Relative Path) | path to principal property *Context: relative to the containing navigation property's target entity type* |
 
-#### [`edm:EnumType`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_EnumType)
+#### [`edm:OnDelete`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmOnDelete.15)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Name** | Basic (simple identifier) |  |
-| **UnderlyingType** | Reference | qualified name of and integer type *Constraints: restricted to: Edm.Byte, Edm.SByte, Edm.Int16, Edm.Int32, or Edm.Int64* |
-| **IsFlags** | Basic | boolean |
+| **[Action](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeAction.15.1)** | Basic | action enum: Cascade, None, SetNull, SetDefault |
 
-#### [`edm:Member`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Member)
+#### [`edm:ComplexType`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmComplexType.16)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Name** | Basic (simple identifier) |  |
-| **Value** | Basic | integer value |
+| **[Name](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeName.9.1)** | Basic (simple identifier) |  |
+| **[BaseType](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeBaseType.9.2)** | Reference (Absolute Reference) | qualified name of a edm:ComplexType |
+| **[Abstract](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeAbstract.9.3)** | Basic | boolean |
+| **[OpenType](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeOpenType.9.4)** | Basic | boolean |
 
-#### [`edm:TypeDefinition`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_TypeDefinition)
+#### [`edm:EnumType`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmEnumType.17)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Name** | Basic (simple identifier) |  |
-| **UnderlyingType** | Reference | qualified name of primitive type *Constraints: cannot be another type definition* |
+| **[Name](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeName.9.1)** | Basic (simple identifier) |  |
+| **[UnderlyingType](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeUnderlyingType.17.2)** | Reference | qualified name of and integer type *Constraints: restricted to: Edm.Byte, Edm.SByte, Edm.Int16, Edm.Int32, or Edm.Int64* |
+| **[IsFlags](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeIsFlags.17.3)** | Basic | boolean |
+
+#### [`edm:Member`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmMember.18)
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| **[Name](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeName.9.1)** | Basic (simple identifier) |  |
+| **[Value](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeValue.18.2)** | Basic | integer value |
+
+#### [`edm:TypeDefinition`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmTypeDefinition.19)
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| **[Name](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeName.9.1)** | Basic (simple identifier) |  |
+| **[UnderlyingType](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeUnderlyingType.17.2)** | Reference | qualified name of primitive type *Constraints: cannot be another type definition* |
 
 ### Action and Function Elements
 
 Action and function definition elements
 
-#### [`edm:Action`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Action)
+#### [`edm:Action`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmAction.20)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Name** | Basic (simple identifier) |  |
-| **IsBound** | Basic | boolean |
-| **EntitySetPath** | Path (Relative Path) | entity set path expression *Context: relative to the action's parameters when bound* |
+| **[Name](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeName.9.1)** | Basic (simple identifier) |  |
+| **[IsBound](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeIsBound.21.2)** | Basic | boolean |
+| **[EntitySetPath](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeEntitySetPath.21.3)** | Path (Relative Path) | entity set path expression *Context: relative to the action's parameters when bound* |
 
-#### [`edm:Function`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Function)
-
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| **Name** | Basic (simple identifier) |  |
-| **IsBound** | Basic | boolean |
-| **EntitySetPath** | Path (Relative Path) | entity set path expression *Context: relative to the function's parameters when bound* |
-| **IsComposable** | Basic | boolean |
-
-#### [`edm:ReturnType`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_ReturnType)
+#### [`edm:Function`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmFunction.21)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Type)** | Reference | qualified type name or collection |
-| **Nullable** | Basic | boolean |
+| **[Name](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeName.9.1)** | Basic (simple identifier) |  |
+| **[IsBound](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeIsBound.21.2)** | Basic | boolean |
+| **[EntitySetPath](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeEntitySetPath.21.3)** | Path (Relative Path) | entity set path expression *Context: relative to the function's parameters when bound* |
+| **[IsComposable](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeIsComposable.21.4)** | Basic | boolean |
 
-#### [`edm:Parameter`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Parameter)
+#### [`edm:ReturnType`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmReturnType.22)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Name** | Basic (simple identifier) |  |
-| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Type)** | Reference | qualified type name or collection |
-| **Nullable** | Basic | boolean |
+| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeType.12.2)** | Reference | qualified type name or collection |
+| **[Nullable](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeNullable.12.3)** | Basic | boolean |
+
+#### [`edm:Parameter`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmParameter.23)
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| **[Name](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeName.9.1)** | Basic (simple identifier) |  |
+| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeType.12.2)** | Reference | qualified type name or collection |
+| **[Nullable](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeNullable.12.3)** | Basic | boolean |
 
 ### Entity Container Elements
 
 Entity container and related elements
 
-#### [`edm:EntityContainer`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_EntityContainer)
+#### [`edm:EntityContainer`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmEntityContainer.24)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Name** | Basic (simple identifier) |  |
-| **Extends** | Reference (Absolute Reference) | qualified entity container name |
+| **[Name](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeName.9.1)** | Basic (simple identifier) |  |
+| **[Extends](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeExtends.24.2)** | Reference (Absolute Reference) | qualified entity container name |
 
-#### [`edm:EntitySet`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_EntitySet)
-
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| **Name** | Basic (simple identifier) |  |
-| **EntityType** | Reference (Absolute Reference) | qualified entity type name |
-| **IncludeInServiceDocument** | Basic | boolean |
-
-#### [`edm:Singleton`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Singleton)
+#### [`edm:EntitySet`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmEntitySet.25)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Name** | Basic (simple identifier) |  |
-| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Type)** | Reference (Absolute Reference) | qualified entity type name |
-| **Nullable** | Basic | boolean |
+| **[Name](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeName.9.1)** | Basic (simple identifier) |  |
+| **[EntityType](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeEntityType.25.2)** | Reference (Absolute Reference) | qualified entity type name |
+| **[IncludeInServiceDocument](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeIncludeInServiceDocument.25.3)** | Basic | boolean |
 
-#### [`edm:NavigationPropertyBinding`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_NavigationPropertyBinding)
-
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| **Path** | Path (Relative Path) | navigation property path expression *Context: relative to the containing entity set's entity type* |
-| **Target** | Path (Relative Path) | target path to entity set/singleton *Context: relative to the containing entity container* |
-
-#### [`edm:ActionImport`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_ActionImport)
+#### [`edm:Singleton`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmSingleton.26)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Name** | Basic (simple identifier) |  |
-| **Action** | Reference (Absolute Reference) | qualified unbound action name |
-| **EntitySet** | Reference (Relative Reference) | entity set name or target path *Context: relative to the containing entity container* |
+| **[Name](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeName.9.1)** | Basic (simple identifier) |  |
+| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeType.12.2)** | Reference (Absolute Reference) | qualified entity type name |
+| **[Nullable](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeNullable.12.3)** | Basic | boolean |
 
-#### [`edm:FunctionImport`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_FunctionImport)
+#### [`edm:NavigationPropertyBinding`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmNavigationPropertyBinding.27)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Name** | Basic (simple identifier) |  |
-| **Function** | Reference (Absolute Reference) | qualified unbound function name |
-| **EntitySet** | Reference (Relative Reference) | entity set name or target path *Context: relative to the containing entity container* |
-| **IncludeInServiceDocument** | Basic | boolean |
+| **[Path](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributePath.13.4)** | Path (Relative Path) | navigation property path expression *Context: relative to the containing entity set's entity type* |
+| **[Target](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeTarget.8.1)** | Path (Relative Path) | target path to entity set/singleton *Context: relative to the containing entity container* |
+
+#### [`edm:ActionImport`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmActionImport.28)
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| **[Name](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeName.9.1)** | Basic (simple identifier) |  |
+| **[Action](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeAction.15.1)** | Reference (Absolute Reference) | qualified unbound action name |
+| **[EntitySet](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeEntitySet)** | Reference (Relative Reference) | entity set name or target path *Context: relative to the containing entity container* |
+
+#### [`edm:FunctionImport`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmFunctionImport.29)
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| **[Name](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeName.9.1)** | Basic (simple identifier) |  |
+| **[Function](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeFunction.14.4.4)** | Reference (Absolute Reference) | qualified unbound function name |
+| **[EntitySet](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeEntitySet)** | Reference (Relative Reference) | entity set name or target path *Context: relative to the containing entity container* |
+| **[IncludeInServiceDocument](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeIncludeInServiceDocument.25.3)** | Basic | boolean |
 
 ### Vocabulary and Annotation Elements
 
 Vocabulary terms and annotation elements
 
-#### [`edm:Term`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Term)
+#### [`edm:Term`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmTerm.30)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Name** | Basic (simple identifier) |  |
-| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Type)** | Reference | qualified type name or collection |
-| **Nullable** | Basic | boolean |
-| **DefaultValue** | Basic | primitive value |
-| **BaseTerm** | Reference | qualified term name |
-| **AppliesTo** | Basic | whitespace-separated list of symbolic values |
+| **[Name](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeName.9.1)** | Basic (simple identifier) |  |
+| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeType.12.2)** | Reference | qualified type name or collection |
+| **[Nullable](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeNullable.12.3)** | Basic | boolean |
+| **[DefaultValue](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeDefaultValue.12.4)** | Basic | primitive value |
+| **[BaseTerm](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeBaseTerm.14.1.1)** | Reference | qualified term name |
+| **[AppliesTo](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeAppliesTo.14.1.2)** | Basic | whitespace-separated list of symbolic values |
 
-#### [`edm:Annotation`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Annotation)
+#### [`edm:Annotation`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmAnnotation.31)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Term** | Reference | qualified term name |
-| **Qualifier** | Basic (simple identifier) |  |
+| **[Term](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeTerm.14.2)** | Reference | qualified term name |
+| **[Qualifier](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeQualifier.6.2)** | Basic (simple identifier) |  |
 
 ### Core EDMX Elements
 
 Core EDMX wrapper elements
 
-#### [`edmx:Edmx`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Edmx)
+#### [`edmx:Edmx`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmxEdmx.2)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Version** | Basic | version number string |
+| **[Version](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeVersion.2.1)** | Basic | version number string |
 
-#### [`edmx:DataServices`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_DataServices)
+#### [`edmx:DataServices`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmxDataServices.3)
 
 *No attributes*
 
-#### [`edmx:Reference`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Reference)
+#### [`edmx:Reference`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmxReference.4)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Uri** | Basic | URI string |
+| **[Uri](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeUri.4.1)** | Basic | URI string |
 
-#### [`edmx:Include`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Include)
-
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| **Namespace** | Reference | namespace reference |
-| **Alias** | Basic (simple identifier) |  |
-
-#### [`edmx:IncludeAnnotations`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_IncludeAnnotations)
+#### [`edmx:Include`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmxInclude.5)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **TermNamespace** | Reference | namespace reference |
-| **Qualifier** | Basic (simple identifier) |  |
-| **TargetNamespace** | Reference | namespace reference |
+| **[Namespace](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeNamespace.5.1)** | Reference | namespace reference |
+| **[Alias](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeAlias.5.2)** | Basic (simple identifier) |  |
+
+#### [`edmx:IncludeAnnotations`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmxIncludeAnnotations.6)
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| **[TermNamespace](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeTermNamespace.6.1)** | Reference | namespace reference |
+| **[Qualifier](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeQualifier.6.2)** | Basic (simple identifier) |  |
+| **[TargetNamespace](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeTargetNamespace.6.3)** | Reference | namespace reference |
 
 ### Annotation Expression Elements
 
 Elements used within annotation expressions
 
-#### [`edm:Binary`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Binary)
+#### [`edm:Binary`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmBinary.32)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Value** | Basic | binary value |
+| **[Value](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeValue.18.2)** | Basic | binary value |
 
-#### [`edm:Bool`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Bool)
-
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| **Value** | Basic | boolean literal |
-
-#### [`edm:Date`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Date)
+#### [`edm:Bool`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmBool.33)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Value** | Basic | date value |
+| **[Value](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeValue.18.2)** | Basic | boolean literal |
 
-#### [`edm:DateTimeOffset`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_DateTimeOffset)
-
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| **Value** | Basic | datetime value |
-
-#### [`edm:Decimal`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Decimal)
+#### [`edm:Date`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmDate.34)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Value** | Basic | decimal value |
+| **[Value](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeValue.18.2)** | Basic | date value |
 
-#### [`edm:Duration`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Duration)
-
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| **Value** | Basic | duration value |
-
-#### [`edm:EnumMember`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_EnumMember)
+#### [`edm:DateTimeOffset`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmDateTimeOffset.35)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Value** | Reference | qualified enum member name |
+| **[Value](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeValue.18.2)** | Basic | datetime value |
 
-#### [`edm:Float`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Float)
-
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| **Value** | Basic | floating-point value |
-
-#### [`edm:Guid`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Guid)
+#### [`edm:Decimal`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmDecimal.36)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Value** | Basic | GUID value |
+| **[Value](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeValue.18.2)** | Basic | decimal value |
 
-#### [`edm:Int`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Int)
-
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| **Value** | Basic | integer value |
-
-#### [`edm:String`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_String)
+#### [`edm:Duration`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmDuration.37)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Value** | Basic | string value |
+| **[Value](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeValue.18.2)** | Basic | duration value |
 
-#### [`edm:TimeOfDay`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_TimeOfDay)
-
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| **Value** | Basic | time value |
-
-#### [`edm:AnnotationPath`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_AnnotationPath)
+#### [`edm:EnumMember`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmEnumMember.38)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Value** | Path | annotation path expression |
+| **[Value](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeValue.18.2)** | Reference | qualified enum member name |
 
-#### [`edm:ModelElementPath`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_ModelElementPath)
-
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| **Value** | Path | model element path expression |
-
-#### [`edm:NavigationPropertyPath`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_NavigationPropertyPath)
+#### [`edm:Float`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmFloat.39)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Value** | Path | navigation property path expression |
+| **[Value](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeValue.18.2)** | Basic | floating-point value |
 
-#### [`edm:PropertyPath`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_PropertyPath)
-
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| **Value** | Path | property path expression |
-
-#### [`edm:Path`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Path)
+#### [`edm:Guid`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmGuid.40)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Value** | Path | value path expression |
+| **[Value](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeValue.18.2)** | Basic | GUID value |
 
-#### [`edm:And`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_And)
+#### [`edm:Int`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmInt.41)
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| **[Value](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeValue.18.2)** | Basic | integer value |
+
+#### [`edm:String`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmString.42)
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| **[Value](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeValue.18.2)** | Basic | string value |
+
+#### [`edm:TimeOfDay`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmTimeOfDay.43)
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| **[Value](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeValue.18.2)** | Basic | time value |
+
+#### [`edm:AnnotationPath`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmAnnotationPath.44)
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| **[Value](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeValue.18.2)** | Path | annotation path expression |
+
+#### [`edm:ModelElementPath`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmModelElementPath.45)
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| **[Value](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeValue.18.2)** | Path | model element path expression |
+
+#### [`edm:NavigationPropertyPath`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmNavigationPropertyPath.46)
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| **[Value](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeValue.18.2)** | Path | navigation property path expression |
+
+#### [`edm:PropertyPath`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmPropertyPath.47)
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| **[Value](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeValue.18.2)** | Path | property path expression |
+
+#### [`edm:Path`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmPath.48)
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| **[Value](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeValue.18.2)** | Path | value path expression |
+
+#### [`edm:And`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionsedmAnd.49)
 
 *No attributes*
 
@@ -457,11 +457,11 @@ Elements used within annotation expressions
 
 *No attributes*
 
-#### [`edm:Not`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Not)
+#### [`edm:Not`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmNot.50)
 
 *No attributes*
 
-#### [`edm:Eq`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Eq)
+#### [`edm:Eq`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionsedmEq.51)
 
 *No attributes*
 
@@ -493,11 +493,11 @@ Elements used within annotation expressions
 
 *No attributes*
 
-#### [`edm:Neg`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Neg)
+#### [`edm:Neg`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmNeg.52)
 
 *No attributes*
 
-#### [`edm:Add`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Add)
+#### [`edm:Add`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionsedmAdd.53)
 
 *No attributes*
 
@@ -521,23 +521,23 @@ Elements used within annotation expressions
 
 *No attributes*
 
-#### [`edm:Apply`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Apply)
+#### [`edm:Apply`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmApply.54)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Function** | Reference | function name |
+| **[Function](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeFunction.14.4.4)** | Reference | function name |
 
-#### [`edm:Cast`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Cast)
+#### [`edm:Cast`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmCast.55)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Type)** | Reference | qualified type name |
+| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeType.12.2)** | Reference | qualified type name |
 
-#### [`edm:Collection`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Collection)
+#### [`edm:Collection`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmCollection.56)
 
 *No attributes*
 
-#### [`edm:If`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_If)
+#### [`edm:If`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmIf.57)
 
 *No attributes*
 
@@ -545,35 +545,35 @@ Elements used within annotation expressions
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Type)** | Reference | qualified type name |
+| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeType.12.2)** | Reference | qualified type name |
 
-#### [`edm:LabeledElement`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_LabeledElement)
+#### [`edm:LabeledElement`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmLabeledElement.59)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Name** | Basic (simple identifier) |  |
+| **[Name](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeName.9.1)** | Basic (simple identifier) |  |
 
-#### [`edm:LabeledElementReference`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_LabeledElementReference)
+#### [`edm:LabeledElementReference`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmLabeledElementReference.60)
 
 *No attributes*
 
-#### [`edm:Null`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Null)
+#### [`edm:Null`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmNull.61)
 
 *No attributes*
 
-#### [`edm:Record`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Record)
+#### [`edm:Record`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmRecord.62)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Type)** | Reference | qualified structured type name |
+| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeType.12.2)** | Reference | qualified structured type name |
 
-#### [`edm:PropertyValue`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_PropertyValue)
+#### [`edm:PropertyValue`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ElementedmPropertyValue.63)
 
 | Attribute | Type | Description |
 |-----------|------|-------------|
-| **Property** | Reference | path to a property *Context: relative path to a property of the type of the enclosing edm:Record expression* |
+| **[Property](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeProperty.14.1)** | Reference | path to a property *Context: relative path to a property of the type of the enclosing edm:Record expression* |
 
-#### [`edm:UrlRef`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_UrlRef)
+#### [`edm:UrlRef`](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#ExpressionedmUrlRef.64)
 
 *No attributes*
 

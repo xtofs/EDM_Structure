@@ -129,16 +129,18 @@
                             "name": "Namespace",
                             "category": "basic",
                             "description": "A simple identifier used to uniquely identify the element within its containing scope.",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeNamespace.5.1"
                         },
                         {
                             "name": "Alias",
                             "category": "basic",
                             "subcategory": "simple identifier",
-                            "description": "The alias of a schema MAY be used instead of the namespaceto identify model elements of that schema."
+                            "description": "The alias of a schema MAY be used instead of the namespaceto identify model elements of that schema.",
+                            "ref": "#AttributeAlias.5.2"
                         }
                     ],
-                    "ref": "#sec_Schema"
+                    "ref": "#ElementedmSchema.7"
                 },
                 {
                     "name": "edm:Annotations",
@@ -148,15 +150,17 @@
                             "category": "path",
                             "subcategory": "Absolute Path",
                             "description": "target path expression",
-                            "context": "can reference any model element"
+                            "context": "can reference any model element",
+                            "ref": "#AttributeTarget.8.1"
                         },
                         {
                             "name": "Qualifier",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeQualifier.6.2"
                         }
                     ],
-                    "ref": "#sec_Annotations"
+                    "ref": "#ElementedmAnnotations.8"
                 }
             ]
         },
@@ -171,7 +175,8 @@
                             "name": "Name",
                             "category": "basic",
                             "subcategory": "simple identifier",
-                            "description": "The entity type’s name that MUST be unique within its schema."
+                            "description": "The entity type’s name that MUST be unique within its schema.",
+                            "ref": "#AttributeName.9.1"
                         },
                         {
                             "name": "BaseType",
@@ -183,25 +188,28 @@
                         {
                             "name": "Abstract",
                             "category": "basic",
-                            "description": "boolean"
+                            "description": "boolean",
+                            "ref": "#AttributeAbstract.9.3"
                         },
                         {
                             "name": "OpenType",
                             "category": "basic",
-                            "description": "boolean"
+                            "description": "boolean",
+                            "ref": "#AttributeOpenType.9.4"
                         },
                         {
                             "name": "HasStream",
                             "category": "basic",
-                            "description": "boolean"
+                            "description": "boolean",
+                            "ref": "#AttributeHasStream.9.5"
                         }
                     ],
-                    "ref": "#sec_EntityType"
+                    "ref": "#ElementedmEntityType.9"
                 },
                 {
                     "name": "edm:Key",
                     "attributes": [],
-                    "ref": "#sec_Key"
+                    "ref": "#ElementedmKey.10"
                 },
                 {
                     "name": "edm:PropertyRef",
@@ -211,15 +219,17 @@
                             "category": "path",
                             "subcategory": "Relative Path",
                             "description": "path to structural property",
-                            "context": "relative to the containing entity/complex type"
+                            "context": "relative to the containing entity/complex type",
+                            "ref": "#AttributeName.9.1"
                         },
                         {
                             "name": "Alias",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeAlias.5.2"
                         }
                     ],
-                    "ref": "#sec_PropertyRef"
+                    "ref": "#ElementedmPropertyRef.11"
                 },
                 {
                     "name": "edm:Property",
@@ -227,7 +237,8 @@
                         {
                             "name": "Name",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeName.9.1"
                         },
                         {
                             "name": "Type",
@@ -238,15 +249,17 @@
                         {
                             "name": "Nullable",
                             "category": "basic",
-                            "description": "boolean"
+                            "description": "boolean",
+                            "ref": "#AttributeNullable.12.3"
                         },
                         {
                             "name": "DefaultValue",
                             "category": "basic",
-                            "description": "primitive value"
+                            "description": "primitive value",
+                            "ref": "#AttributeDefaultValue.12.4"
                         }
                     ],
-                    "ref": "#sec_Property"
+                    "ref": "#ElementedmProperty.12"
                 },
                 {
                     "name": "edm:NavigationProperty",
@@ -254,34 +267,38 @@
                         {
                             "name": "Name",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeName.9.1"
                         },
                         {
                             "name": "Type",
                             "category": "reference",
                             "subcategory": "Absolute Reference",
                             "description": "qualified entity type name or collection thereof",
-                            "ref": "#sec_Type"
+                            "ref": "#AttributeType.12.2"
                         },
                         {
                             "name": "Nullable",
                             "category": "basic",
-                            "description": "boolean"
+                            "description": "boolean",
+                            "ref": "#AttributeNullable.12.3"
                         },
                         {
                             "name": "Partner",
                             "category": "path",
                             "subcategory": "Relative Path",
                             "description": "path to partner navigation property",
-                            "context": "relative to the target entity type specified in Type attribute"
+                            "context": "relative to the target entity type specified in Type attribute",
+                            "ref": "#AttributePartner.13.4"
                         },
                         {
                             "name": "ContainsTarget",
                             "category": "basic",
-                            "description": "boolean"
+                            "description": "boolean",
+                            "ref": "#AttributeContainsTarget.13.5"
                         }
                     ],
-                    "ref": "#sec_NavigationProperty"
+                    "ref": "#ElementedmNavigationProperty.13"
                 },
                 {
                     "name": "edm:ReferentialConstraint",
@@ -291,17 +308,19 @@
                             "category": "path",
                             "subcategory": "Relative Path",
                             "description": "path to dependent property",
-                            "context": "relative to the containing navigation property's source entity type"
+                            "context": "relative to the containing navigation property's source entity type",
+                            "ref": "#AttributeProperty.14.1"
                         },
                         {
                             "name": "ReferencedProperty",
                             "category": "path",
                             "subcategory": "Relative Path",
                             "description": "path to principal property",
-                            "context": "relative to the containing navigation property's target entity type"
+                            "context": "relative to the containing navigation property's target entity type",
+                            "ref": "#AttributeReferencedProperty.14.2"
                         }
                     ],
-                    "ref": "#sec_ReferentialConstraint"
+                    "ref": "#ElementedmReferentialConstraint.14"
                 },
                 {
                     "name": "edm:OnDelete",
@@ -309,10 +328,11 @@
                         {
                             "name": "Action",
                             "category": "basic",
-                            "description": "action enum: Cascade, None, SetNull, SetDefault"
+                            "description": "action enum: Cascade, None, SetNull, SetDefault",
+                            "ref": "#AttributeAction.15.1"
                         }
                     ],
-                    "ref": "#sec_OnDelete"
+                    "ref": "#ElementedmOnDelete.15"
                 },
                 {
                     "name": "edm:ComplexType",
@@ -320,27 +340,30 @@
                         {
                             "name": "Name",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeName.9.1"
                         },
                         {
                             "name": "BaseType",
                             "category": "reference",
                             "subcategory": "Absolute Reference",
                             "description": "qualified name of a edm:ComplexType",
-                            "ref": "#sec_BaseType"
+                            "ref": "#AttributeBaseType.9.2"
                         },
                         {
                             "name": "Abstract",
                             "category": "basic",
-                            "description": "boolean"
+                            "description": "boolean",
+                            "ref": "#AttributeAbstract.9.3"
                         },
                         {
                             "name": "OpenType",
                             "category": "basic",
-                            "description": "boolean"
+                            "description": "boolean",
+                            "ref": "#AttributeOpenType.9.4"
                         }
                     ],
-                    "ref": "#sec_ComplexType"
+                    "ref": "#ElementedmComplexType.16"
                 },
                 {
                     "name": "edm:EnumType",
@@ -348,21 +371,24 @@
                         {
                             "name": "Name",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeName.9.1"
                         },
                         {
                             "name": "UnderlyingType",
                             "category": "reference",
                             "description": "qualified name of and integer type",
-                            "constraints": "restricted to: Edm.Byte, Edm.SByte, Edm.Int16, Edm.Int32, or Edm.Int64"
+                            "constraints": "restricted to: Edm.Byte, Edm.SByte, Edm.Int16, Edm.Int32, or Edm.Int64",
+                            "ref": "#AttributeUnderlyingType.17.2"
                         },
                         {
                             "name": "IsFlags",
                             "category": "basic",
-                            "description": "boolean"
+                            "description": "boolean",
+                            "ref": "#AttributeIsFlags.17.3"
                         }
                     ],
-                    "ref": "#sec_EnumType"
+                    "ref": "#ElementedmEnumType.17"
                 },
                 {
                     "name": "edm:Member",
@@ -370,15 +396,17 @@
                         {
                             "name": "Name",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeName.9.1"
                         },
                         {
                             "name": "Value",
                             "category": "basic",
-                            "description": "integer value"
+                            "description": "integer value",
+                            "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#sec_Member"
+                    "ref": "#ElementedmMember.18"
                 },
                 {
                     "name": "edm:TypeDefinition",
@@ -386,16 +414,18 @@
                         {
                             "name": "Name",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeName.9.1"
                         },
                         {
                             "name": "UnderlyingType",
                             "category": "reference",
                             "description": "qualified name of primitive type",
-                            "constraints": "cannot be another type definition"
+                            "constraints": "cannot be another type definition",
+                            "ref": "#AttributeUnderlyingType.17.2"
                         }
                     ],
-                    "ref": "#sec_TypeDefinition"
+                    "ref": "#ElementedmTypeDefinition.19"
                 }
             ]
         },
@@ -409,22 +439,25 @@
                         {
                             "name": "Name",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeName.9.1"
                         },
                         {
                             "name": "IsBound",
                             "category": "basic",
-                            "description": "boolean"
+                            "description": "boolean",
+                            "ref": "#AttributeIsBound.21.2"
                         },
                         {
                             "name": "EntitySetPath",
                             "category": "path",
                             "subcategory": "Relative Path",
                             "description": "entity set path expression",
-                            "context": "relative to the action's parameters when bound"
+                            "context": "relative to the action's parameters when bound",
+                            "ref": "#AttributeEntitySetPath.21.3"
                         }
                     ],
-                    "ref": "#sec_Action"
+                    "ref": "#ElementedmAction.20"
                 },
                 {
                     "name": "edm:Function",
@@ -432,27 +465,31 @@
                         {
                             "name": "Name",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeName.9.1"
                         },
                         {
                             "name": "IsBound",
                             "category": "basic",
-                            "description": "boolean"
+                            "description": "boolean",
+                            "ref": "#AttributeIsBound.21.2"
                         },
                         {
                             "name": "EntitySetPath",
                             "category": "path",
                             "subcategory": "Relative Path",
                             "description": "entity set path expression",
-                            "context": "relative to the function's parameters when bound"
+                            "context": "relative to the function's parameters when bound",
+                            "ref": "#AttributeEntitySetPath.21.3"
                         },
                         {
                             "name": "IsComposable",
                             "category": "basic",
-                            "description": "boolean"
+                            "description": "boolean",
+                            "ref": "#AttributeIsComposable.21.4"
                         }
                     ],
-                    "ref": "#sec_Function"
+                    "ref": "#ElementedmFunction.21"
                 },
                 {
                     "name": "edm:ReturnType",
@@ -461,15 +498,16 @@
                             "name": "Type",
                             "category": "reference",
                             "description": "qualified type name or collection",
-                            "ref": "#sec_Type"
+                            "ref": "#AttributeType.12.2"
                         },
                         {
                             "name": "Nullable",
                             "category": "basic",
-                            "description": "boolean"
+                            "description": "boolean",
+                            "ref": "#AttributeNullable.12.3"
                         }
                     ],
-                    "ref": "#sec_ReturnType"
+                    "ref": "#ElementedmReturnType.22"
                 },
                 {
                     "name": "edm:Parameter",
@@ -477,21 +515,23 @@
                         {
                             "name": "Name",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeName.9.1"
                         },
                         {
                             "name": "Type",
                             "category": "reference",
                             "description": "qualified type name or collection",
-                            "ref": "#sec_Type"
+                            "ref": "#AttributeType.12.2"
                         },
                         {
                             "name": "Nullable",
                             "category": "basic",
-                            "description": "boolean"
+                            "description": "boolean",
+                            "ref": "#AttributeNullable.12.3"
                         }
                     ],
-                    "ref": "#sec_Parameter"
+                    "ref": "#ElementedmParameter.23"
                 }
             ]
         },
@@ -505,16 +545,18 @@
                         {
                             "name": "Name",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeName.9.1"
                         },
                         {
                             "name": "Extends",
                             "category": "reference",
                             "subcategory": "Absolute Reference",
-                            "description": "qualified entity container name"
+                            "description": "qualified entity container name",
+                            "ref": "#AttributeExtends.24.2"
                         }
                     ],
-                    "ref": "#sec_EntityContainer"
+                    "ref": "#ElementedmEntityContainer.24"
                 },
                 {
                     "name": "edm:EntitySet",
@@ -522,21 +564,24 @@
                         {
                             "name": "Name",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeName.9.1"
                         },
                         {
                             "name": "EntityType",
                             "category": "reference",
                             "subcategory": "Absolute Reference",
-                            "description": "qualified entity type name"
+                            "description": "qualified entity type name",
+                            "ref": "#AttributeEntityType.25.2"
                         },
                         {
                             "name": "IncludeInServiceDocument",
                             "category": "basic",
-                            "description": "boolean"
+                            "description": "boolean",
+                            "ref": "#AttributeIncludeInServiceDocument.25.3"
                         }
                     ],
-                    "ref": "#sec_EntitySet"
+                    "ref": "#ElementedmEntitySet.25"
                 },
                 {
                     "name": "edm:Singleton",
@@ -544,22 +589,24 @@
                         {
                             "name": "Name",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeName.9.1"
                         },
                         {
                             "name": "Type",
                             "category": "reference",
                             "subcategory": "Absolute Reference",
                             "description": "qualified entity type name",
-                            "ref": "#sec_Type"
+                            "ref": "#AttributeType.12.2"
                         },
                         {
                             "name": "Nullable",
                             "category": "basic",
-                            "description": "boolean"
+                            "description": "boolean",
+                            "ref": "#AttributeNullable.12.3"
                         }
                     ],
-                    "ref": "#sec_Singleton"
+                    "ref": "#ElementedmSingleton.26"
                 },
                 {
                     "name": "edm:NavigationPropertyBinding",
@@ -569,17 +616,19 @@
                             "category": "path",
                             "subcategory": "Relative Path",
                             "description": "navigation property path expression",
-                            "context": "relative to the containing entity set's entity type"
+                            "context": "relative to the containing entity set's entity type",
+                            "ref": "#AttributePath.13.4"
                         },
                         {
                             "name": "Target",
                             "category": "path",
                             "subcategory": "Relative Path",
                             "description": "target path to entity set/singleton",
-                            "context": "relative to the containing entity container"
+                            "context": "relative to the containing entity container",
+                            "ref": "#AttributeTarget.8.1"
                         }
                     ],
-                    "ref": "#sec_NavigationPropertyBinding"
+                    "ref": "#ElementedmNavigationPropertyBinding.27"
                 },
                 {
                     "name": "edm:ActionImport",
@@ -587,23 +636,26 @@
                         {
                             "name": "Name",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeName.9.1"
                         },
                         {
                             "name": "Action",
                             "category": "reference",
                             "subcategory": "Absolute Reference",
-                            "description": "qualified unbound action name"
+                            "description": "qualified unbound action name",
+                            "ref": "#AttributeAction.15.1"
                         },
                         {
                             "name": "EntitySet",
                             "category": "reference",
                             "subcategory": "Relative Reference",
                             "description": "entity set name or target path",
-                            "context": "relative to the containing entity container"
+                            "context": "relative to the containing entity container",
+                            "ref": "#AttributeEntitySet"
                         }
                     ],
-                    "ref": "#sec_ActionImport"
+                    "ref": "#ElementedmActionImport.28"
                 },
                 {
                     "name": "edm:FunctionImport",
@@ -611,28 +663,32 @@
                         {
                             "name": "Name",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeName.9.1"
                         },
                         {
                             "name": "Function",
                             "category": "reference",
                             "subcategory": "Absolute Reference",
-                            "description": "qualified unbound function name"
+                            "description": "qualified unbound function name",
+                            "ref": "#AttributeFunction.14.4.4"
                         },
                         {
                             "name": "EntitySet",
                             "category": "reference",
                             "subcategory": "Relative Reference",
                             "description": "entity set name or target path",
-                            "context": "relative to the containing entity container"
+                            "context": "relative to the containing entity container",
+                            "ref": "#AttributeEntitySet"
                         },
                         {
                             "name": "IncludeInServiceDocument",
                             "category": "basic",
-                            "description": "boolean"
+                            "description": "boolean",
+                            "ref": "#AttributeIncludeInServiceDocument.25.3"
                         }
                     ],
-                    "ref": "#sec_FunctionImport"
+                    "ref": "#ElementedmFunctionImport.29"
                 }
             ]
         },
@@ -646,36 +702,41 @@
                         {
                             "name": "Name",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeName.9.1"
                         },
                         {
                             "name": "Type",
                             "category": "reference",
                             "description": "qualified type name or collection",
-                            "ref": "#sec_Type"
+                            "ref": "#AttributeType.12.2"
                         },
                         {
                             "name": "Nullable",
                             "category": "basic",
-                            "description": "boolean"
+                            "description": "boolean",
+                            "ref": "#AttributeNullable.12.3"
                         },
                         {
                             "name": "DefaultValue",
                             "category": "basic",
-                            "description": "primitive value"
+                            "description": "primitive value",
+                            "ref": "#AttributeDefaultValue.12.4"
                         },
                         {
                             "name": "BaseTerm",
                             "category": "reference",
-                            "description": "qualified term name"
+                            "description": "qualified term name",
+                            "ref": "#AttributeBaseTerm.14.1.1"
                         },
                         {
                             "name": "AppliesTo",
                             "category": "basic",
-                            "description": "whitespace-separated list of symbolic values"
+                            "description": "whitespace-separated list of symbolic values",
+                            "ref": "#AttributeAppliesTo.14.1.2"
                         }
                     ],
-                    "ref": "#sec_Term"
+                    "ref": "#ElementedmTerm.30"
                 },
                 {
                     "name": "edm:Annotation",
@@ -683,15 +744,17 @@
                         {
                             "name": "Term",
                             "category": "reference",
-                            "description": "qualified term name"
+                            "description": "qualified term name",
+                            "ref": "#AttributeTerm.14.2"
                         },
                         {
                             "name": "Qualifier",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeQualifier.6.2"
                         }
                     ],
-                    "ref": "#sec_Annotation"
+                    "ref": "#ElementedmAnnotation.31"
                 }
             ]
         },
@@ -705,15 +768,16 @@
                         {
                             "name": "Version",
                             "category": "basic",
-                            "description": "version number string"
+                            "description": "version number string",
+                            "ref": "#AttributeVersion.2.1"
                         }
                     ],
-                    "ref": "#sec_Edmx"
+                    "ref": "#ElementedmxEdmx.2"
                 },
                 {
                     "name": "edmx:DataServices",
                     "attributes": [],
-                    "ref": "#sec_DataServices"
+                    "ref": "#ElementedmxDataServices.3"
                 },
                 {
                     "name": "edmx:Reference",
@@ -721,10 +785,11 @@
                         {
                             "name": "Uri",
                             "category": "basic",
-                            "description": "URI string"
+                            "description": "URI string",
+                            "ref": "#AttributeUri.4.1"
                         }
                     ],
-                    "ref": "#sec_Reference"
+                    "ref": "#ElementedmxReference.4"
                 },
                 {
                     "name": "edmx:Include",
@@ -732,15 +797,17 @@
                         {
                             "name": "Namespace",
                             "category": "reference",
-                            "description": "namespace reference"
+                            "description": "namespace reference",
+                            "ref": "#AttributeNamespace.5.1"
                         },
                         {
                             "name": "Alias",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeAlias.5.2"
                         }
                     ],
-                    "ref": "#sec_Include"
+                    "ref": "#ElementedmxInclude.5"
                 },
                 {
                     "name": "edmx:IncludeAnnotations",
@@ -748,20 +815,23 @@
                         {
                             "name": "TermNamespace",
                             "category": "reference",
-                            "description": "namespace reference"
+                            "description": "namespace reference",
+                            "ref": "#AttributeTermNamespace.6.1"
                         },
                         {
                             "name": "Qualifier",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeQualifier.6.2"
                         },
                         {
                             "name": "TargetNamespace",
                             "category": "reference",
-                            "description": "namespace reference"
+                            "description": "namespace reference",
+                            "ref": "#AttributeTargetNamespace.6.3"
                         }
                     ],
-                    "ref": "#sec_IncludeAnnotations"
+                    "ref": "#ElementedmxIncludeAnnotations.6"
                 }
             ]
         },
@@ -775,10 +845,11 @@
                         {
                             "name": "Value",
                             "category": "basic",
-                            "description": "binary value"
+                            "description": "binary value",
+                            "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#sec_Binary"
+                    "ref": "#ExpressionedmBinary.32"
                 },
                 {
                     "name": "edm:Bool",
@@ -786,10 +857,11 @@
                         {
                             "name": "Value",
                             "category": "basic",
-                            "description": "boolean literal"
+                            "description": "boolean literal",
+                            "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#sec_Bool"
+                    "ref": "#ExpressionedmBool.33"
                 },
                 {
                     "name": "edm:Date",
@@ -797,10 +869,11 @@
                         {
                             "name": "Value",
                             "category": "basic",
-                            "description": "date value"
+                            "description": "date value",
+                            "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#sec_Date"
+                    "ref": "#ExpressionedmDate.34"
                 },
                 {
                     "name": "edm:DateTimeOffset",
@@ -808,10 +881,11 @@
                         {
                             "name": "Value",
                             "category": "basic",
-                            "description": "datetime value"
+                            "description": "datetime value",
+                            "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#sec_DateTimeOffset"
+                    "ref": "#ExpressionedmDateTimeOffset.35"
                 },
                 {
                     "name": "edm:Decimal",
@@ -819,10 +893,11 @@
                         {
                             "name": "Value",
                             "category": "basic",
-                            "description": "decimal value"
+                            "description": "decimal value",
+                            "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#sec_Decimal"
+                    "ref": "#ExpressionedmDecimal.36"
                 },
                 {
                     "name": "edm:Duration",
@@ -830,10 +905,11 @@
                         {
                             "name": "Value",
                             "category": "basic",
-                            "description": "duration value"
+                            "description": "duration value",
+                            "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#sec_Duration"
+                    "ref": "#ExpressionedmDuration.37"
                 },
                 {
                     "name": "edm:EnumMember",
@@ -841,10 +917,11 @@
                         {
                             "name": "Value",
                             "category": "reference",
-                            "description": "qualified enum member name"
+                            "description": "qualified enum member name",
+                            "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#sec_EnumMember"
+                    "ref": "#ExpressionedmEnumMember.38"
                 },
                 {
                     "name": "edm:Float",
@@ -852,10 +929,11 @@
                         {
                             "name": "Value",
                             "category": "basic",
-                            "description": "floating-point value"
+                            "description": "floating-point value",
+                            "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#sec_Float"
+                    "ref": "#ExpressionedmFloat.39"
                 },
                 {
                     "name": "edm:Guid",
@@ -863,10 +941,11 @@
                         {
                             "name": "Value",
                             "category": "basic",
-                            "description": "GUID value"
+                            "description": "GUID value",
+                            "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#sec_Guid"
+                    "ref": "#ExpressionedmGuid.40"
                 },
                 {
                     "name": "edm:Int",
@@ -874,10 +953,11 @@
                         {
                             "name": "Value",
                             "category": "basic",
-                            "description": "integer value"
+                            "description": "integer value",
+                            "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#sec_Int"
+                    "ref": "#ExpressionedmInt.41"
                 },
                 {
                     "name": "edm:String",
@@ -885,10 +965,11 @@
                         {
                             "name": "Value",
                             "category": "basic",
-                            "description": "string value"
+                            "description": "string value",
+                            "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#sec_String"
+                    "ref": "#ExpressionedmString.42"
                 },
                 {
                     "name": "edm:TimeOfDay",
@@ -896,10 +977,11 @@
                         {
                             "name": "Value",
                             "category": "basic",
-                            "description": "time value"
+                            "description": "time value",
+                            "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#sec_TimeOfDay"
+                    "ref": "#ExpressionedmTimeOfDay.43"
                 },
                 {
                     "name": "edm:AnnotationPath",
@@ -907,10 +989,11 @@
                         {
                             "name": "Value",
                             "category": "path",
-                            "description": "annotation path expression"
+                            "description": "annotation path expression",
+                            "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#sec_AnnotationPath"
+                    "ref": "#ExpressionedmAnnotationPath.44"
                 },
                 {
                     "name": "edm:ModelElementPath",
@@ -918,10 +1001,11 @@
                         {
                             "name": "Value",
                             "category": "path",
-                            "description": "model element path expression"
+                            "description": "model element path expression",
+                            "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#sec_ModelElementPath"
+                    "ref": "#ExpressionedmModelElementPath.45"
                 },
                 {
                     "name": "edm:NavigationPropertyPath",
@@ -929,10 +1013,11 @@
                         {
                             "name": "Value",
                             "category": "path",
-                            "description": "navigation property path expression"
+                            "description": "navigation property path expression",
+                            "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#sec_NavigationPropertyPath"
+                    "ref": "#ExpressionedmNavigationPropertyPath.46"
                 },
                 {
                     "name": "edm:PropertyPath",
@@ -940,10 +1025,11 @@
                         {
                             "name": "Value",
                             "category": "path",
-                            "description": "property path expression"
+                            "description": "property path expression",
+                            "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#sec_PropertyPath"
+                    "ref": "#ExpressionedmPropertyPath.47"
                 },
                 {
                     "name": "edm:Path",
@@ -951,15 +1037,16 @@
                         {
                             "name": "Value",
                             "category": "path",
-                            "description": "value path expression"
+                            "description": "value path expression",
+                            "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#sec_Path"
+                    "ref": "#ExpressionedmPath.48"
                 },
                 {
                     "name": "edm:And",
                     "attributes": [],
-                    "ref": "#sec_And"
+                    "ref": "#ExpressionsedmAnd.49"
                 },
                 {
                     "name": "edm:Or",
@@ -969,12 +1056,12 @@
                 {
                     "name": "edm:Not",
                     "attributes": [],
-                    "ref": "#sec_Not"
+                    "ref": "#ExpressionedmNot.50"
                 },
                 {
                     "name": "edm:Eq",
                     "attributes": [],
-                    "ref": "#sec_Eq"
+                    "ref": "#ExpressionsedmEq.51"
                 },
                 {
                     "name": "edm:Ne",
@@ -1014,12 +1101,12 @@
                 {
                     "name": "edm:Neg",
                     "attributes": [],
-                    "ref": "#sec_Neg"
+                    "ref": "#ExpressionedmNeg.52"
                 },
                 {
                     "name": "edm:Add",
                     "attributes": [],
-                    "ref": "#sec_Add"
+                    "ref": "#ExpressionsedmAdd.53"
                 },
                 {
                     "name": "edm:Sub",
@@ -1052,10 +1139,11 @@
                         {
                             "name": "Function",
                             "category": "reference",
-                            "description": "function name"
+                            "description": "function name",
+                            "ref": "#AttributeFunction.14.4.4"
                         }
                     ],
-                    "ref": "#sec_Apply"
+                    "ref": "#ExpressionedmApply.54"
                 },
                 {
                     "name": "edm:Cast",
@@ -1064,20 +1152,20 @@
                             "name": "Type",
                             "category": "reference",
                             "description": "qualified type name",
-                            "ref": "#sec_Type"
+                            "ref": "#AttributeType.12.2"
                         }
                     ],
-                    "ref": "#sec_Cast"
+                    "ref": "#ExpressionedmCast.55"
                 },
                 {
                     "name": "edm:Collection",
                     "attributes": [],
-                    "ref": "#sec_Collection"
+                    "ref": "#ExpressionedmCollection.56"
                 },
                 {
                     "name": "edm:If",
                     "attributes": [],
-                    "ref": "#sec_If"
+                    "ref": "#ExpressionedmIf.57"
                 },
                 {
                     "name": "edm:IsOf",
@@ -1086,7 +1174,7 @@
                             "name": "Type",
                             "category": "reference",
                             "description": "qualified type name",
-                            "ref": "#sec_Type"
+                            "ref": "#AttributeType.12.2"
                         }
                     ],
                     "ref": "#sec_IsOf"
@@ -1097,20 +1185,21 @@
                         {
                             "name": "Name",
                             "category": "basic",
-                            "subcategory": "simple identifier"
+                            "subcategory": "simple identifier",
+                            "ref": "#AttributeName.9.1"
                         }
                     ],
-                    "ref": "#sec_LabeledElement"
+                    "ref": "#ExpressionedmLabeledElement.59"
                 },
                 {
                     "name": "edm:LabeledElementReference",
                     "attributes": [],
-                    "ref": "#sec_LabeledElementReference"
+                    "ref": "#ExpressionedmLabeledElementReference.60"
                 },
                 {
                     "name": "edm:Null",
                     "attributes": [],
-                    "ref": "#sec_Null"
+                    "ref": "#ExpressionedmNull.61"
                 },
                 {
                     "name": "edm:Record",
@@ -1119,10 +1208,10 @@
                             "name": "Type",
                             "category": "reference",
                             "description": "qualified structured type name",
-                            "ref": "#sec_Type"
+                            "ref": "#AttributeType.12.2"
                         }
                     ],
-                    "ref": "#sec_Record"
+                    "ref": "#ExpressionedmRecord.62"
                 },
                 {
                     "name": "edm:PropertyValue",
@@ -1131,15 +1220,16 @@
                             "name": "Property",
                             "category": "reference",
                             "description": "path to a property",
-                            "context": "relative path to a property of the type of the enclosing edm:Record expression"
+                            "context": "relative path to a property of the type of the enclosing edm:Record expression",
+                            "ref": "#AttributeProperty.14.1"
                         }
                     ],
-                    "ref": "#sec_PropertyValue"
+                    "ref": "#ElementedmPropertyValue.63"
                 },
                 {
                     "name": "edm:UrlRef",
                     "attributes": [],
-                    "ref": "#sec_UrlRef"
+                    "ref": "#ExpressionedmUrlRef.64"
                 }
             ]
         }
