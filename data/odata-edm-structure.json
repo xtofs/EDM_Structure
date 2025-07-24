@@ -1,0 +1,1193 @@
+{
+    "metadata": {
+        "title": "OASIS CSDL XML Elements and Attributes Classification",
+        "description": "Based on the OASIS OData CSDL XML Representation Version 4.02 specification, Appendix B, this document lists all EDM elements and categorizes their attribute types.",
+        "version": "4.02",
+        "source": "OASIS OData CSDL XML Representation Version 4.02 specification",
+        "appendixUrl": "https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#TableofXMLElementsandAttributes",
+        "baseUrl": "https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html"
+    },
+    "attributeCategories": {
+        "basic": {
+            "name": "Basic Attribute",
+            "description": "Simple value types (strings, booleans, numbers, identifiers)",
+            "subcategories": [
+                {
+                    "name": "MaxLength",
+                    "description": "Positive integer or symbolic value",
+                    "symbolicValues": [
+                        {
+                            "name": "max",
+                            "description": "shorthand for the maximum length supported by the service"
+                        }
+                    ]
+                },
+                {
+                    "name": "Scale",
+                    "description": "Non-negative integer or symbolic values",
+                    "symbolicValues": [
+                        {
+                            "name": "floating",
+                            "description": "decimal floating-point number where precision specifies significant digits (not allowed in OData 4.0 responses)"
+                        },
+                        {
+                            "name": "variable",
+                            "description": "number of digits to the right of decimal point can vary from zero to the precision value"
+                        }
+                    ],
+                    "constraints": "Scale value MUST be less than or equal to Precision value",
+                    "default": "0 if not specified",
+                    "notes": "Services should use lower-case values; clients should accept values case-insensitively"
+                },
+                {
+                    "name": "SRID",
+                    "description": "Non-negative integer or symbolic value",
+                    "symbolicValues": [
+                        {
+                            "name": "variable",
+                            "description": "allows different spatial reference systems"
+                        }
+                    ],
+                    "default": "0 for Geometry types, 4326 for Geography types if not specified"
+                }
+            ]
+        },
+        "reference": {
+            "name": "Reference Attribute",
+            "description": "References to other model elements represented in XML/JSON as qualified names, type names, target paths, etc. . ",
+            "subcategories": [
+                {
+                    "name": "Absolute Reference",
+                    "description": "symbolic references that reference elements anywhere in the model"
+                },
+                {
+                    "name": "Relative Reference",
+                    "description": "symbolic references that reference elements relative to a specific ancestor (or related) context element"
+                }
+            ]
+        },
+        "path": {
+            "name": "Path Attribute",
+            "description": "Path expressions in form of a sequence of model elements represented in XML/JSON as a string or element names with delimiters",
+            "subcategories": [
+                {
+                    "name": "Absolute Path",
+                    "description": "Paths that are naming elements by starting from the root of the model"
+                },
+                {
+                    "name": "Relative Path",
+                    "description": "Paths that are resolved relative to a specific element context"
+                }
+            ]
+        }
+    },
+    "elementGroups": [
+        {
+            "name": "Schema Elements",
+            "description": "Core schema definition elements",
+            "elements": [
+                {
+                    "name": "edm:Schema",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Namespace",
+                            "category": "basic",
+                            "description": "A simple identifier used to uniquely identify the element within its containing scope.",
+                            "subcategory": "simple identifier"
+                        },
+                        {
+                            "name": "Alias",
+                            "category": "basic",
+                            "subcategory": "simple identifier",
+                            "description": "The alias of a schema MAY be used instead of the namespaceto identify model elements of that schema."
+                        }
+                    ],
+                    "ref": "#sec_Schema"
+                },
+                {
+                    "name": "edm:Annotations",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Target",
+                            "category": "path",
+                            "subcategory": "Absolute Path",
+                            "description": "target path expression",
+                            "context": "can reference any model element"
+                        },
+                        {
+                            "name": "Qualifier",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        }
+                    ],
+                    "ref": "#sec_Annotations"
+                }
+            ]
+        },
+        {
+            "name": "Entity Model Elements",
+            "description": "Core entity and type definition elements",
+            "elements": [
+                {
+                    "name": "edm:EntityType",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Name",
+                            "category": "basic",
+                            "subcategory": "simple identifier",
+                            "description": "The entity type’s name that MUST be unique within its schema."
+                        },
+                        {
+                            "name": "BaseType",
+                            "category": "reference",
+                            "subcategory": "Absolute Reference",
+                            "description": "qualified name of an edm:EntityType",
+                            "ref": "#AttributeBaseType.9.2"
+                        },
+                        {
+                            "name": "Abstract",
+                            "category": "basic",
+                            "description": "boolean"
+                        },
+                        {
+                            "name": "OpenType",
+                            "category": "basic",
+                            "description": "boolean"
+                        },
+                        {
+                            "name": "HasStream",
+                            "category": "basic",
+                            "description": "boolean"
+                        }
+                    ],
+                    "ref": "#sec_EntityType"
+                },
+                {
+                    "name": "edm:Key",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_Key"
+                },
+                {
+                    "name": "edm:PropertyRef",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Name",
+                            "category": "path",
+                            "subcategory": "Relative Path",
+                            "description": "path to structural property",
+                            "context": "relative to the containing entity/complex type"
+                        },
+                        {
+                            "name": "Alias",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        }
+                    ],
+                    "ref": "#sec_PropertyRef"
+                },
+                {
+                    "name": "edm:Property",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Name",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        },
+                        {
+                            "name": "Type",
+                            "category": "reference",
+                            "description": "qualified type name or collection",
+                            "ref": "#sec_Type"
+                        },
+                        {
+                            "name": "Nullable",
+                            "category": "basic",
+                            "description": "boolean"
+                        },
+                        {
+                            "name": "DefaultValue",
+                            "category": "basic",
+                            "description": "primitive value"
+                        }
+                    ],
+                    "ref": "#sec_Property"
+                },
+                {
+                    "name": "edm:NavigationProperty",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Name",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        },
+                        {
+                            "name": "Type",
+                            "category": "reference",
+                            "subcategory": "Absolute Reference",
+                            "description": "qualified entity type name or collection thereof",
+                            "ref": "#sec_Type"
+                        },
+                        {
+                            "name": "Nullable",
+                            "category": "basic",
+                            "description": "boolean"
+                        },
+                        {
+                            "name": "Partner",
+                            "category": "path",
+                            "subcategory": "Relative Path",
+                            "description": "path to partner navigation property",
+                            "context": "relative to the target entity type specified in Type attribute"
+                        },
+                        {
+                            "name": "ContainsTarget",
+                            "category": "basic",
+                            "description": "boolean"
+                        }
+                    ],
+                    "ref": "#sec_NavigationProperty"
+                },
+                {
+                    "name": "edm:ReferentialConstraint",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Property",
+                            "category": "path",
+                            "subcategory": "Relative Path",
+                            "description": "path to dependent property",
+                            "context": "relative to the containing navigation property's source entity type"
+                        },
+                        {
+                            "name": "ReferencedProperty",
+                            "category": "path",
+                            "subcategory": "Relative Path",
+                            "description": "path to principal property",
+                            "context": "relative to the containing navigation property's target entity type"
+                        }
+                    ],
+                    "ref": "#sec_ReferentialConstraint"
+                },
+                {
+                    "name": "edm:OnDelete",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Action",
+                            "category": "basic",
+                            "description": "action enum: Cascade, None, SetNull, SetDefault"
+                        }
+                    ],
+                    "ref": "#sec_OnDelete"
+                },
+                {
+                    "name": "edm:ComplexType",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Name",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        },
+                        {
+                            "name": "BaseType",
+                            "category": "reference",
+                            "subcategory": "Absolute Reference",
+                            "description": "qualified name of a edm:ComplexType",
+                            "ref": "#sec_BaseType"
+                        },
+                        {
+                            "name": "Abstract",
+                            "category": "basic",
+                            "description": "boolean"
+                        },
+                        {
+                            "name": "OpenType",
+                            "category": "basic",
+                            "description": "boolean"
+                        }
+                    ],
+                    "ref": "#sec_ComplexType"
+                },
+                {
+                    "name": "edm:EnumType",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Name",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        },
+                        {
+                            "name": "UnderlyingType",
+                            "category": "reference",
+                            "description": "qualified name of and integer type",
+                            "constraints": "restricted to: Edm.Byte, Edm.SByte, Edm.Int16, Edm.Int32, or Edm.Int64"
+                        },
+                        {
+                            "name": "IsFlags",
+                            "category": "basic",
+                            "description": "boolean"
+                        }
+                    ],
+                    "ref": "#sec_EnumType"
+                },
+                {
+                    "name": "edm:Member",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Name",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        },
+                        {
+                            "name": "Value",
+                            "category": "basic",
+                            "description": "integer value"
+                        }
+                    ],
+                    "ref": "#sec_Member"
+                },
+                {
+                    "name": "edm:TypeDefinition",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Name",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        },
+                        {
+                            "name": "UnderlyingType",
+                            "category": "reference",
+                            "description": "qualified name of primitive type",
+                            "constraints": "cannot be another type definition"
+                        }
+                    ],
+                    "ref": "#sec_TypeDefinition"
+                }
+            ]
+        },
+        {
+            "name": "Action and Function Elements",
+            "description": "Action and function definition elements",
+            "elements": [
+                {
+                    "name": "edm:Action",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Name",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        },
+                        {
+                            "name": "IsBound",
+                            "category": "basic",
+                            "description": "boolean"
+                        },
+                        {
+                            "name": "EntitySetPath",
+                            "category": "path",
+                            "subcategory": "Relative Path",
+                            "description": "entity set path expression",
+                            "context": "relative to the action's parameters when bound"
+                        }
+                    ],
+                    "ref": "#sec_Action"
+                },
+                {
+                    "name": "edm:Function",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Name",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        },
+                        {
+                            "name": "IsBound",
+                            "category": "basic",
+                            "description": "boolean"
+                        },
+                        {
+                            "name": "EntitySetPath",
+                            "category": "path",
+                            "subcategory": "Relative Path",
+                            "description": "entity set path expression",
+                            "context": "relative to the function's parameters when bound"
+                        },
+                        {
+                            "name": "IsComposable",
+                            "category": "basic",
+                            "description": "boolean"
+                        }
+                    ],
+                    "ref": "#sec_Function"
+                },
+                {
+                    "name": "edm:ReturnType",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Type",
+                            "category": "reference",
+                            "description": "qualified type name or collection",
+                            "ref": "#sec_Type"
+                        },
+                        {
+                            "name": "Nullable",
+                            "category": "basic",
+                            "description": "boolean"
+                        }
+                    ],
+                    "ref": "#sec_ReturnType"
+                },
+                {
+                    "name": "edm:Parameter",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Name",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        },
+                        {
+                            "name": "Type",
+                            "category": "reference",
+                            "description": "qualified type name or collection",
+                            "ref": "#sec_Type"
+                        },
+                        {
+                            "name": "Nullable",
+                            "category": "basic",
+                            "description": "boolean"
+                        }
+                    ],
+                    "ref": "#sec_Parameter"
+                }
+            ]
+        },
+        {
+            "name": "Entity Container Elements",
+            "description": "Entity container and related elements",
+            "elements": [
+                {
+                    "name": "edm:EntityContainer",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Name",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        },
+                        {
+                            "name": "Extends",
+                            "category": "reference",
+                            "subcategory": "Absolute Reference",
+                            "description": "qualified entity container name"
+                        }
+                    ],
+                    "ref": "#sec_EntityContainer"
+                },
+                {
+                    "name": "edm:EntitySet",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Name",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        },
+                        {
+                            "name": "EntityType",
+                            "category": "reference",
+                            "subcategory": "Absolute Reference",
+                            "description": "qualified entity type name"
+                        },
+                        {
+                            "name": "IncludeInServiceDocument",
+                            "category": "basic",
+                            "description": "boolean"
+                        }
+                    ],
+                    "ref": "#sec_EntitySet"
+                },
+                {
+                    "name": "edm:Singleton",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Name",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        },
+                        {
+                            "name": "Type",
+                            "category": "reference",
+                            "subcategory": "Absolute Reference",
+                            "description": "qualified entity type name",
+                            "ref": "#sec_Type"
+                        },
+                        {
+                            "name": "Nullable",
+                            "category": "basic",
+                            "description": "boolean"
+                        }
+                    ],
+                    "ref": "#sec_Singleton"
+                },
+                {
+                    "name": "edm:NavigationPropertyBinding",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Path",
+                            "category": "path",
+                            "subcategory": "Relative Path",
+                            "description": "navigation property path expression",
+                            "context": "relative to the containing entity set's entity type"
+                        },
+                        {
+                            "name": "Target",
+                            "category": "path",
+                            "subcategory": "Relative Path",
+                            "description": "target path to entity set/singleton",
+                            "context": "relative to the containing entity container"
+                        }
+                    ],
+                    "ref": "#sec_NavigationPropertyBinding"
+                },
+                {
+                    "name": "edm:ActionImport",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Name",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        },
+                        {
+                            "name": "Action",
+                            "category": "reference",
+                            "subcategory": "Absolute Reference",
+                            "description": "qualified unbound action name"
+                        },
+                        {
+                            "name": "EntitySet",
+                            "category": "reference",
+                            "subcategory": "Relative Reference",
+                            "description": "entity set name or target path",
+                            "context": "relative to the containing entity container"
+                        }
+                    ],
+                    "ref": "#sec_ActionImport"
+                },
+                {
+                    "name": "edm:FunctionImport",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Name",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        },
+                        {
+                            "name": "Function",
+                            "category": "reference",
+                            "subcategory": "Absolute Reference",
+                            "description": "qualified unbound function name"
+                        },
+                        {
+                            "name": "EntitySet",
+                            "category": "reference",
+                            "subcategory": "Relative Reference",
+                            "description": "entity set name or target path",
+                            "context": "relative to the containing entity container"
+                        },
+                        {
+                            "name": "IncludeInServiceDocument",
+                            "category": "basic",
+                            "description": "boolean"
+                        }
+                    ],
+                    "ref": "#sec_FunctionImport"
+                }
+            ]
+        },
+        {
+            "name": "Vocabulary and Annotation Elements",
+            "description": "Vocabulary terms and annotation elements",
+            "elements": [
+                {
+                    "name": "edm:Term",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Name",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        },
+                        {
+                            "name": "Type",
+                            "category": "reference",
+                            "description": "qualified type name or collection",
+                            "ref": "#sec_Type"
+                        },
+                        {
+                            "name": "Nullable",
+                            "category": "basic",
+                            "description": "boolean"
+                        },
+                        {
+                            "name": "DefaultValue",
+                            "category": "basic",
+                            "description": "primitive value"
+                        },
+                        {
+                            "name": "BaseTerm",
+                            "category": "reference",
+                            "description": "qualified term name"
+                        },
+                        {
+                            "name": "AppliesTo",
+                            "category": "basic",
+                            "description": "whitespace-separated list of symbolic values"
+                        }
+                    ],
+                    "ref": "#sec_Term"
+                },
+                {
+                    "name": "edm:Annotation",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Term",
+                            "category": "reference",
+                            "description": "qualified term name"
+                        },
+                        {
+                            "name": "Qualifier",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        }
+                    ],
+                    "ref": "#sec_Annotation"
+                }
+            ]
+        },
+        {
+            "name": "Core EDMX Elements",
+            "description": "Core EDMX wrapper elements",
+            "elements": [
+                {
+                    "name": "edmx:Edmx",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Version",
+                            "category": "basic",
+                            "description": "version number string"
+                        }
+                    ],
+                    "ref": "#sec_Edmx"
+                },
+                {
+                    "name": "edmx:DataServices",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_DataServices"
+                },
+                {
+                    "name": "edmx:Reference",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Uri",
+                            "category": "basic",
+                            "description": "URI string"
+                        }
+                    ],
+                    "ref": "#sec_Reference"
+                },
+                {
+                    "name": "edmx:Include",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Namespace",
+                            "category": "reference",
+                            "description": "namespace reference"
+                        },
+                        {
+                            "name": "Alias",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        }
+                    ],
+                    "ref": "#sec_Include"
+                },
+                {
+                    "name": "edmx:IncludeAnnotations",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "TermNamespace",
+                            "category": "reference",
+                            "description": "namespace reference"
+                        },
+                        {
+                            "name": "Qualifier",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        },
+                        {
+                            "name": "TargetNamespace",
+                            "category": "reference",
+                            "description": "namespace reference"
+                        }
+                    ],
+                    "ref": "#sec_IncludeAnnotations"
+                }
+            ]
+        },
+        {
+            "name": "Annotation Expression Elements",
+            "description": "Elements used within annotation expressions",
+            "elements": [
+                {
+                    "name": "edm:Binary",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Value",
+                            "category": "basic",
+                            "description": "binary value"
+                        }
+                    ],
+                    "ref": "#sec_Binary"
+                },
+                {
+                    "name": "edm:Bool",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Value",
+                            "category": "basic",
+                            "description": "boolean literal"
+                        }
+                    ],
+                    "ref": "#sec_Bool"
+                },
+                {
+                    "name": "edm:Date",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Value",
+                            "category": "basic",
+                            "description": "date value"
+                        }
+                    ],
+                    "ref": "#sec_Date"
+                },
+                {
+                    "name": "edm:DateTimeOffset",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Value",
+                            "category": "basic",
+                            "description": "datetime value"
+                        }
+                    ],
+                    "ref": "#sec_DateTimeOffset"
+                },
+                {
+                    "name": "edm:Decimal",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Value",
+                            "category": "basic",
+                            "description": "decimal value"
+                        }
+                    ],
+                    "ref": "#sec_Decimal"
+                },
+                {
+                    "name": "edm:Duration",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Value",
+                            "category": "basic",
+                            "description": "duration value"
+                        }
+                    ],
+                    "ref": "#sec_Duration"
+                },
+                {
+                    "name": "edm:EnumMember",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Value",
+                            "category": "reference",
+                            "description": "qualified enum member name"
+                        }
+                    ],
+                    "ref": "#sec_EnumMember"
+                },
+                {
+                    "name": "edm:Float",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Value",
+                            "category": "basic",
+                            "description": "floating-point value"
+                        }
+                    ],
+                    "ref": "#sec_Float"
+                },
+                {
+                    "name": "edm:Guid",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Value",
+                            "category": "basic",
+                            "description": "GUID value"
+                        }
+                    ],
+                    "ref": "#sec_Guid"
+                },
+                {
+                    "name": "edm:Int",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Value",
+                            "category": "basic",
+                            "description": "integer value"
+                        }
+                    ],
+                    "ref": "#sec_Int"
+                },
+                {
+                    "name": "edm:String",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Value",
+                            "category": "basic",
+                            "description": "string value"
+                        }
+                    ],
+                    "ref": "#sec_String"
+                },
+                {
+                    "name": "edm:TimeOfDay",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Value",
+                            "category": "basic",
+                            "description": "time value"
+                        }
+                    ],
+                    "ref": "#sec_TimeOfDay"
+                },
+                {
+                    "name": "edm:AnnotationPath",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Value",
+                            "category": "path",
+                            "description": "annotation path expression"
+                        }
+                    ],
+                    "ref": "#sec_AnnotationPath"
+                },
+                {
+                    "name": "edm:ModelElementPath",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Value",
+                            "category": "path",
+                            "description": "model element path expression"
+                        }
+                    ],
+                    "ref": "#sec_ModelElementPath"
+                },
+                {
+                    "name": "edm:NavigationPropertyPath",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Value",
+                            "category": "path",
+                            "description": "navigation property path expression"
+                        }
+                    ],
+                    "ref": "#sec_NavigationPropertyPath"
+                },
+                {
+                    "name": "edm:PropertyPath",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Value",
+                            "category": "path",
+                            "description": "property path expression"
+                        }
+                    ],
+                    "ref": "#sec_PropertyPath"
+                },
+                {
+                    "name": "edm:Path",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Value",
+                            "category": "path",
+                            "description": "value path expression"
+                        }
+                    ],
+                    "ref": "#sec_Path"
+                },
+                {
+                    "name": "edm:And",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_And"
+                },
+                {
+                    "name": "edm:Or",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_Or"
+                },
+                {
+                    "name": "edm:Not",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_Not"
+                },
+                {
+                    "name": "edm:Eq",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_Eq"
+                },
+                {
+                    "name": "edm:Ne",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_Ne"
+                },
+                {
+                    "name": "edm:Gt",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_Gt"
+                },
+                {
+                    "name": "edm:Ge",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_Ge"
+                },
+                {
+                    "name": "edm:Lt",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_Lt"
+                },
+                {
+                    "name": "edm:Le",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_Le"
+                },
+                {
+                    "name": "edm:Has",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_Has"
+                },
+                {
+                    "name": "edm:In",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_In"
+                },
+                {
+                    "name": "edm:Neg",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_Neg"
+                },
+                {
+                    "name": "edm:Add",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_Add"
+                },
+                {
+                    "name": "edm:Sub",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_Sub"
+                },
+                {
+                    "name": "edm:Mul",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_Mul"
+                },
+                {
+                    "name": "edm:Div",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_Div"
+                },
+                {
+                    "name": "edm:DivBy",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_DivBy"
+                },
+                {
+                    "name": "edm:Mod",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_Mod"
+                },
+                {
+                    "name": "edm:Apply",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Function",
+                            "category": "reference",
+                            "description": "function name"
+                        }
+                    ],
+                    "ref": "#sec_Apply"
+                },
+                {
+                    "name": "edm:Cast",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Type",
+                            "category": "reference",
+                            "description": "qualified type name",
+                            "ref": "#sec_Type"
+                        }
+                    ],
+                    "ref": "#sec_Cast"
+                },
+                {
+                    "name": "edm:Collection",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_Collection"
+                },
+                {
+                    "name": "edm:If",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_If"
+                },
+                {
+                    "name": "edm:IsOf",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Type",
+                            "category": "reference",
+                            "description": "qualified type name",
+                            "ref": "#sec_Type"
+                        }
+                    ],
+                    "ref": "#sec_IsOf"
+                },
+                {
+                    "name": "edm:LabeledElement",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Name",
+                            "category": "basic",
+                            "subcategory": "simple identifier"
+                        }
+                    ],
+                    "ref": "#sec_LabeledElement"
+                },
+                {
+                    "name": "edm:LabeledElementReference",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_LabeledElementReference"
+                },
+                {
+                    "name": "edm:Null",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_Null"
+                },
+                {
+                    "name": "edm:Record",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Type",
+                            "category": "reference",
+                            "description": "qualified structured type name",
+                            "ref": "#sec_Type"
+                        }
+                    ],
+                    "ref": "#sec_Record"
+                },
+                {
+                    "name": "edm:PropertyValue",
+                    "hasAttributes": true,
+                    "attributes": [
+                        {
+                            "name": "Property",
+                            "category": "reference",
+                            "description": "path to a property",
+                            "context": "relative path to a property of the type of the enclosing edm:Record expression"
+                        }
+                    ],
+                    "ref": "#sec_PropertyValue"
+                },
+                {
+                    "name": "edm:UrlRef",
+                    "hasAttributes": false,
+                    "attributes": [],
+                    "ref": "#sec_UrlRef"
+                }
+            ]
+        }
+    ],
+    "summary": {
+        "basicAttributesCount": 92,
+        "referenceAttributesCount": 26,
+        "pathAttributesCount": 12,
+        "totalElements": 78
+    }
+}

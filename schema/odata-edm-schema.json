@@ -1,0 +1,140 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OData EDM Structure Schema",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "version": { "type": "string" },
+        "source": { "type": "string" },
+        "appendixUrl": { "type": "string" },
+        "baseUrl": { "type": "string" }
+      },
+      "required": ["title", "description", "version"]
+    },
+    "attributeCategories": {
+      "type": "object",
+      "properties": {
+        "basic": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "description": { "type": "string" },
+            "subcategories": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" },
+                  "symbolicValues": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": { "type": "string" },
+                        "description": { "type": "string" },
+                        "constraints": { "type": "string" },
+                        "default": { "type": "string" },
+                        "notes": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "reference": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "description": { "type": "string" },
+            "subcategories": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "path": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "description": { "type": "string" },
+            "subcategories": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "elementGroups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "hasAttributes": { "type": "boolean" },
+                "ref": { "type": "string" },
+                "attributes": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": { "type": "string" },
+                      "category": { 
+                        "type": "string",
+                        "enum": ["basic", "reference", "path"]
+                      },
+                      "subcategory": { "type": "string" },
+                      "description": { "type": "string" },
+                      "constraints": { "type": "string" },
+                      "context": { "type": "string" },
+                      "ref": { "type": "string" }
+                    },
+                    "required": ["name", "category"]
+                  }
+                }
+              },
+              "required": ["name", "hasAttributes"]
+            }
+          }
+        },
+        "required": ["name", "elements"]
+      }
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "basicAttributesCount": { "type": "number" },
+        "referenceAttributesCount": { "type": "number" },
+        "pathAttributesCount": { "type": "number" },
+        "totalElements": { "type": "number" }
+      }
+    }
+  },
+  "required": ["metadata", "attributeCategories", "elementGroups", "summary"]
+}

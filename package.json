@@ -1,0 +1,59 @@
+{
+  "name": "odata-edm-structure-converter",
+  "version": "1.0.0",
+  "description": "Convert OData EDM structure data to consistent, readable markdown documentation",
+  "main": "dist/index.js",
+  "bin": {
+    "odata-edm-converter": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/cli.js",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write src/**/*.ts",
+    "clean": "rimraf dist",
+    "generate-docs": "node dist/cli.js data/odata-edm-structure.json -o generated/OData_EDM_Structure_Generated.md --stats"
+  },
+  "keywords": [
+    "odata",
+    "edm",
+    "csdl",
+    "markdown",
+    "documentation",
+    "generator",
+    "typescript"
+  ],
+  "author": "OData EDM Structure Converter",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
+    "prettier": "^3.0.0",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "dist/**/*",
+    "schema/**/*",
+    "data/**/*",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oasis/odata-edm-structure-converter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/oasis/odata-edm-structure-converter/issues"
+  },
+  "homepage": "https://github.com/oasis/odata-edm-structure-converter#readme"
+}
