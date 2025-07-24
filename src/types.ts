@@ -51,7 +51,6 @@ export interface ElementAttribute {
 
 export interface EdmElement {
   name: string;
-  hasAttributes: boolean;
   attributes: ElementAttribute[];
   ref?: string;
 }
@@ -82,7 +81,6 @@ export interface ODataEdmStructure {
   metadata: Metadata;
   attributeCategories: AttributeCategories;
   elementGroups: ElementGroup[];
-  summary: Summary;
 }
 
 /**

@@ -110,7 +110,7 @@ export class ODataEdmParser {
       totalElements += group.elements.length;
       
       for (const element of group.elements) {
-        if (element.hasAttributes && element.attributes.length > 0) {
+        if (element.attributes.length > 0) {
           elementsWithAttributes++;
           totalAttributes += element.attributes.length;
           
@@ -197,8 +197,8 @@ export class ODataEdmParser {
         
         for (let j = 0; j < group.elements.length; j++) {
           const element = group.elements[j];
-          if (!element.name || typeof element.hasAttributes !== 'boolean') {
-            errors.push(`Invalid element at group ${i}, element ${j}: name and hasAttributes are required`);
+          if (!element.name) {
+            errors.push(`Invalid element at group ${i}, element ${j}: name is required`);
           }
           
           if (!Array.isArray(element.attributes)) {

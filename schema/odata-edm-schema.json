@@ -97,7 +97,6 @@
               "type": "object",
               "properties": {
                 "name": { "type": "string" },
-                "hasAttributes": { "type": "boolean" },
                 "ref": { "type": "string" },
                 "attributes": {
                   "type": "array",
@@ -119,22 +118,13 @@
                   }
                 }
               },
-              "required": ["name", "hasAttributes"]
+              "required": ["name"]
             }
           }
         },
         "required": ["name", "elements"]
       }
-    },
-    "summary": {
-      "type": "object",
-      "properties": {
-        "basicAttributesCount": { "type": "number" },
-        "referenceAttributesCount": { "type": "number" },
-        "pathAttributesCount": { "type": "number" },
-        "totalElements": { "type": "number" }
-      }
     }
   },
-  "required": ["metadata", "attributeCategories", "elementGroups", "summary"]
+  "required": ["metadata", "attributeCategories", "elementGroups"]
 }

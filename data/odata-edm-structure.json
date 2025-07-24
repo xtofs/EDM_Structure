@@ -1,7 +1,7 @@
 {
     "metadata": {
         "title": "OASIS CSDL XML Elements and Attributes Classification",
-        "description": "Based on the OASIS OData CSDL XML Representation Version 4.02 specification, Appendix B, this document lists all EDM elements and categorizes their attribute types.",
+        "description": "This document lists all EDM elements and categorizes their attribute types. It is based the OASIS OData CSDL XML Representation Version 4.02 specification - Appendix B. and adds the details about values, symbolic references and constraints for attributes.",
         "version": "4.02",
         "source": "OASIS OData CSDL XML Representation Version 4.02 specification",
         "appendixUrl": "https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#TableofXMLElementsandAttributes",
@@ -88,7 +88,6 @@
             "elements": [
                 {
                     "name": "edm:Schema",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Namespace",
@@ -107,7 +106,6 @@
                 },
                 {
                     "name": "edm:Annotations",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Target",
@@ -132,7 +130,6 @@
             "elements": [
                 {
                     "name": "edm:EntityType",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Name",
@@ -167,13 +164,11 @@
                 },
                 {
                     "name": "edm:Key",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_Key"
                 },
                 {
                     "name": "edm:PropertyRef",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Name",
@@ -192,7 +187,6 @@
                 },
                 {
                     "name": "edm:Property",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Name",
@@ -220,7 +214,6 @@
                 },
                 {
                     "name": "edm:NavigationProperty",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Name",
@@ -256,7 +249,6 @@
                 },
                 {
                     "name": "edm:ReferentialConstraint",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Property",
@@ -277,7 +269,6 @@
                 },
                 {
                     "name": "edm:OnDelete",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Action",
@@ -289,7 +280,6 @@
                 },
                 {
                     "name": "edm:ComplexType",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Name",
@@ -318,7 +308,6 @@
                 },
                 {
                     "name": "edm:EnumType",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Name",
@@ -341,7 +330,6 @@
                 },
                 {
                     "name": "edm:Member",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Name",
@@ -358,7 +346,6 @@
                 },
                 {
                     "name": "edm:TypeDefinition",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Name",
@@ -382,7 +369,6 @@
             "elements": [
                 {
                     "name": "edm:Action",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Name",
@@ -406,7 +392,6 @@
                 },
                 {
                     "name": "edm:Function",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Name",
@@ -435,7 +420,6 @@
                 },
                 {
                     "name": "edm:ReturnType",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Type",
@@ -453,7 +437,6 @@
                 },
                 {
                     "name": "edm:Parameter",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Name",
@@ -482,7 +465,6 @@
             "elements": [
                 {
                     "name": "edm:EntityContainer",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Name",
@@ -500,7 +482,6 @@
                 },
                 {
                     "name": "edm:EntitySet",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Name",
@@ -523,7 +504,6 @@
                 },
                 {
                     "name": "edm:Singleton",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Name",
@@ -547,7 +527,6 @@
                 },
                 {
                     "name": "edm:NavigationPropertyBinding",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Path",
@@ -568,7 +547,6 @@
                 },
                 {
                     "name": "edm:ActionImport",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Name",
@@ -593,7 +571,6 @@
                 },
                 {
                     "name": "edm:FunctionImport",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Name",
@@ -629,7 +606,6 @@
             "elements": [
                 {
                     "name": "edm:Term",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Name",
@@ -667,7 +643,6 @@
                 },
                 {
                     "name": "edm:Annotation",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Term",
@@ -690,7 +665,6 @@
             "elements": [
                 {
                     "name": "edmx:Edmx",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Version",
@@ -702,13 +676,11 @@
                 },
                 {
                     "name": "edmx:DataServices",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_DataServices"
                 },
                 {
                     "name": "edmx:Reference",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Uri",
@@ -720,7 +692,6 @@
                 },
                 {
                     "name": "edmx:Include",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Namespace",
@@ -737,7 +708,6 @@
                 },
                 {
                     "name": "edmx:IncludeAnnotations",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "TermNamespace",
@@ -765,7 +735,6 @@
             "elements": [
                 {
                     "name": "edm:Binary",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Value",
@@ -777,7 +746,6 @@
                 },
                 {
                     "name": "edm:Bool",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Value",
@@ -789,7 +757,6 @@
                 },
                 {
                     "name": "edm:Date",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Value",
@@ -801,7 +768,6 @@
                 },
                 {
                     "name": "edm:DateTimeOffset",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Value",
@@ -813,7 +779,6 @@
                 },
                 {
                     "name": "edm:Decimal",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Value",
@@ -825,7 +790,6 @@
                 },
                 {
                     "name": "edm:Duration",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Value",
@@ -837,7 +801,6 @@
                 },
                 {
                     "name": "edm:EnumMember",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Value",
@@ -849,7 +812,6 @@
                 },
                 {
                     "name": "edm:Float",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Value",
@@ -861,7 +823,6 @@
                 },
                 {
                     "name": "edm:Guid",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Value",
@@ -873,7 +834,6 @@
                 },
                 {
                     "name": "edm:Int",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Value",
@@ -885,7 +845,6 @@
                 },
                 {
                     "name": "edm:String",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Value",
@@ -897,7 +856,6 @@
                 },
                 {
                     "name": "edm:TimeOfDay",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Value",
@@ -909,7 +867,6 @@
                 },
                 {
                     "name": "edm:AnnotationPath",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Value",
@@ -921,7 +878,6 @@
                 },
                 {
                     "name": "edm:ModelElementPath",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Value",
@@ -933,7 +889,6 @@
                 },
                 {
                     "name": "edm:NavigationPropertyPath",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Value",
@@ -945,7 +900,6 @@
                 },
                 {
                     "name": "edm:PropertyPath",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Value",
@@ -957,7 +911,6 @@
                 },
                 {
                     "name": "edm:Path",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Value",
@@ -969,115 +922,96 @@
                 },
                 {
                     "name": "edm:And",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_And"
                 },
                 {
                     "name": "edm:Or",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_Or"
                 },
                 {
                     "name": "edm:Not",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_Not"
                 },
                 {
                     "name": "edm:Eq",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_Eq"
                 },
                 {
                     "name": "edm:Ne",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_Ne"
                 },
                 {
                     "name": "edm:Gt",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_Gt"
                 },
                 {
                     "name": "edm:Ge",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_Ge"
                 },
                 {
                     "name": "edm:Lt",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_Lt"
                 },
                 {
                     "name": "edm:Le",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_Le"
                 },
                 {
                     "name": "edm:Has",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_Has"
                 },
                 {
                     "name": "edm:In",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_In"
                 },
                 {
                     "name": "edm:Neg",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_Neg"
                 },
                 {
                     "name": "edm:Add",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_Add"
                 },
                 {
                     "name": "edm:Sub",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_Sub"
                 },
                 {
                     "name": "edm:Mul",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_Mul"
                 },
                 {
                     "name": "edm:Div",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_Div"
                 },
                 {
                     "name": "edm:DivBy",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_DivBy"
                 },
                 {
                     "name": "edm:Mod",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_Mod"
                 },
                 {
                     "name": "edm:Apply",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Function",
@@ -1089,7 +1023,6 @@
                 },
                 {
                     "name": "edm:Cast",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Type",
@@ -1102,19 +1035,16 @@
                 },
                 {
                     "name": "edm:Collection",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_Collection"
                 },
                 {
                     "name": "edm:If",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_If"
                 },
                 {
                     "name": "edm:IsOf",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Type",
@@ -1127,7 +1057,6 @@
                 },
                 {
                     "name": "edm:LabeledElement",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Name",
@@ -1139,19 +1068,16 @@
                 },
                 {
                     "name": "edm:LabeledElementReference",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_LabeledElementReference"
                 },
                 {
                     "name": "edm:Null",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_Null"
                 },
                 {
                     "name": "edm:Record",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Type",
@@ -1164,7 +1090,6 @@
                 },
                 {
                     "name": "edm:PropertyValue",
-                    "hasAttributes": true,
                     "attributes": [
                         {
                             "name": "Property",
@@ -1177,17 +1102,10 @@
                 },
                 {
                     "name": "edm:UrlRef",
-                    "hasAttributes": false,
                     "attributes": [],
                     "ref": "#sec_UrlRef"
                 }
             ]
         }
-    ],
-    "summary": {
-        "basicAttributesCount": 92,
-        "referenceAttributesCount": 26,
-        "pathAttributesCount": 12,
-        "totalElements": 78
-    }
+    ]
 }

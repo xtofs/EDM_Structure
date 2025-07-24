@@ -180,7 +180,7 @@ export class MarkdownGenerator {
           content += `[📖 View in Standard](${fullUrl})\n\n`;
         }
 
-        if (!element.hasAttributes || element.attributes.length === 0) {
+        if (element.attributes.length === 0) {
           content += '*No attributes*\n\n';
         } else {
           content += this.generateAttributeTable(element.attributes);
@@ -286,7 +286,7 @@ export class MarkdownGenerator {
       totalElements += group.elements.length;
 
       for (const element of group.elements) {
-        if (element.hasAttributes && element.attributes.length > 0) {
+        if (element.attributes.length > 0) {
           elementsWithAttributes++;
           totalAttributes += element.attributes.length;
 
@@ -367,7 +367,7 @@ export class MarkdownGenerator {
         content += `[📖 View in Standard](${fullUrl})\n\n`;
       }
 
-      if (!element.hasAttributes || element.attributes.length === 0) {
+      if (element.attributes.length === 0) {
         content += '*No attributes*\n\n';
       } else {
         content += this.generateAttributeTable(element.attributes);
@@ -411,7 +411,7 @@ export class MarkdownGenerator {
       content += `[📖 View in Standard](${fullUrl})\n\n`;
     }
 
-    if (!element.hasAttributes || element.attributes.length === 0) {
+    if (element.attributes.length === 0) {
       content += '*No attributes*\n\n';
     } else {
       content += '## Attributes\n\n';
