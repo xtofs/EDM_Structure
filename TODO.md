@@ -38,14 +38,18 @@ THe best links can be found in Appendix B of the standard.~~
 
 **DONE**: Comprehensively updated all 154 references to match exact anchors from OData CSDL XML v4.02 Appendix B. Fixed critical issue where HasStream was pointing to wrong anchor (#AttributeHasStream.6.4 → #AttributeHasStream.9.5). All element and attribute refs now point to correct specification sections.
 
-## missing permitted parent/child elements
-Each model element can appear only in a specific context in a CSDL file, i.e. as child of a specific parent element.
-This information is missing in the JSON structure. It should be added to each element to indicate where it can be used within the CSDL hierarchy.
-Please add a `permittedChildren` property to each element that lists the parent elements where it can be used. And in the generator calculate the permited parents and show both lists in the generated markdown.
-
 ## previewing the generated doc
 please add a npm script to convert the generated markdown to html for preview.
 I there is an npm module, great. otherwise just assume pandoc is available.
 
 ## link validation
 add a script that checks if the refs exist. I assume that sending a GET request with the # fragment is not enough since this will always return a document. We woudl need to test if the # fragment actually exists in the HTML
+
+
+## missing permitted parent/child elements
+Each model element can appear only in a specific context in a CSDL file, i.e. as child of a few specific parent elements.
+Try to find a few, I can add the rest.
+This information is missing in the JSON structure. It should be added to each element as a `permittedChildren` property, to indicate where it can be used within the CSDL hierarchy.
+The permitted parents can be calculated from the `permittedChildren` since we have a complete list of elements. It is essentially a pivot/group by (in C#.LINQ: `from e in elements from c in e.Children group e.ElementName by c nto g select new { Element = g.Key, Parents = g.AsEnumerable() }; )))
+In the generator we should add one line each for permitted children and permitted parents, each with a comma separated list of names of these elements.
+

@@ -76,8 +76,9 @@ tmp/
 temp/
 
 # Project specific
-# Keep generated files in git to show examples
-# generated/
+# Generated documentation and preview files
+generated/
+preview/
 
 # Keep data and schema files as they are part of the project
 # data/

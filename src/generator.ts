@@ -66,16 +66,11 @@ export class MarkdownGenerator {
     let content = `${headerMark} Overview\n\n`;
     content += `${metadata.description}\n\n`;
 
-    if (metadata.source) {
+    // Consolidate source, version, and reference into a single line with link
+    if (metadata.source && metadata.appendixUrl) {
+      content += `**Source**: [${metadata.source}](${metadata.appendixUrl})\n\n`;
+    } else if (metadata.source) {
       content += `**Source**: ${metadata.source}\n\n`;
-    }
-
-    if (metadata.version) {
-      content += `**Version**: ${metadata.version}\n\n`;
-    }
-
-    if (metadata.appendixUrl) {
-      content += `**Reference**: [Appendix B](${metadata.appendixUrl})\n\n`;
     }
 
     return content.trim();
