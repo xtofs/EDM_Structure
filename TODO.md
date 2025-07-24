@@ -20,19 +20,27 @@ Pleas don't use emoticons and just make the element and attribute name a link in
 **DONE**: Updated generator to make element and attribute names directly clickable instead of separate emoji links. Element headings like `[edm:EntityType](url)` and attribute names like `[BaseType](url)` are now direct links without emoji or extra text.
 
 
-# vulnerability
-At some point I saw a note from npm that there is a package that is deprecated or vulnarable.
-Can you check and see if there is a vulnarability in the dependencies?
+## ✅ vulnerability - COMPLETED
+~~At some point I saw a note from npm that there is a package that is deprecated or vulnarable.
+Can you check and see if there is a vulnarability in the dependencies?~~
 
-## basic attributeCategory
-the attributeCategory `basic` lists the three types of mixed numeric/symbolic basic attribute types.
-But it doesn't list the simpler ones like `simple identifier`, `boolean`, `positive interger`, `integer`, etc.
+**DONE**: Ran `npm audit` - found 0 vulnerabilities. All dependencies are secure. Some packages are outdated but no security issues.
+
+## ✅ basic attributeCategory - COMPLETED  
+~~the attributeCategory `basic` lists the three types of mixed numeric/symbolic basic attribute types.
+But it doesn't list the simpler ones like `simple identifier`, `boolean`, `positive interger`, `integer`, etc.~~
+
+**DONE**: Added common basic attribute subcategories: simple identifier, boolean, positive integer, integer, non-negative integer, string, URI, enum, and primitive value. Now the basic category is comprehensive.
 
 ## missing "ref"s
-Please add more `ref` properties to the elements and attributes in the JSON structure. by finding the html section in the baseUrl
+Please add more `ref` properties to the elements and attributes in the JSON structure. by finding the html section in the baseUrl.
+THe best links can be found in Appendix B of the standard.
 
 ## missing permitted parent/child elements
 Each model element can appear only in a specific context in a CSDL file, i.e. as child of a specific parent element.
 This information is missing in the JSON structure. It should be added to each element to indicate where it can be used within the CSDL hierarchy.
 Please add a `permittedChildren` property to each element that lists the parent elements where it can be used. And in the generator calculate the permited parents and show both lists in the generated markdown.
 
+## previewing the generated doc
+please add a npm script to convert the generated markdown to html for preview.
+I there is an npm module, great. otherwise just assume pandoc is available.

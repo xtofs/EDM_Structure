@@ -13,6 +13,42 @@
             "description": "Simple value types (strings, booleans, numbers, identifiers)",
             "subcategories": [
                 {
+                    "name": "simple identifier",
+                    "description": "Simple name identifier following XML naming rules"
+                },
+                {
+                    "name": "boolean",
+                    "description": "True or false value"
+                },
+                {
+                    "name": "positive integer",
+                    "description": "Integer value greater than zero"
+                },
+                {
+                    "name": "integer",
+                    "description": "Whole number value"
+                },
+                {
+                    "name": "non-negative integer",
+                    "description": "Integer value greater than or equal to zero"
+                },
+                {
+                    "name": "string",
+                    "description": "Text value"
+                },
+                {
+                    "name": "URI",
+                    "description": "Uniform Resource Identifier"
+                },
+                {
+                    "name": "enum",
+                    "description": "Value from a predefined set of options"
+                },
+                {
+                    "name": "primitive value",
+                    "description": "Basic data type value (string, number, boolean, etc.)"
+                },
+                {
                     "name": "MaxLength",
                     "description": "Positive integer or symbolic value",
                     "symbolicValues": [
@@ -197,7 +233,7 @@
                             "name": "Type",
                             "category": "reference",
                             "description": "qualified type name or collection",
-                            "ref": "#sec_Type"
+                            "ref": "#AttributeType.12.2"
                         },
                         {
                             "name": "Nullable",

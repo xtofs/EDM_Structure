@@ -33,6 +33,24 @@ This document lists all EDM elements and categorizes their attribute types. It i
 
 Simple value types (strings, booleans, numbers, identifiers)
 
+**simple identifier**: Simple name identifier following XML naming rules
+
+**boolean**: True or false value
+
+**positive integer**: Integer value greater than zero
+
+**integer**: Whole number value
+
+**non-negative integer**: Integer value greater than or equal to zero
+
+**string**: Text value
+
+**URI**: Uniform Resource Identifier
+
+**enum**: Value from a predefined set of options
+
+**primitive value**: Basic data type value (string, number, boolean, etc.)
+
 **MaxLength**: Positive integer or symbolic value
 
 Symbolic values:
@@ -123,7 +141,7 @@ Core entity and type definition elements
 | Attribute | Type | Description |
 |-----------|------|-------------|
 | **Name** | Basic (simple identifier) |  |
-| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Type)** | Reference | qualified type name or collection |
+| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeType.12.2)** | Reference | qualified type name or collection |
 | **Nullable** | Basic | boolean |
 | **DefaultValue** | Basic | primitive value |
 

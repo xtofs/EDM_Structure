@@ -7,6 +7,6 @@
 | Attribute | Type | Description |
 |-----------|------|-------------|
 | **Name** | Basic (simple identifier) |  |
-| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#sec_Type)** | Reference | qualified type name or collection |
+| **[Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#AttributeType.12.2)** | Reference | qualified type name or collection |
 | **Nullable** | Basic | boolean |
 | **DefaultValue** | Basic | primitive value |
