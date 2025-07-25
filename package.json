@@ -15,7 +15,8 @@
     "format": "prettier --write src/**/*.ts",
     "clean": "rimraf dist",
     "generate": "npx ts-node generate.ts",
-    "generate-docs": "node dist/cli.js data/odata-edm-structure.json -o generated/OData_EDM_Structure_Generated.md --stats",
+    "generate-docs": "node dist/cli.js data/odata-edm-structure.json -o generated/edm_structure.md --stats",
+    "validate-links": "npx ts-node validate-links.ts",
     "preview": "npx ts-node preview.ts",
     "preview-serve": "npm run preview && npx http-server preview -p 8080 -o"
   },
@@ -28,7 +29,7 @@
     "generator",
     "typescript"
   ],
-  "author": "OData EDM Structure Converter",
+  "author": "Christof Sprenger",
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^29.0.0",

@@ -83,3 +83,7 @@ preview/
 # Keep data and schema files as they are part of the project
 # data/
 # schema/
+
+
+generated/*
+preview/*

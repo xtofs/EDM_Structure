@@ -41,8 +41,9 @@ export interface AttributeCategories {
 
 export interface ElementAttribute {
   name: string;
-  category: 'basic' | 'reference' | 'path';
+  category: "basic" | "reference" | "path";
   subcategory?: string;
+  symbols?: string[];
   description?: string;
   constraints?: string;
   context?: string;
@@ -90,8 +91,8 @@ export interface MarkdownGenerationConfig {
   includeTableOfContents: boolean;
   includeAttributeDetails: boolean;
   includeSummaryStatistics: boolean;
-  groupingStrategy: 'byCategory' | 'byType' | 'alphabetical';
-  outputFormat: 'github' | 'standard';
+  groupingStrategy: "byCategory" | "byType" | "alphabetical";
+  outputFormat: "github" | "standard";
 }
 
 /**

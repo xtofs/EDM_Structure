@@ -1,5 +1,5 @@
-import * as fs from 'fs';
-import { ODataEdmStructure, EdmElement } from './types';
+import * as fs from "fs";
+import { ODataEdmStructure, EdmElement } from "./types";
 
 /**
  * ODataEdmParser - Handles loading and parsing of OData EDM structure data
@@ -12,10 +12,12 @@ export class ODataEdmParser {
    */
   public loadFromFile(filePath: string): void {
     try {
-      const jsonContent = fs.readFileSync(filePath, 'utf-8');
+      const jsonContent = fs.readFileSync(filePath, "utf-8");
       this.data = JSON.parse(jsonContent) as ODataEdmStructure;
     } catch (error) {
-      throw new Error(`Failed to load OData EDM structure from ${filePath}: ${error}`);
+      throw new Error(
+        `Failed to load OData EDM structure from ${filePath}: ${error}`,
+      );
     }
   }
 
@@ -35,7 +37,9 @@ export class ODataEdmParser {
    */
   public getData(): ODataEdmStructure {
     if (!this.data) {
-      throw new Error('No data loaded. Call loadFromFile() or loadFromJson() first.');
+      throw new Error(
+        "No data loaded. Call loadFromFile() or loadFromJson() first.",
+      );
     }
     return this.data;
   }
@@ -43,18 +47,20 @@ export class ODataEdmParser {
   /**
    * Get all elements of a specific category
    */
-  public getElementsByCategory(category: 'basic' | 'reference' | 'path'): EdmElement[] {
+  public getElementsByCategory(
+    category: "basic" | "reference" | "path",
+  ): EdmElement[] {
     const data = this.getData();
     const elements: EdmElement[] = [];
-    
+
     for (const group of data.elementGroups) {
       for (const element of group.elements) {
-        if (element.attributes.some(attr => attr.category === category)) {
+        if (element.attributes.some((attr) => attr.category === category)) {
           elements.push(element);
         }
       }
     }
-    
+
     return elements;
   }
 
@@ -63,7 +69,7 @@ export class ODataEdmParser {
    */
   public getElementsByGroup(groupName: string): EdmElement[] {
     const data = this.getData();
-    const group = data.elementGroups.find(g => g.name === groupName);
+    const group = data.elementGroups.find((g) => g.name === groupName);
     return group ? group.elements : [];
   }
 
@@ -72,14 +78,14 @@ export class ODataEdmParser {
    */
   public findElement(elementName: string): EdmElement | null {
     const data = this.getData();
-    
+
     for (const group of data.elementGroups) {
-      const element = group.elements.find(e => e.name === elementName);
+      const element = group.elements.find((e) => e.name === elementName);
       if (element) {
         return element;
       }
     }
-    
+
     return null;
   }
 
@@ -95,7 +101,7 @@ export class ODataEdmParser {
     attributesByCategory: Record<string, number>;
   } {
     const data = this.getData();
-    
+
     let totalElements = 0;
     let elementsWithAttributes = 0;
     let elementsWithoutAttributes = 0;
@@ -103,17 +109,17 @@ export class ODataEdmParser {
     const attributesByCategory: Record<string, number> = {
       basic: 0,
       reference: 0,
-      path: 0
+      path: 0,
     };
 
     for (const group of data.elementGroups) {
       totalElements += group.elements.length;
-      
+
       for (const element of group.elements) {
         if (element.attributes.length > 0) {
           elementsWithAttributes++;
           totalAttributes += element.attributes.length;
-          
+
           for (const attribute of element.attributes) {
             attributesByCategory[attribute.category]++;
           }
@@ -129,7 +135,7 @@ export class ODataEdmParser {
       elementsWithAttributes,
       elementsWithoutAttributes,
       totalAttributes,
-      attributesByCategory
+      attributesByCategory,
     };
   }
 
@@ -141,7 +147,7 @@ export class ODataEdmParser {
     const attributeNames: Record<string, Set<string>> = {
       basic: new Set(),
       reference: new Set(),
-      path: new Set()
+      path: new Set(),
     };
 
     for (const group of data.elementGroups) {
@@ -155,7 +161,7 @@ export class ODataEdmParser {
     return {
       basic: Array.from(attributeNames.basic).sort(),
       reference: Array.from(attributeNames.reference).sort(),
-      path: Array.from(attributeNames.path).sort()
+      path: Array.from(attributeNames.path).sort(),
     };
   }
 
@@ -164,9 +170,9 @@ export class ODataEdmParser {
    */
   public validate(): { isValid: boolean; errors: string[] } {
     const errors: string[] = [];
-    
+
     if (!this.data) {
-      errors.push('No data loaded');
+      errors.push("No data loaded");
       return { isValid: false, errors };
     }
 
@@ -174,41 +180,56 @@ export class ODataEdmParser {
 
     // Validate metadata
     if (!data.metadata || !data.metadata.title || !data.metadata.version) {
-      errors.push('Invalid metadata: title and version are required');
+      errors.push("Invalid metadata: title and version are required");
     }
 
     // Validate attribute categories
-    if (!data.attributeCategories || 
-        !data.attributeCategories.basic || 
-        !data.attributeCategories.reference || 
-        !data.attributeCategories.path) {
-      errors.push('Invalid attribute categories: basic, reference, and path are required');
+    if (
+      !data.attributeCategories ||
+      !data.attributeCategories.basic ||
+      !data.attributeCategories.reference ||
+      !data.attributeCategories.path
+    ) {
+      errors.push(
+        "Invalid attribute categories: basic, reference, and path are required",
+      );
     }
 
     // Validate element groups
     if (!Array.isArray(data.elementGroups) || data.elementGroups.length === 0) {
-      errors.push('Invalid element groups: must be a non-empty array');
+      errors.push("Invalid element groups: must be a non-empty array");
     } else {
       for (let i = 0; i < data.elementGroups.length; i++) {
         const group = data.elementGroups[i];
         if (!group.name || !Array.isArray(group.elements)) {
-          errors.push(`Invalid element group at index ${i}: name and elements array are required`);
+          errors.push(
+            `Invalid element group at index ${i}: name and elements array are required`,
+          );
         }
-        
+
         for (let j = 0; j < group.elements.length; j++) {
           const element = group.elements[j];
           if (!element.name) {
-            errors.push(`Invalid element at group ${i}, element ${j}: name is required`);
+            errors.push(
+              `Invalid element at group ${i}, element ${j}: name is required`,
+            );
           }
-          
+
           if (!Array.isArray(element.attributes)) {
-            errors.push(`Invalid element at group ${i}, element ${j}: attributes must be an array`);
+            errors.push(
+              `Invalid element at group ${i}, element ${j}: attributes must be an array`,
+            );
           } else {
             for (let k = 0; k < element.attributes.length; k++) {
               const attribute = element.attributes[k];
-              if (!attribute.name || !attribute.category || 
-                  !['basic', 'reference', 'path'].includes(attribute.category)) {
-                errors.push(`Invalid attribute at group ${i}, element ${j}, attribute ${k}: name and valid category are required`);
+              if (
+                !attribute.name ||
+                !attribute.category ||
+                !["basic", "reference", "path"].includes(attribute.category)
+              ) {
+                errors.push(
+                  `Invalid attribute at group ${i}, element ${j}, attribute ${k}: name and valid category are required`,
+                );
               }
             }
           }

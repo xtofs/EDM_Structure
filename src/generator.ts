@@ -1,4 +1,9 @@
-import { ODataEdmStructure, EdmElement, ElementAttribute, MarkdownOptions } from './types';
+import {
+  ODataEdmStructure,
+  EdmElement,
+  ElementAttribute,
+  MarkdownOptions,
+} from "./types";
 
 /**
  * MarkdownGenerator - Generates consistent, readable markdown documentation from OData EDM structure data
@@ -13,7 +18,7 @@ export class MarkdownGenerator {
       includeMetadata: true,
       includeNavigation: true,
       headerLevel: 1,
-      ...options
+      ...options,
     };
   }
 
@@ -29,10 +34,10 @@ export class MarkdownGenerator {
       sections.push(this.generateMetadata());
     }
 
-    // Table of contents
-    if (this.options.includeNavigation) {
-      sections.push(this.generateTableOfContents());
-    }
+    // Table of contents - skip for main documentation
+    // if (this.options.includeNavigation) {
+    //   sections.push(this.generateTableOfContents());
+    // }
 
     // Attribute categories overview
     sections.push(this.generateAttributeCategories());
@@ -43,7 +48,7 @@ export class MarkdownGenerator {
     // Summary statistics
     sections.push(this.generateSummary());
 
-    return sections.join('\n\n');
+    return sections.join("\n\n");
   }
 
   /**
@@ -51,7 +56,7 @@ export class MarkdownGenerator {
    */
   private generateHeader(): string {
     const title = this.options.title || this.data.metadata.title;
-    const headerMark = '#'.repeat(this.options.headerLevel || 1);
+    const headerMark = "#".repeat(this.options.headerLevel || 1);
     return `${headerMark} ${title}`;
   }
 
@@ -61,7 +66,7 @@ export class MarkdownGenerator {
   private generateMetadata(): string {
     const { metadata } = this.data;
     const headerLevel = (this.options.headerLevel || 1) + 1;
-    const headerMark = '#'.repeat(headerLevel);
+    const headerMark = "#".repeat(headerLevel);
 
     let content = `${headerMark} Overview\n\n`;
     content += `${metadata.description}\n\n`;
@@ -77,42 +82,14 @@ export class MarkdownGenerator {
   }
 
   /**
-   * Generate table of contents
-   */
-  private generateTableOfContents(): string {
-    const headerLevel = (this.options.headerLevel || 1) + 1;
-    const headerMark = '#'.repeat(headerLevel);
-
-    let content = `${headerMark} Table of Contents\n\n`;
-    
-    // Add attribute categories
-    content += '- [Attribute Type Categories](#attribute-type-categories)\n';
-    for (const category of Object.values(this.data.attributeCategories)) {
-      const anchor = this.createAnchor(category.name);
-      content += `  - [${category.name}](#${anchor})\n`;
-    }
-
-    // Add element groups
-    content += '- [EDM Elements](#edm-elements)\n';
-    for (const group of this.data.elementGroups) {
-      const anchor = this.createAnchor(group.name);
-      content += `  - [${group.name}](#${anchor})\n`;
-    }
-
-    content += '- [Summary](#summary)\n';
-
-    return content;
-  }
-
-  /**
    * Generate attribute categories section
    */
   private generateAttributeCategories(): string {
     const headerLevel = (this.options.headerLevel || 1) + 1;
-    const headerMark = '#'.repeat(headerLevel);
-    const subHeaderMark = '#'.repeat(headerLevel + 1);
+    const headerMark = "#".repeat(headerLevel);
+    const subHeaderMark = "#".repeat(headerLevel + 1);
 
-    let content = `${headerMark} Attribute Type Categories\n\n`;
+    let content = `${headerMark} Attribute Categories\n\n`;
 
     for (const category of Object.values(this.data.attributeCategories)) {
       content += `${subHeaderMark} ${category.name}\n\n`;
@@ -120,27 +97,31 @@ export class MarkdownGenerator {
 
       if (category.subcategories && category.subcategories.length > 0) {
         for (const subcategory of category.subcategories) {
-          content += `**${subcategory.name}**: ${subcategory.description}\n\n`;
+          content += `- **${subcategory.name}**: ${subcategory.description}`;
 
-          if (subcategory.symbolicValues && subcategory.symbolicValues.length > 0) {
-            content += 'Symbolic values:\n';
+          if (
+            subcategory.symbolicValues &&
+            subcategory.symbolicValues.length > 0
+          ) {
+            content += `\n\n  Symbolic values:\n`;
             for (const symbolicValue of subcategory.symbolicValues) {
-              content += `- \`${symbolicValue.name}\`: ${symbolicValue.description}\n`;
+              content += `  - \`${symbolicValue.name}\`: ${symbolicValue.description}\n`;
             }
-            content += '\n';
           }
 
           if (subcategory.constraints) {
-            content += `*Constraints*: ${subcategory.constraints}\n\n`;
+            content += `\n\n  *Constraints*: ${subcategory.constraints}`;
           }
 
           if (subcategory.default) {
-            content += `*Default*: ${subcategory.default}\n\n`;
+            content += `\n\n  *Default*: ${subcategory.default}`;
           }
 
           if (subcategory.notes) {
-            content += `*Note*: ${subcategory.notes}\n\n`;
+            content += `\n\n  *Note*: ${subcategory.notes}`;
           }
+
+          content += "\n\n";
         }
       }
     }
@@ -153,15 +134,15 @@ export class MarkdownGenerator {
    */
   private generateElementGroups(): string {
     const headerLevel = (this.options.headerLevel || 1) + 1;
-    const headerMark = '#'.repeat(headerLevel);
-    const subHeaderMark = '#'.repeat(headerLevel + 1);
-    const elementHeaderMark = '#'.repeat(headerLevel + 2);
+    const headerMark = "#".repeat(headerLevel);
+    const subHeaderMark = "#".repeat(headerLevel + 1);
+    const elementHeaderMark = "#".repeat(headerLevel + 2);
 
     let content = `${headerMark} EDM Elements\n\n`;
 
     for (const group of this.data.elementGroups) {
       content += `${subHeaderMark} ${group.name}\n\n`;
-      
+
       if (group.description) {
         content += `${group.description}\n\n`;
       }
@@ -176,10 +157,10 @@ export class MarkdownGenerator {
         }
 
         if (element.attributes.length === 0) {
-          content += '*No attributes*\n\n';
+          content += "*No attributes*\n\n";
         } else {
           content += this.generateAttributeTable(element.attributes);
-          content += '\n';
+          content += "\n";
         }
       }
     }
@@ -191,20 +172,20 @@ export class MarkdownGenerator {
    * Generate attribute table for an element
    */
   private generateAttributeTable(attributes: ElementAttribute[]): string {
-    let table = '| Attribute | Type | Description |\n';
-    table += '|-----------|------|-------------|\n';
+    let table = "| Attribute | Type | Description |\n";
+    table += "|-----------|------|-------------|\n";
 
     for (const attribute of attributes) {
       const type = this.formatAttributeType(attribute);
       const description = this.formatAttributeDescription(attribute);
-      
+
       // Make attribute name clickable if it has a ref link
       let attributeName = attribute.name;
       if (attribute.ref && this.data.metadata.baseUrl) {
         const fullUrl = this.data.metadata.baseUrl + attribute.ref;
         attributeName = `[${attribute.name}](${fullUrl})`;
       }
-      
+
       table += `| **${attributeName}** | ${type} | ${description} |\n`;
     }
 
@@ -212,13 +193,27 @@ export class MarkdownGenerator {
   }
 
   /**
-   * Format attribute type with category and subcategory
+   * Convert kebab-case to readable format (e.g., "simple-identifier" -> "simple identifier")
+   */
+  private kebabToReadable(text: string): string {
+    return text.replace(/-/g, ' ');
+  }
+
+  /**
+   * Format attribute type with category, subcategory, and symbols
    */
   private formatAttributeType(attribute: ElementAttribute): string {
     let type = this.capitalizeFirst(attribute.category);
-    
+
     if (attribute.subcategory) {
-      type += ` (${attribute.subcategory})`;
+      const readableSubcategory = this.kebabToReadable(attribute.subcategory);
+      if (attribute.symbols && attribute.symbols.length > 0) {
+        // Format as "subcategory or symbol1, symbol2"
+        const symbolList = attribute.symbols.map(s => `\`${s}\``).join(", ");
+        type += ` (${readableSubcategory} or ${symbolList})`;
+      } else {
+        type += ` (${readableSubcategory})`;
+      }
     }
 
     return type;
@@ -228,7 +223,7 @@ export class MarkdownGenerator {
    * Format attribute description with constraints, context, and standard link
    */
   private formatAttributeDescription(attribute: ElementAttribute): string {
-    let description = attribute.description || '';
+    let description = attribute.description || "";
 
     if (attribute.constraints) {
       description += ` *Constraints: ${attribute.constraints}*`;
@@ -248,7 +243,7 @@ export class MarkdownGenerator {
    */
   private generateSummary(): string {
     const headerLevel = (this.options.headerLevel || 1) + 1;
-    const headerMark = '#'.repeat(headerLevel);
+    const headerMark = "#".repeat(headerLevel);
 
     let content = `${headerMark} Summary\n\n`;
 
@@ -292,13 +287,13 @@ export class MarkdownGenerator {
 
           for (const attribute of element.attributes) {
             switch (attribute.category) {
-              case 'basic':
+              case "basic":
                 basicAttributes++;
                 break;
-              case 'reference':
+              case "reference":
                 referenceAttributes++;
                 break;
-              case 'path':
+              case "path":
                 pathAttributes++;
                 break;
             }
@@ -317,19 +312,8 @@ export class MarkdownGenerator {
       totalAttributes,
       basicAttributes,
       referenceAttributes,
-      pathAttributes
+      pathAttributes,
     };
-  }
-
-  /**
-   * Create anchor link from text
-   */
-  private createAnchor(text: string): string {
-    return text.toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .replace(/^-|-$/g, '');
   }
 
   /**
@@ -343,17 +327,17 @@ export class MarkdownGenerator {
    * Generate markdown for a specific element group
    */
   public generateGroupMarkdown(groupName: string): string {
-    const group = this.data.elementGroups.find(g => g.name === groupName);
+    const group = this.data.elementGroups.find((g) => g.name === groupName);
     if (!group) {
       throw new Error(`Group '${groupName}' not found`);
     }
 
     const headerLevel = this.options.headerLevel || 1;
-    const headerMark = '#'.repeat(headerLevel);
-    const elementHeaderMark = '#'.repeat(headerLevel + 1);
+    const headerMark = "#".repeat(headerLevel);
+    const elementHeaderMark = "#".repeat(headerLevel + 1);
 
     let content = `${headerMark} ${group.name}\n\n`;
-    
+
     if (group.description) {
       content += `${group.description}\n\n`;
     }
@@ -368,10 +352,10 @@ export class MarkdownGenerator {
       }
 
       if (element.attributes.length === 0) {
-        content += '*No attributes*\n\n';
+        content += "*No attributes*\n\n";
       } else {
         content += this.generateAttributeTable(element.attributes);
-        content += '\n';
+        content += "\n";
       }
     }
 
@@ -383,11 +367,11 @@ export class MarkdownGenerator {
    */
   public generateElementMarkdown(elementName: string): string {
     let element: EdmElement | null = null;
-    let groupName = '';
+    let groupName = "";
 
     // Find the element
     for (const group of this.data.elementGroups) {
-      const found = group.elements.find(e => e.name === elementName);
+      const found = group.elements.find((e) => e.name === elementName);
       if (found) {
         element = found;
         groupName = group.name;
@@ -400,7 +384,7 @@ export class MarkdownGenerator {
     }
 
     const headerLevel = this.options.headerLevel || 1;
-    const headerMark = '#'.repeat(headerLevel);
+    const headerMark = "#".repeat(headerLevel);
 
     // Make element name clickable if standard link is available
     let content: string;
@@ -413,11 +397,11 @@ export class MarkdownGenerator {
     content += `*Part of: ${groupName}*\n\n`;
 
     if (element.attributes.length === 0) {
-      content += '*No attributes*\n\n';
+      content += "*No attributes*\n\n";
     } else {
-      content += '## Attributes\n\n';
+      content += "## Attributes\n\n";
       content += this.generateAttributeTable(element.attributes);
-      content += '\n';
+      content += "\n";
     }
 
     return content.trim();

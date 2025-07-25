@@ -1,7 +1,7 @@
 ---
 mode: agent
 ---
-THe file OData_EDM_Structure.md has detaild description of the OData EDM structure. It includes information about the Entity Data Model (EDM) used in OData, which is essential for understanding how data is structured and accessed in OData services. The document covers various aspects of the EDM, including entity types, complex types, entity sets, and relationships between entities.
+THe file OData_edm_structure.md has detaild description of the OData EDM structure. It includes information about the Entity Data Model (EDM) used in OData, which is essential for understanding how data is structured and accessed in OData services. The document covers various aspects of the EDM, including entity types, complex types, entity sets, and relationships between entities.
 It lists all EDM model elements, their properties, and explains the role these properties play:
     - basic properties that "just" hold data
     - reference properties that model relationships between model elements

@@ -109,6 +109,10 @@
                         "enum": ["basic", "reference", "path"]
                       },
                       "subcategory": { "type": "string" },
+                      "symbols": { 
+                        "type": "array",
+                        "items": { "type": "string" }
+                      },
                       "description": { "type": "string" },
                       "constraints": { "type": "string" },
                       "context": { "type": "string" },

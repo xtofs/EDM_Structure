@@ -44,7 +44,7 @@ async function generateDocumentation() {
     }
 
     // Write the generated markdown
-    const outputPath = path.join(outputDir, 'OData_EDM_Structure_Generated.md');
+    const outputPath = path.join(outputDir, 'edm_structure.md');
     fs.writeFileSync(outputPath, markdown, 'utf-8');
     console.log(`✓ Generated markdown saved to: ${outputPath}`);
 

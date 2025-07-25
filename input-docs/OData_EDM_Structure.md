@@ -5,7 +5,7 @@ this document lists all EDM elements and categorizes their attribute types.
 [Appendix B](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#TableofXMLElementsandAttributes)
 
 
-## Attribute Type Categories
+## Attribute Categories
 
 - **Basic Attribute**: Simple value types (strings, booleans, numbers, identifiers)
 - **Reference Attribute**: References to other model elements represented in XML/JSON as qualified names, type names, etc.

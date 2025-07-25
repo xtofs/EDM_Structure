@@ -23,7 +23,7 @@ d:\oasis\AppendixC\
 ├── generate.ts                       # Demonstration script
 ├── package.json                      # NPM package configuration
 ├── tsconfig.json                     # TypeScript configuration
-└── OData_EDM_Structure.md           # Original semi-structured markdown
+└── OData_edm_structure.md           # Original semi-structured markdown
 ```
 
 ## Features
@@ -100,7 +100,7 @@ npx ts-node src/cli.ts \
 
 The system generates several types of documentation:
 
-1. **Complete Documentation** (`OData_EDM_Structure_Generated.md`)
+1. **Complete Documentation** (`edm_structure.md`)
    - Full overview with table of contents
    - All attribute categories explained
    - All element groups with detailed tables

@@ -1,10 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { exec } from 'child_process';
-import showdown from 'showdown';
+import { spawn } from 'child_process';
+import { Converter } from 'showdown';
 
 // Configure showdown converter with GitHub Flavored Markdown features
-const converter = new showdown.Converter({
+const converter = new Converter({
     tables: true,
     strikethrough: true,
     tasklists: true,
@@ -228,7 +228,7 @@ function convertMarkdownToHtml() {
     });
     
     // Create index page if main documentation exists
-    const mainDocFile = markdownFiles.find(f => f.includes('OData_EDM_Structure_Generated') || f === 'index.md');
+    const mainDocFile = markdownFiles.find(f => f.includes('edm_structure') || f === 'index.md');
     if (mainDocFile && !fs.existsSync(path.join(PREVIEW_DIR, 'index.html'))) {
         const srcPath = path.join(PREVIEW_DIR, mainDocFile.replace('.md', '.html'));
         const indexPath = path.join(PREVIEW_DIR, 'index.html');
@@ -245,18 +245,32 @@ function convertMarkdownToHtml() {
     const indexPath = path.resolve(PREVIEW_DIR, 'index.html');
     console.log(`🌐 Opening ${indexPath} in your browser...`);
     
-    // Cross-platform browser opening
-    const command = process.platform === 'win32' ? 'start' : 
-                   process.platform === 'darwin' ? 'open' : 'xdg-open';
+    // Cross-platform browser opening with proper detaching
+    let command: string;
+    let args: string[];
     
-    exec(`${command} "${indexPath}"`, (error) => {
-        if (error) {
-            console.log(`⚠️  Could not open browser automatically: ${error.message}`);
-            console.log(`🌐 Please manually open: ${indexPath}`);
-        } else {
-            console.log(`✅ Opened preview in browser`);
-        }
+    if (process.platform === 'win32') {
+        // Use 'cmd /c start' to properly open in default browser on Windows
+        command = 'cmd';
+        args = ['/c', 'start', '""', indexPath];
+    } else if (process.platform === 'darwin') {
+        command = 'open';
+        args = [indexPath];
+    } else {
+        command = 'xdg-open';
+        args = [indexPath];
+    }
+    
+    // Spawn the process detached so it doesn't block
+    const child = spawn(command, args, {
+        detached: true,
+        stdio: 'ignore'
     });
+    
+    // Unref the child process so the parent can exit
+    child.unref();
+    
+    console.log(`✅ Preview opened in browser`);
 }
 
 // Run the conversion
