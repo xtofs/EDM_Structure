@@ -1,14 +1,11 @@
-# OData EDM Structure Converter
+# OData EDM Structure
 
-This project transforms the OData EDM (Entity Data Model) structure documentation from a manually authored semi-structured markdown document into:
-
-1. **Machine-readable JSON format** - Structured data that can be easily processed programmatically
-2. **Consistent, readable markdown documentation** - Generated using TypeScript scripts for consistency and maintainability
+This project transforms the a machine readable document that described the OData EDM (Entity Data Model) structure into a 
+consistently formatted, readable markdown documentation.
 
 ## Project Structure
 
 ```
-d:\oasis\AppendixC\
 ├── data/
 │   └── odata-edm-structure.json      # Machine-readable OData EDM structure data
 ├── schema/
@@ -19,11 +16,11 @@ d:\oasis\AppendixC\
 │   ├── generator.ts                  # Markdown generation logic
 │   ├── cli.ts                        # Command-line interface
 │   └── index.ts                      # Main exports
+├── input-docs                        # document that where used in the construction of the JSON file
 ├── generated/                        # Output directory for generated markdown
 ├── generate.ts                       # Demonstration script
 ├── package.json                      # NPM package configuration
-├── tsconfig.json                     # TypeScript configuration
-└── OData_edm_structure.md           # Original semi-structured markdown
+└── tsconfig.json                     # TypeScript configuration
 ```
 
 ## Features
@@ -51,7 +48,7 @@ The `data/odata-edm-structure.json` contains:
 - **Data Validation**: Ensures JSON structure integrity
 - **Flexible Generation**: Create full documentation or specific sections
 - **Statistics**: Analyze element and attribute distributions
-- **Customizable Output**: Control headers, metadata, navigation, etc.
+- **Customizable Output**: Control headers, metadata, etc.
 
 ## Usage
 
@@ -92,8 +89,7 @@ npx ts-node src/cli.ts \
   --title "Custom Title" \
   --header-level 1 \
   --stats \
-  --no-metadata \
-  --no-navigation
+  --no-metadata
 ```
 
 ## Generated Output Examples
@@ -101,7 +97,7 @@ npx ts-node src/cli.ts \
 The system generates several types of documentation:
 
 1. **Complete Documentation** (`edm_structure.md`)
-   - Full overview with table of contents
+   - Full overview of all elements and attributes
    - All attribute categories explained
    - All element groups with detailed tables
    - Summary statistics
@@ -184,7 +180,6 @@ npm run clean      # Remove dist folder
 ### For Users
 
 - **Readability**: Clean, consistent markdown format
-- **Navigation**: Table of contents and cross-references
 - **Completeness**: All elements and attributes documented
 - **Accuracy**: Generated from validated source data
 

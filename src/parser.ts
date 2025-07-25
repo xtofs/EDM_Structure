@@ -174,8 +174,8 @@ export class ODataEdmParser {
     const data = this.data;
 
     // Validate metadata
-    if (!data.metadata || !data.metadata.title || !data.metadata.version) {
-      errors.push("Invalid metadata: title and version are required");
+    if (!data.metadata || !data.metadata.title ) {
+      errors.push("Invalid metadata: title is required");
     }
 
     // Validate attribute categories

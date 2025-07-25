@@ -24,20 +24,11 @@ Parents : [edm:Schema](#schema)
 Children: [edm:Member](#Member), [edm:Annotation](#Annotation) 
 ``` 
 
-## still some inconsistencies in regards to `description` and `subcategory`
-for example ```
-  "name": "edmx:Reference",
-                    "attributes": [
-                        {
-                            "name": "Uri",
-                            "category": "basic",
-                            "description": "URI string",
-```
-Doesn't specify the subcategory of the basic attribute with name "Uri".
-Should be "uri" as defined in the Json
-```
- {
-    "name": "uri",
-    "description": "Uniform Resource Identifier"
-},
-```
+## ✅ inconsistencies in regards to `description` and `subcategory` - COMPLETED
+**DONE**: Fixed missing subcategories for basic attributes:
+- Fixed `edmx:Reference.Uri` - added `"subcategory": "uri"`
+- Fixed `edm:Member.Value` - added `"subcategory": "integer"`  
+- Fixed `edm:Term.DefaultValue` - added `"subcategory": "primitive-value"`
+- Fixed `edmx:Edmx.Version` - added `"subcategory": "string"`
+
+All basic attributes now have proper subcategories that match the defined subcategories in the attributeCategories section.

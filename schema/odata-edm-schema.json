@@ -8,12 +8,11 @@
       "properties": {
         "title": { "type": "string" },
         "description": { "type": "string" },
-        "version": { "type": "string" },
         "source": { "type": "string" },
-        "appendixUrl": { "type": "string" },
+        "sourceUrl": { "type": "string" },
         "baseUrl": { "type": "string" }
       },
-      "required": ["title", "description", "version"]
+      "required": ["title", "description"]
     },
     "attributeCategories": {
       "type": "object",

@@ -42,7 +42,6 @@ class ODataEdmCli {
       const markdownOptions: MarkdownOptions = {
         title: options.title,
         includeMetadata: options.includeMetadata,
-        includeNavigation: options.includeNavigation,
         headerLevel: options.headerLevel,
       };
 
@@ -93,7 +92,6 @@ class ODataEdmCli {
     outputFile?: string | undefined;
     title?: string | undefined;
     includeMetadata: boolean;
-    includeNavigation: boolean;
     headerLevel: number;
     showStats: boolean;
   } {
@@ -102,7 +100,6 @@ class ODataEdmCli {
       outputFile: undefined as string | undefined,
       title: undefined as string | undefined,
       includeMetadata: true,
-      includeNavigation: true,
       headerLevel: 1,
       showStats: false,
     };
@@ -125,9 +122,6 @@ class ODataEdmCli {
           break;
         case "--no-metadata":
           options.includeMetadata = false;
-          break;
-        case "--no-navigation":
-          options.includeNavigation = false;
           break;
         case "--header-level":
           options.headerLevel = parseInt(args[++i], 10);
@@ -170,7 +164,6 @@ Options:
   -o, --output <file>     Output Markdown file path (optional, prints to console if not specified)
   -t, --title <title>     Custom title for the document
   --no-metadata          Exclude metadata section
-  --no-navigation        Exclude table of contents
   --header-level <level>  Starting header level (default: 1)
   --stats                 Show statistics after generation
   -h, --help             Show this help message

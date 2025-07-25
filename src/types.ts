@@ -65,10 +65,9 @@ export interface ElementGroup {
 
 export interface Metadata {
   title: string;
-  description: string;
-  version: string;
+  description: string;  
   source?: string;
-  appendixUrl?: string;
+  sourceUrl?: string;
   baseUrl?: string;
 }
 
@@ -102,7 +101,6 @@ export interface MarkdownGenerationConfig {
 export interface MarkdownOptions {
   title?: string | undefined;
   includeMetadata?: boolean;
-  includeNavigation?: boolean;
   customCss?: string;
   headerLevel?: number;
 }

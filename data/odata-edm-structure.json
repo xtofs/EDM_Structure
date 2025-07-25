@@ -1,10 +1,9 @@
 {
     "metadata": {
         "title": "OASIS CSDL XML Elements and Attributes Classification",
-        "description": "This document lists all EDM elements and categorizes their attribute types. It is based the OASIS OData CSDL XML Representation Version 4.02 specification - Appendix B. and adds the details about allowed values, symbolic references and constraints for attributes.",
-        "version": "4.02",
+        "description": "This document lists all EDM model elements, their attributes and relatioships. It categorizes the attributes in different types (basic, reference, ..) and describes their semantic in detail. It is based on the OASIS OData CSDL XML Representation Version 4.02 specification, and adds the details about allowed values, symbolic references and constraints for elements and attributes.",
         "source": "OASIS OData CSDL XML Representation Version 4.02 specification",
-        "appendixUrl": "https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#TableofXMLElementsandAttributes",
+        "sourceUrl": "https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#TableofXMLElementsandAttributes",
         "baseUrl": "https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html"
     },
     "attributeCategories": {
@@ -109,7 +108,8 @@
                             "ref": "#AttributeAlias.5.2"
                         }
                     ],
-                    "ref": "#ElementedmSchema.7"
+                    "ref": "#ElementedmSchema.7",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:Schema represents"
                 },
                 {
                     "name": "edm:Annotations",
@@ -129,10 +129,12 @@
                             "name": "Qualifier",
                             "category": "basic",
                             "subcategory": "simple-identifier",
+                            "description": "Optional qualifier to distinguish multiple instances",
                             "ref": "#AttributeQualifier.6.2"
                         }
                     ],
-                    "ref": "#ElementedmAnnotations.8"
+                    "ref": "#ElementedmAnnotations.8",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:Annotations represents"
                 }
             ]
         },
@@ -167,22 +169,26 @@
                             "name": "Abstract",
                             "category": "basic",
                             "subcategory": "boolean",
+                            "description": "Whether the type is abstract and cannot be instantiated directly",
                             "ref": "#AttributeAbstract.9.3"
                         },
                         {
                             "name": "OpenType",
                             "category": "basic",
                             "subcategory": "boolean",
+                            "description": "Whether the type allows additional properties not explicitly declared",
                             "ref": "#AttributeOpenType.9.4"
                         },
                         {
                             "name": "HasStream",
                             "category": "basic",
                             "subcategory": "boolean",
+                            "description": "Whether the entity type supports media resources",
                             "ref": "#AttributeHasStream.9.5"
                         }
                     ],
-                    "ref": "#ElementedmEntityType.9"
+                    "ref": "#ElementedmEntityType.9",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:EntityType represents"
                 },
                 {
                     "name": "edm:Key",
@@ -190,10 +196,12 @@
                     "ref": "#ElementedmKey.10",
                     "permittedChildren": [
                         "edm:PropertyRef"
-                    ]
+                    ],
+                    "TODO_DESCRIPTION": "Add description explaining what edm:Key represents"
                 },
                 {
                     "name": "edm:PropertyRef",
+                    "permittedChildren": [],
                     "attributes": [
                         {
                             "name": "Name",
@@ -207,10 +215,12 @@
                             "name": "Alias",
                             "category": "basic",
                             "subcategory": "simple-identifier",
+                            "description": "Alternative name that can be used to reference the property",
                             "ref": "#AttributeAlias.5.2"
                         }
                     ],
-                    "ref": "#ElementedmPropertyRef.11"
+                    "ref": "#ElementedmPropertyRef.11",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:PropertyRef represents"
                 },
                 {
                     "name": "edm:Property",
@@ -222,6 +232,7 @@
                             "name": "Name",
                             "category": "basic",
                             "subcategory": "simple-identifier",
+                            "description": "The name identifier of the element",
                             "ref": "#AttributeName.9.1"
                         },
                         {
@@ -234,6 +245,7 @@
                             "name": "Nullable",
                             "category": "basic",
                             "subcategory": "boolean",
+                            "description": "Whether the property can have null values",
                             "ref": "#AttributeNullable.12.3"
                         },
                         {
@@ -255,16 +267,23 @@
                             "ref": "#AttributeDefaultValue.12.4"
                         }
                     ],
-                    "ref": "#ElementedmProperty.12"
+                    "ref": "#ElementedmProperty.12",
+                    "description" : "A structural property is a property of a structured type",
+                    
                 },
                 {
                     "name": "edm:NavigationProperty",
-                    "permittedChildren":["edm:OnDelete", "edm:ReferentialConstraint", "edm:Annotation"],
+                    "permittedChildren": [
+                        "edm:OnDelete",
+                        "edm:ReferentialConstraint",
+                        "edm:Annotation"
+                    ],
                     "attributes": [
                         {
                             "name": "Name",
                             "category": "basic",
                             "subcategory": "simple-identifier",
+                            "description": "The name identifier of the element",
                             "ref": "#AttributeName.9.1"
                         },
                         {
@@ -278,6 +297,7 @@
                             "name": "Nullable",
                             "category": "basic",
                             "subcategory": "boolean",
+                            "description": "Whether the property can have null values",
                             "ref": "#AttributeNullable.12.3"
                         },
                         {
@@ -292,10 +312,12 @@
                             "name": "ContainsTarget",
                             "category": "basic",
                             "subcategory": "boolean",
+                            "description": "Whether the navigation property contains its target entities",
                             "ref": "#AttributeContainsTarget.13.5"
                         }
                     ],
-                    "ref": "#ElementedmNavigationProperty.13"
+                    "ref": "#ElementedmNavigationProperty.13",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:NavigationProperty represents"
                 },
                 {
                     "name": "edm:ReferentialConstraint",
@@ -320,20 +342,28 @@
                             "ref": "#AttributeReferencedProperty.14.2"
                         }
                     ],
-                    "ref": "#ElementedmReferentialConstraint.14"
+                    "ref": "#ElementedmReferentialConstraint.14",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:ReferentialConstraint represents"
                 },
                 {
                     "name": "edm:OnDelete",
+                    "permittedChildren": [],
                     "attributes": [
                         {
                             "name": "Action",
                             "category": "basic",
-                            "symbols": ["Cascade", "None", "SetNull", "SetDefault"],
+                            "symbols": [
+                                "Cascade",
+                                "None",
+                                "SetNull",
+                                "SetDefault"
+                            ],
                             "description": "action the service will take on related entities when the entity is deleted.",
                             "ref": "#AttributeAction.15.1"
                         }
                     ],
-                    "ref": "#ElementedmOnDelete.15"
+                    "ref": "#ElementedmOnDelete.15",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:OnDelete represents"
                 },
                 {
                     "name": "edm:ComplexType",
@@ -347,6 +377,7 @@
                             "name": "Name",
                             "category": "basic",
                             "subcategory": "simple-identifier",
+                            "description": "The name identifier of the element",
                             "ref": "#AttributeName.9.1"
                         },
                         {
@@ -360,16 +391,19 @@
                             "name": "Abstract",
                             "category": "basic",
                             "subcategory": "boolean",
+                            "description": "Whether the type is abstract and cannot be instantiated directly",
                             "ref": "#AttributeAbstract.9.3"
                         },
                         {
                             "name": "OpenType",
                             "category": "basic",
                             "subcategory": "boolean",
+                            "description": "Whether the type allows additional properties not explicitly declared",
                             "ref": "#AttributeOpenType.9.4"
                         }
                     ],
-                    "ref": "#ElementedmComplexType.16"
+                    "ref": "#ElementedmComplexType.16",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:ComplexType represents"
                 },
                 {
                     "name": "edm:EnumType",
@@ -378,7 +412,8 @@
                             "name": "Name",
                             "category": "basic",
                             "subcategory": "simple-identifier",
-                            "ref": "#AttributeName.9.1"
+                            "ref": "#AttributeName.9.1",
+                            "TODO_DESCRIPTION": "Add description for edm:EnumType.Name (basic - simple-identifier)"
                         },
                         {
                             "name": "UnderlyingType",
@@ -391,6 +426,7 @@
                             "name": "IsFlags",
                             "category": "basic",
                             "subcategory": "boolean",
+                            "description": "Whether the enumeration supports bitwise operations",
                             "ref": "#AttributeIsFlags.17.3"
                         }
                     ],
@@ -398,33 +434,44 @@
                     "permittedChildren": [
                         "edm:Annotation",
                         "edm:Member"
-                    ]
+                    ],
+                    "TODO_DESCRIPTION": "Add description explaining what edm:EnumType represents"
                 },
                 {
                     "name": "edm:Member",
+                    "permittedChildren": [
+                        "edm:Annotation"
+                    ],
                     "attributes": [
                         {
                             "name": "Name",
                             "category": "basic",
                             "subcategory": "simple-identifier",
+                            "description": "The name identifier of the element",
                             "ref": "#AttributeName.9.1"
                         },
                         {
                             "name": "Value",
                             "category": "basic",
+                            "subcategory": "integer",
                             "description": "integer value",
                             "ref": "#AttributeValue.18.2"
                         }
                     ],
-                    "ref": "#ElementedmMember.18"
+                    "ref": "#ElementedmMember.18",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:Member represents"
                 },
                 {
                     "name": "edm:TypeDefinition",
+                    "permittedChildren": [
+                        "edm:Annotation"
+                    ],
                     "attributes": [
                         {
                             "name": "Name",
                             "category": "basic",
                             "subcategory": "simple-identifier",
+                            "description": "The name identifier of the element",
                             "ref": "#AttributeName.9.1"
                         },
                         {
@@ -435,7 +482,8 @@
                             "ref": "#AttributeUnderlyingType.17.2"
                         }
                     ],
-                    "ref": "#ElementedmTypeDefinition.19"
+                    "ref": "#ElementedmTypeDefinition.19",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:TypeDefinition represents"
                 }
             ]
         },
@@ -450,12 +498,14 @@
                             "name": "Name",
                             "category": "basic",
                             "subcategory": "simple-identifier",
-                            "ref": "#AttributeName.9.1"
+                            "ref": "#AttributeName.9.1",
+                            "TODO_DESCRIPTION": "Add description for edm:Action.Name (basic - simple-identifier)"
                         },
                         {
                             "name": "IsBound",
                             "category": "basic",
                             "subcategory": "boolean",
+                            "description": "Whether the action/function is bound to a specific entity type",
                             "ref": "#AttributeIsBound.21.2"
                         },
                         {
@@ -472,7 +522,8 @@
                         "edm:Annotation",
                         "edm:Parameter",
                         "edm:ReturnType"
-                    ]
+                    ],
+                    "TODO_DESCRIPTION": "Add description explaining what edm:Action represents"
                 },
                 {
                     "name": "edm:Function",
@@ -481,12 +532,14 @@
                             "name": "Name",
                             "category": "basic",
                             "subcategory": "simple-identifier",
-                            "ref": "#AttributeName.9.1"
+                            "ref": "#AttributeName.9.1",
+                            "TODO_DESCRIPTION": "Add description for edm:Function.Name (basic - simple-identifier)"
                         },
                         {
                             "name": "IsBound",
                             "category": "basic",
                             "subcategory": "boolean",
+                            "description": "Whether the action/function is bound to a specific entity type",
                             "ref": "#AttributeIsBound.21.2"
                         },
                         {
@@ -501,6 +554,7 @@
                             "name": "IsComposable",
                             "category": "basic",
                             "subcategory": "boolean",
+                            "description": "Whether the function can be used in composition with other functions",
                             "ref": "#AttributeIsComposable.21.4"
                         }
                     ],
@@ -509,10 +563,14 @@
                         "edm:Annotation",
                         "edm:Parameter",
                         "edm:ReturnType"
-                    ]
+                    ],
+                    "TODO_DESCRIPTION": "Add description explaining what edm:Function represents"
                 },
                 {
                     "name": "edm:ReturnType",
+                    "permittedChildren": [
+                        "edm:Annotation"
+                    ],
                     "attributes": [
                         {
                             "name": "Type",
@@ -524,18 +582,24 @@
                             "name": "Nullable",
                             "category": "basic",
                             "subcategory": "boolean",
+                            "description": "Whether the property can have null values",
                             "ref": "#AttributeNullable.12.3"
                         }
                     ],
-                    "ref": "#ElementedmReturnType.22"
+                    "ref": "#ElementedmReturnType.22",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:ReturnType represents"
                 },
                 {
                     "name": "edm:Parameter",
+                    "permittedChildren": [
+                        "edm:Annotation"
+                    ],
                     "attributes": [
                         {
                             "name": "Name",
                             "category": "basic",
                             "subcategory": "simple-identifier",
+                            "description": "The name identifier of the element",
                             "ref": "#AttributeName.9.1"
                         },
                         {
@@ -548,10 +612,12 @@
                             "name": "Nullable",
                             "category": "basic",
                             "subcategory": "boolean",
+                            "description": "Whether the property can have null values",
                             "ref": "#AttributeNullable.12.3"
                         }
                     ],
-                    "ref": "#ElementedmParameter.23"
+                    "ref": "#ElementedmParameter.23",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:Parameter represents"
                 }
             ]
         },
@@ -566,7 +632,8 @@
                             "name": "Name",
                             "category": "basic",
                             "subcategory": "simple-identifier",
-                            "ref": "#AttributeName.9.1"
+                            "ref": "#AttributeName.9.1",
+                            "TODO_DESCRIPTION": "Add description for edm:EntityContainer.Name (basic - simple-identifier)"
                         },
                         {
                             "name": "Extends",
@@ -583,7 +650,8 @@
                         "edm:EntitySet",
                         "edm:FunctionImport",
                         "edm:Singleton"
-                    ]
+                    ],
+                    "TODO_DESCRIPTION": "Add description explaining what edm:EntityContainer represents"
                 },
                 {
                     "name": "edm:EntitySet",
@@ -592,7 +660,8 @@
                             "name": "Name",
                             "category": "basic",
                             "subcategory": "simple-identifier",
-                            "ref": "#AttributeName.9.1"
+                            "ref": "#AttributeName.9.1",
+                            "TODO_DESCRIPTION": "Add description for edm:EntitySet.Name (basic - simple-identifier)"
                         },
                         {
                             "name": "EntityType",
@@ -605,10 +674,13 @@
                             "name": "IncludeInServiceDocument",
                             "category": "basic",
                             "subcategory": "boolean",
+                            "description": "Whether to include this element in the service document",
                             "ref": "#AttributeIncludeInServiceDocument.25.3"
                         }
                     ],
-                    "ref": "#ElementedmEntitySet.25"
+                    "ref": "#ElementedmEntitySet.25",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:EntitySet represents",
+                    "TODO_PERMITTED_CHILDREN": "Add permittedChildren array - check OData spec for edm:EntitySet allowed children"
                 },
                 {
                     "name": "edm:Singleton",
@@ -617,7 +689,8 @@
                             "name": "Name",
                             "category": "basic",
                             "subcategory": "simple-identifier",
-                            "ref": "#AttributeName.9.1"
+                            "ref": "#AttributeName.9.1",
+                            "TODO_DESCRIPTION": "Add description for edm:Singleton.Name (basic - simple-identifier)"
                         },
                         {
                             "name": "Type",
@@ -630,10 +703,13 @@
                             "name": "Nullable",
                             "category": "basic",
                             "subcategory": "boolean",
+                            "description": "Whether the property can have null values",
                             "ref": "#AttributeNullable.12.3"
                         }
                     ],
-                    "ref": "#ElementedmSingleton.26"
+                    "ref": "#ElementedmSingleton.26",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:Singleton represents",
+                    "TODO_PERMITTED_CHILDREN": "Add permittedChildren array - check OData spec for edm:Singleton allowed children"
                 },
                 {
                     "name": "edm:NavigationPropertyBinding",
@@ -655,7 +731,9 @@
                             "ref": "#AttributeTarget.27.2"
                         }
                     ],
-                    "ref": "#ElementedmNavigationPropertyBinding.27"
+                    "ref": "#ElementedmNavigationPropertyBinding.27",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:NavigationPropertyBinding represents",
+                    "TODO_PERMITTED_CHILDREN": "Add permittedChildren array - check OData spec for edm:NavigationPropertyBinding allowed children"
                 },
                 {
                     "name": "edm:ActionImport",
@@ -664,7 +742,8 @@
                             "name": "Name",
                             "category": "basic",
                             "subcategory": "simple-identifier",
-                            "ref": "#AttributeName.28.1"
+                            "ref": "#AttributeName.28.1",
+                            "TODO_DESCRIPTION": "Add description for edm:ActionImport.Name (basic - simple-identifier)"
                         },
                         {
                             "name": "Action",
@@ -682,7 +761,9 @@
                             "ref": "#AttributeEntitySet.28.3"
                         }
                     ],
-                    "ref": "#ElementedmActionImport.28"
+                    "ref": "#ElementedmActionImport.28",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:ActionImport represents",
+                    "TODO_PERMITTED_CHILDREN": "Add permittedChildren array - check OData spec for edm:ActionImport allowed children"
                 },
                 {
                     "name": "edm:FunctionImport",
@@ -691,7 +772,8 @@
                             "name": "Name",
                             "category": "basic",
                             "subcategory": "simple-identifier",
-                            "ref": "#AttributeName.29.1"
+                            "ref": "#AttributeName.29.1",
+                            "TODO_DESCRIPTION": "Add description for edm:FunctionImport.Name (basic - simple-identifier)"
                         },
                         {
                             "name": "Function",
@@ -712,10 +794,13 @@
                             "name": "IncludeInServiceDocument",
                             "category": "basic",
                             "subcategory": "boolean",
+                            "description": "Whether to include this element in the service document",
                             "ref": "#AttributeIncludeInServiceDocument.25.3"
                         }
                     ],
-                    "ref": "#ElementedmFunctionImport.29"
+                    "ref": "#ElementedmFunctionImport.29",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:FunctionImport represents",
+                    "TODO_PERMITTED_CHILDREN": "Add permittedChildren array - check OData spec for edm:FunctionImport allowed children"
                 }
             ]
         },
@@ -730,7 +815,8 @@
                             "name": "Name",
                             "category": "basic",
                             "subcategory": "simple-identifier",
-                            "ref": "#AttributeName.30.1"
+                            "ref": "#AttributeName.30.1",
+                            "TODO_DESCRIPTION": "Add description for edm:Term.Name (basic - simple-identifier)"
                         },
                         {
                             "name": "Type",
@@ -742,11 +828,13 @@
                             "name": "Nullable",
                             "category": "basic",
                             "subcategory": "boolean",
+                            "description": "Whether the property can have null values",
                             "ref": "#AttributeNullable.30.3"
                         },
                         {
                             "name": "DefaultValue",
                             "category": "basic",
+                            "subcategory": "primitive-value",
                             "description": "primitive value",
                             "ref": "#AttributeDefaultValue.30.4"
                         },
@@ -798,7 +886,9 @@
                             "ref": "#Applicability"
                         }
                     ],
-                    "ref": "#ElementedmTerm.30"
+                    "ref": "#ElementedmTerm.30",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:Term represents",
+                    "TODO_PERMITTED_CHILDREN": "Add permittedChildren array - check OData spec for edm:Term allowed children"
                 },
                 {
                     "name": "edm:Annotation",
@@ -813,13 +903,15 @@
                             "name": "Qualifier",
                             "category": "basic",
                             "subcategory": "simple-identifier",
+                            "description": "Optional qualifier to distinguish multiple instances",
                             "ref": "#Qualifier"
                         }
                     ],
                     "permittedChildren": [
                         "edm:Annotation"
                     ],
-                    "ref": "#ElementedmAnnotation.31"
+                    "ref": "#ElementedmAnnotation.31",
+                    "TODO_DESCRIPTION": "Add description explaining what edm:Annotation represents"
                 }
             ]
         },
@@ -833,6 +925,7 @@
                         {
                             "name": "Version",
                             "category": "basic",
+                            "subcategory": "string",
                             "description": "version number string",
                             "ref": "#AttributeVersion.2.1"
                         }
@@ -841,19 +934,24 @@
                     "permittedChildren": [
                         "edmx:DataServices",
                         "edmx:Reference"
-                    ]
+                    ],
+                    "TODO_DESCRIPTION": "Add description explaining what edmx:Edmx represents"
                 },
                 {
                     "name": "edmx:DataServices",
                     "attributes": [],
-                    "ref": "#ElementedmxDataServices.3"
+                    "ref": "#ElementedmxDataServices.3",
+                    "TODO_DESCRIPTION": "Add description explaining what edmx:DataServices represents",
+                    "TODO_PERMITTED_CHILDREN": "Add permittedChildren array - check OData spec for edmx:DataServices allowed children"
                 },
                 {
                     "name": "edmx:Reference",
+                    "description": "specifies external CSDL documents",
                     "attributes": [
                         {
                             "name": "Uri",
                             "category": "basic",
+                            "subcategory": "uri",
                             "description": "URI string",
                             "ref": "#AttributeUri.4.1"
                         }
@@ -877,10 +975,13 @@
                             "name": "Alias",
                             "category": "basic",
                             "subcategory": "simple-identifier",
+                            "description": "The value that can be used in qualified names instead of the namespace.",
                             "ref": "#AttributeAlias.5.2"
                         }
                     ],
-                    "ref": "#ElementedmxInclude.5"
+                    "ref": "#ElementedmxInclude.5",
+                    "TODO_DESCRIPTION": "Add description explaining what edmx:Include represents",
+                    "TODO_PERMITTED_CHILDREN": "Add permittedChildren array - check OData spec for edmx:Include allowed children"
                 },
                 {
                     "name": "edmx:IncludeAnnotations",
@@ -895,6 +996,7 @@
                             "name": "Qualifier",
                             "category": "basic",
                             "subcategory": "simple-identifier",
+                            "description": "Optional qualifier to distinguish multiple instances",
                             "ref": "#AttributeQualifier.6.2"
                         },
                         {
@@ -904,7 +1006,9 @@
                             "ref": "#AttributeTargetNamespace.6.3"
                         }
                     ],
-                    "ref": "#ElementedmxIncludeAnnotations.6"
+                    "ref": "#ElementedmxIncludeAnnotations.6",
+                    "TODO_DESCRIPTION": "Add description explaining what edmx:IncludeAnnotations represents",
+                    "TODO_PERMITTED_CHILDREN": "Add permittedChildren array - check OData spec for edmx:IncludeAnnotations allowed children"
                 }
             ]
         }

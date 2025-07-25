@@ -16,7 +16,6 @@ export class MarkdownGenerator {
     this.data = data;
     this.options = {
       includeMetadata: true,
-      includeNavigation: true,
       headerLevel: 1,
       ...options,
     };
@@ -33,11 +32,6 @@ export class MarkdownGenerator {
       sections.push(this.generateHeader());
       sections.push(this.generateMetadata());
     }
-
-    // Table of contents - skip for main documentation
-    // if (this.options.includeNavigation) {
-    //   sections.push(this.generateTableOfContents());
-    // }
 
     // Attribute categories overview
     sections.push(this.generateAttributeCategories());
@@ -68,9 +62,9 @@ export class MarkdownGenerator {
     let content = `${headerMark} Overview\n\n`;
     content += `${metadata.description}\n\n`;
 
-    // Consolidate source, version, and reference into a single line with link
-    if (metadata.source && metadata.appendixUrl) {
-      content += `**Source**: [${metadata.source}](${metadata.appendixUrl})\n\n`;
+    // Consolidate source, and reference into a single line with link
+    if (metadata.source && metadata.sourceUrl) {
+      content += `**Source**: [${metadata.source}](${metadata.sourceUrl})\n\n`;
     } else if (metadata.source) {
       content += `**Source**: ${metadata.source}\n\n`;
     }

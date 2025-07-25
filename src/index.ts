@@ -1,5 +1,12 @@
 /**
- * OData EDM Structure Converter
+ * OData EDM Sexport function generateMarkdown(
+  inputPath: string,
+  outputPath?: string,
+  options?: {
+    title?: string;
+    includeMetadata?: boolean;
+  },
+): Promise<string> {Converter
  *
  * This module provides tools to convert OData EDM structure data from
  * machine-readable JSON format into consistent, readable markdown documentation.
@@ -22,7 +29,6 @@ export async function generateMarkdownFromFile(
   options?: {
     title?: string;
     includeMetadata?: boolean;
-    includeNavigation?: boolean;
   },
 ): Promise<string> {
   const { ODataEdmParser } = await import("./parser");
@@ -51,7 +57,6 @@ export function generateMarkdownFromJson(
   options?: {
     title?: string;
     includeMetadata?: boolean;
-    includeNavigation?: boolean;
   },
 ): string {
   const { ODataEdmParser } = require("./parser");

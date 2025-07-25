@@ -30,7 +30,6 @@ async function generateDocumentation() {
     const data = parser.getData();
     const generator = new MarkdownGenerator(data, {
       includeMetadata: true,
-      includeNavigation: true,
       headerLevel: 1
     });
 
