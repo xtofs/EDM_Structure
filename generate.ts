@@ -54,7 +54,6 @@ async function generateDocumentation() {
     console.log(`📊 Total Groups: ${stats.totalGroups}`);
     console.log(`📊 Total Elements: ${stats.totalElements}`);
     console.log(`📊 Elements with Attributes: ${stats.elementsWithAttributes}`);
-    console.log(`📊 Elements without Attributes: ${stats.elementsWithoutAttributes}`);
     console.log(`📊 Total Attributes: ${stats.totalAttributes}`);
     console.log('\n--- Attributes by Category ---');
     Object.entries(stats.attributesByCategory).forEach(([category, count]) => {

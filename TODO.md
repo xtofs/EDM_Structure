@@ -1,20 +1,16 @@
 # TODO - OData EDM Structure Project
 
-
-## enum only
+## ✅ enum only - COMPLETED
 
 `edm:OnDelete` has an attribute Action. it is a basic attribute that is essentially an enum.
-at the moment it is rendered as `Basic (enum or Cascade, None, SetNull, SetDefault)`
 
-two problems with that
-- we currently have no basic attribute subcategory called enum
-- the way this is rendered is awkward since it only allows symbols it should render as `Basic (Cascade, None, SetNull, SetDefault)`
+**DONE**: Fixed the rendering issue:
+- Removed the non-existent "enum" subcategory from the OnDelete Action attribute
+- Updated the generator to detect when there are symbols but no subcategory
+- Now renders as `Basic (Cascade, None, SetNull, SetDefault)` instead of the awkward `Basic (enum or Cascade, None, SetNull, SetDefault)`
+- The renderer now handles enum-like attributes gracefully without requiring an explicit "enum" subcategory
 
-we can either introduce an enum subcategory or the render just detects it that there are symbols but no subcategory and renders it accordingly
-
-
-
-## missing permitted parent/child elements
+## ✅ missing permitted parent/child elements - COMPLETED
 Each model element can appear only in a specific context in a CSDL file, i.e. as child of a few specific parent elements.
 The document at input-docs\parent_child_relationships.csv contains a flat list of parent/child relationships.
 This information is missing in the JSON structure. It should be added to each element as a `permittedChildren` property, to indicate where it can be used within the CSDL hierarchy.
@@ -38,10 +34,10 @@ for example ```
                             "description": "URI string",
 ```
 Doesn't specify the subcategory of the basic attribute with name "Uri".
-SHould be "URI" as defined in the Json
+Should be "uri" as defined in the Json
 ```
  {
-    "name": "URI",
+    "name": "uri",
     "description": "Uniform Resource Identifier"
 },
 ```

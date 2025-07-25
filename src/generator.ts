@@ -45,9 +45,6 @@ export class MarkdownGenerator {
     // Element groups
     sections.push(this.generateElementGroups());
 
-    // Summary statistics
-    sections.push(this.generateSummary());
-
     return sections.join("\n\n");
   }
 
@@ -235,6 +232,10 @@ export class MarkdownGenerator {
       } else {
         type += ` (${readableSubcategory})`;
       }
+    } else if (attribute.symbols && attribute.symbols.length > 0) {
+      // Format as "symbol1, symbol2" when no subcategory is specified
+      const symbolList = attribute.symbols.map((s) => `\`${s}\``).join(", ");
+      type += ` (${symbolList})`;
     }
 
     return type;
@@ -257,84 +258,6 @@ export class MarkdownGenerator {
     // Note: Link is now in the attribute name, not in description
 
     return description;
-  }
-
-  /**
-   * Generate summary section
-   */
-  private generateSummary(): string {
-    const headerLevel = (this.options.headerLevel || 1) + 1;
-    const headerMark = "#".repeat(headerLevel);
-
-    let content = `${headerMark} Summary\n\n`;
-
-    // Calculate statistics
-    const stats = this.calculateStatistics();
-
-    content += `### Statistics\n\n`;
-    content += `- **Total Element Groups**: ${stats.totalGroups}\n`;
-    content += `- **Total Elements**: ${stats.totalElements}\n`;
-    content += `- **Elements with Attributes**: ${stats.elementsWithAttributes}\n`;
-    content += `- **Elements without Attributes**: ${stats.elementsWithoutAttributes}\n`;
-    content += `- **Total Attributes**: ${stats.totalAttributes}\n\n`;
-
-    content += `### Attributes by Category\n\n`;
-    content += `- **Basic Attributes**: ${stats.basicAttributes}\n`;
-    content += `- **Reference Attributes**: ${stats.referenceAttributes}\n`;
-    content += `- **Path Attributes**: ${stats.pathAttributes}\n\n`;
-
-    return content.trim();
-  }
-
-  /**
-   * Calculate statistics from the data
-   */
-  private calculateStatistics() {
-    let totalElements = 0;
-    let elementsWithAttributes = 0;
-    let elementsWithoutAttributes = 0;
-    let totalAttributes = 0;
-    let basicAttributes = 0;
-    let referenceAttributes = 0;
-    let pathAttributes = 0;
-
-    for (const group of this.data.elementGroups) {
-      totalElements += group.elements.length;
-
-      for (const element of group.elements) {
-        if (element.attributes.length > 0) {
-          elementsWithAttributes++;
-          totalAttributes += element.attributes.length;
-
-          for (const attribute of element.attributes) {
-            switch (attribute.category) {
-              case "basic":
-                basicAttributes++;
-                break;
-              case "reference":
-                referenceAttributes++;
-                break;
-              case "path":
-                pathAttributes++;
-                break;
-            }
-          }
-        } else {
-          elementsWithoutAttributes++;
-        }
-      }
-    }
-
-    return {
-      totalGroups: this.data.elementGroups.length,
-      totalElements,
-      elementsWithAttributes,
-      elementsWithoutAttributes,
-      totalAttributes,
-      basicAttributes,
-      referenceAttributes,
-      pathAttributes,
-    };
   }
 
   /**

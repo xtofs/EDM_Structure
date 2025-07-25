@@ -76,9 +76,8 @@ tmp/
 temp/
 
 # Project specific
-# Generated documentation and preview files
+# Generated documentation files
 generated/
-preview/
 
 # Keep data and schema files as they are part of the project
 # data/
@@ -86,4 +85,3 @@ preview/
 
 
 generated/*
-preview/*

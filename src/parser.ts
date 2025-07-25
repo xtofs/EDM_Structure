@@ -96,7 +96,6 @@ export class ODataEdmParser {
     totalGroups: number;
     totalElements: number;
     elementsWithAttributes: number;
-    elementsWithoutAttributes: number;
     totalAttributes: number;
     attributesByCategory: Record<string, number>;
   } {
@@ -104,7 +103,6 @@ export class ODataEdmParser {
 
     let totalElements = 0;
     let elementsWithAttributes = 0;
-    let elementsWithoutAttributes = 0;
     let totalAttributes = 0;
     const attributesByCategory: Record<string, number> = {
       basic: 0,
@@ -123,9 +121,7 @@ export class ODataEdmParser {
           for (const attribute of element.attributes) {
             attributesByCategory[attribute.category]++;
           }
-        } else {
-          elementsWithoutAttributes++;
-        }
+        } 
       }
     }
 
@@ -133,7 +129,6 @@ export class ODataEdmParser {
       totalGroups: data.elementGroups.length,
       totalElements,
       elementsWithAttributes,
-      elementsWithoutAttributes,
       totalAttributes,
       attributesByCategory,
     };

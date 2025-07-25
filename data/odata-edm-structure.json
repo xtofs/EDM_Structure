@@ -328,7 +328,6 @@
                         {
                             "name": "Action",
                             "category": "basic",
-                            "subcategory": "enum",
                             "symbols": ["Cascade", "None", "SetNull", "SetDefault"],
                             "description": "action the service will take on related entities when the entity is deleted.",
                             "ref": "#AttributeAction.15.1"

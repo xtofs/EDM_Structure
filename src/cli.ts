@@ -68,9 +68,6 @@ class ODataEdmCli {
         console.log(
           `Elements with Attributes: ${stats.elementsWithAttributes}`,
         );
-        console.log(
-          `Elements without Attributes: ${stats.elementsWithoutAttributes}`,
-        );
         console.log(`Total Attributes: ${stats.totalAttributes}`);
         console.log("Attributes by Category:");
         Object.entries(stats.attributesByCategory).forEach(
