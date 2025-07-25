@@ -1,0 +1,25 @@
+{{headerMark}} Attribute Categories
+
+{{#each categories}}
+{{../subHeaderMark}} {{name}}
+
+{{description}}
+
+{{#if subcategories}}
+{{#each subcategories}}
+- **{{name}}**: {{description}}{{#if symbolicValues}}
+
+  Symbolic values:
+{{#each symbolicValues}}
+  - `{{name}}`: {{description}}
+{{/each}}{{/if}}{{#if constraints}}
+
+  *Constraints*: {{constraints}}{{/if}}{{#if default}}
+
+  *Default*: {{default}}{{/if}}{{#if notes}}
+
+  *Note*: {{notes}}{{/if}}
+
+{{/each}}
+{{/if}}
+{{/each}}

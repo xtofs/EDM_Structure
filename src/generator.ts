@@ -4,6 +4,7 @@ import {
   ElementAttribute,
   MarkdownOptions,
 } from "./types";
+import { TemplateManager } from "./template-manager";
 
 /**
  * MarkdownGenerator - Generates consistent, readable markdown documentation from OData EDM structure data
@@ -11,6 +12,7 @@ import {
 export class MarkdownGenerator {
   private data: ODataEdmStructure;
   private options: MarkdownOptions;
+  private templateManager: TemplateManager;
 
   constructor(data: ODataEdmStructure, options: MarkdownOptions = {}) {
     this.data = data;
@@ -19,6 +21,7 @@ export class MarkdownGenerator {
       headerLevel: 1,
       ...options,
     };
+    this.templateManager = new TemplateManager();
   }
 
   /**
@@ -76,48 +79,13 @@ export class MarkdownGenerator {
    * Generate attribute categories section
    */
   private generateAttributeCategories(): string {
-    const headerLevel = (this.options.headerLevel || 1) + 1;
-    const headerMark = "#".repeat(headerLevel);
-    const subHeaderMark = "#".repeat(headerLevel + 1);
-
-    let content = `${headerMark} Attribute Categories\n\n`;
-
-    for (const category of Object.values(this.data.attributeCategories)) {
-      content += `${subHeaderMark} ${category.name}\n\n`;
-      content += `${category.description}\n\n`;
-
-      if (category.subcategories && category.subcategories.length > 0) {
-        for (const subcategory of category.subcategories) {
-          content += `- **${subcategory.name}**: ${subcategory.description}`;
-
-          if (
-            subcategory.symbolicValues &&
-            subcategory.symbolicValues.length > 0
-          ) {
-            content += `\n\n  Symbolic values:\n`;
-            for (const symbolicValue of subcategory.symbolicValues) {
-              content += `  - \`${symbolicValue.name}\`: ${symbolicValue.description}\n`;
-            }
-          }
-
-          if (subcategory.constraints) {
-            content += `\n\n  *Constraints*: ${subcategory.constraints}`;
-          }
-
-          if (subcategory.default) {
-            content += `\n\n  *Default*: ${subcategory.default}`;
-          }
-
-          if (subcategory.notes) {
-            content += `\n\n  *Note*: ${subcategory.notes}`;
-          }
-
-          content += "\n\n";
-        }
-      }
-    }
-
-    return content.trim();
+    const template = this.templateManager.getTemplate('attribute-categories');
+    
+    return template({
+      headerMark: '#'.repeat((this.options.headerLevel || 1) + 1),
+      subHeaderMark: '#'.repeat((this.options.headerLevel || 1) + 2),
+      categories: Object.values(this.data.attributeCategories)
+    }).trim();
   }
 
   /**
