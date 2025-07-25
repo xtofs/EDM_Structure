@@ -148,7 +148,6 @@ Current data includes:
 ```bash
 npm run build      # Compile TypeScript
 npm run dev        # Watch mode compilation
-npm run test       # Run tests (when implemented)
 npm run lint       # ESLint checking
 npm run format     # Prettier formatting
 npm run clean      # Remove dist folder
