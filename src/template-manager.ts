@@ -87,7 +87,7 @@ export class TemplateManager {
 
     // Helper for generating header marks
     Handlebars.registerHelper('headerMark', (level: number) => {
-      return '#'.repeat(level);
+      return new Handlebars.SafeString('#'.repeat(level));
     });
 
     // Helper for lowercase conversion

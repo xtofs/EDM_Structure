@@ -1,14 +1,14 @@
-{{headerMark}} EDM Elements
+{{headerMark headerLevel}} EDM Elements
 
 {{#each elementGroups}}
-{{../subHeaderMark}} {{name}}
+{{headerMark ../subHeaderLevel}} {{name}}
 
 {{#if description}}
 {{description}}
 
 {{/if}}
 {{#each elements}}
-{{../../elementHeaderMark}} {{elementLink name ref ../../baseUrl}}
+{{headerMark ../../elementHeaderLevel}} {{elementLink name ref ../../baseUrl}}
 
 {{#if permittedChildren}}
 Permitted Children: {{#each permittedChildren}}[{{this}}](#{{lower (replace this ":" "")}}){{#unless @last}}, {{/unless}}{{/each}}

@@ -81,9 +81,12 @@ export class MarkdownGenerator {
   private generateAttributeCategories(): string {
     const template = this.templateManager.getTemplate('attribute-categories');
     
+    const headerLevel = (this.options.headerLevel || 1) + 1;
+    const subHeaderLevel = headerLevel + 1;
+    
     return template({
-      headerMark: '#'.repeat((this.options.headerLevel || 1) + 1),
-      subHeaderMark: '#'.repeat((this.options.headerLevel || 1) + 2),
+      headerLevel: headerLevel,
+      subHeaderLevel: subHeaderLevel,
       categories: Object.values(this.data.attributeCategories)
     }).trim();
   }
@@ -93,6 +96,10 @@ export class MarkdownGenerator {
    */
   private generateElementGroups(): string {
     const template = this.templateManager.getTemplate('element-groups');
+    
+    const headerLevel = (this.options.headerLevel || 1) + 1;
+    const subHeaderLevel = headerLevel + 1;
+    const elementHeaderLevel = headerLevel + 2;
     
     // Prepare data with calculated permittedParents
     const elementGroupsWithParents = this.data.elementGroups.map(group => ({
@@ -111,9 +118,9 @@ export class MarkdownGenerator {
     }));
 
     return template({
-      headerMark: '#'.repeat((this.options.headerLevel || 1) + 1),
-      subHeaderMark: '#'.repeat((this.options.headerLevel || 1) + 2),
-      elementHeaderMark: '#'.repeat((this.options.headerLevel || 1) + 3),
+      headerLevel: headerLevel,
+      subHeaderLevel: subHeaderLevel,
+      elementHeaderLevel: elementHeaderLevel,
       elementGroups: elementGroupsWithParents,
       baseUrl: this.data.metadata.baseUrl
     }).trim();
