@@ -1,0 +1,11 @@
+{{headerMark headerLevel}} {{elementLink name ref baseUrl}}
+
+*Part of: {{groupName}}*
+
+{{#if attributes}}
+{{headerMark attributesHeaderLevel}} Attributes
+
+{{> attribute-table attributes=attributes baseUrl=baseUrl}}
+{{else}}
+*No attributes*
+{{/if}}

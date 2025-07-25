@@ -1,7 +1,6 @@
 import {
   ODataEdmStructure,
   EdmElement,
-  ElementAttribute,
   MarkdownOptions,
 } from "./types";
 import { TemplateManager } from "./template-manager";
@@ -58,21 +57,16 @@ export class MarkdownGenerator {
    * Generate metadata section
    */
   private generateMetadata(): string {
-    const { metadata } = this.data;
+    const template = this.templateManager.getTemplate('metadata');
+    
     const headerLevel = (this.options.headerLevel || 1) + 1;
-    const headerMark = "#".repeat(headerLevel);
-
-    let content = `${headerMark} Overview\n\n`;
-    content += `${metadata.description}\n\n`;
-
-    // Consolidate source, and reference into a single line with link
-    if (metadata.source && metadata.sourceUrl) {
-      content += `**Source**: [${metadata.source}](${metadata.sourceUrl})\n\n`;
-    } else if (metadata.source) {
-      content += `**Source**: ${metadata.source}\n\n`;
-    }
-
-    return content.trim();
+    
+    return template({
+      headerLevel: headerLevel,
+      description: this.data.metadata.description,
+      source: this.data.metadata.source,
+      sourceUrl: this.data.metadata.sourceUrl
+    }).trim();
   }
 
   /**
@@ -127,87 +121,6 @@ export class MarkdownGenerator {
   }
 
   /**
-   * Generate attribute table for an element
-   */
-  private generateAttributeTable(attributes: ElementAttribute[]): string {
-    let table = "| Attribute | Type | Description |\n";
-    table += "|-----------|------|-------------|\n";
-
-    for (const attribute of attributes) {
-      const type = this.formatAttributeType(attribute);
-      const description = this.formatAttributeDescription(attribute);
-
-      // Make attribute name clickable if it has a ref link
-      let attributeName = attribute.name;
-      if (attribute.ref && this.data.metadata.baseUrl) {
-        const fullUrl = this.data.metadata.baseUrl + attribute.ref;
-        attributeName = `[${attribute.name}](${fullUrl})`;
-      }
-
-      table += `| **${attributeName}** | ${type} | ${description} |\n`;
-    }
-
-    return table;
-  }
-
-  /**
-   * Convert kebab-case to readable format (e.g., "simple-identifier" -> "simple identifier")
-   */
-  private kebabToReadable(text: string): string {
-    return text.replace(/-/g, " ");
-  }
-
-  /**
-   * Format attribute type with category, subcategory, and symbols
-   */
-  private formatAttributeType(attribute: ElementAttribute): string {
-    let type = this.capitalizeFirst(attribute.category);
-
-    if (attribute.subcategory) {
-      const readableSubcategory = this.kebabToReadable(attribute.subcategory);
-      if (attribute.symbols && attribute.symbols.length > 0) {
-        // Format as "subcategory or symbol1, symbol2"
-        const symbolList = attribute.symbols.map((s) => `\`${s}\``).join(", ");
-        type += ` (${readableSubcategory} or ${symbolList})`;
-      } else {
-        type += ` (${readableSubcategory})`;
-      }
-    } else if (attribute.symbols && attribute.symbols.length > 0) {
-      // Format as "symbol1, symbol2" when no subcategory is specified
-      const symbolList = attribute.symbols.map((s) => `\`${s}\``).join(", ");
-      type += ` (${symbolList})`;
-    }
-
-    return type;
-  }
-
-  /**
-   * Format attribute description with constraints, context, and standard link
-   */
-  private formatAttributeDescription(attribute: ElementAttribute): string {
-    let description = attribute.description || "";
-
-    if (attribute.constraints) {
-      description += ` *Constraints: ${attribute.constraints}*`;
-    }
-
-    if (attribute.context) {
-      description += ` *Context: ${attribute.context}*`;
-    }
-
-    // Note: Link is now in the attribute name, not in description
-
-    return description;
-  }
-
-  /**
-   * Capitalize first letter of a string
-   */
-  private capitalizeFirst(str: string): string {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
-  /**
    * Generate markdown for a specific element group
    */
   public generateGroupMarkdown(groupName: string): string {
@@ -216,34 +129,19 @@ export class MarkdownGenerator {
       throw new Error(`Group '${groupName}' not found`);
     }
 
+    const template = this.templateManager.getTemplate('group-markdown');
+    
     const headerLevel = this.options.headerLevel || 1;
-    const headerMark = "#".repeat(headerLevel);
-    const elementHeaderMark = "#".repeat(headerLevel + 1);
+    const elementHeaderLevel = headerLevel + 1;
 
-    let content = `${headerMark} ${group.name}\n\n`;
-
-    if (group.description) {
-      content += `${group.description}\n\n`;
-    }
-
-    for (const element of group.elements) {
-      // Make element name clickable if standard link is available
-      if (element.ref && this.data.metadata.baseUrl) {
-        const fullUrl = this.data.metadata.baseUrl + element.ref;
-        content += `${elementHeaderMark} [\`${element.name}\`](${fullUrl})\n\n`;
-      } else {
-        content += `${elementHeaderMark} \`${element.name}\`\n\n`;
-      }
-
-      if (element.attributes.length === 0) {
-        content += "*No attributes*\n\n";
-      } else {
-        content += this.generateAttributeTable(element.attributes);
-        content += "\n";
-      }
-    }
-
-    return content.trim();
+    return template({
+      headerLevel: headerLevel,
+      elementHeaderLevel: elementHeaderLevel,
+      name: group.name,
+      description: group.description,
+      elements: group.elements,
+      baseUrl: this.data.metadata.baseUrl
+    }).trim();
   }
 
   /**
@@ -267,27 +165,19 @@ export class MarkdownGenerator {
       throw new Error(`Element '${elementName}' not found`);
     }
 
+    const template = this.templateManager.getTemplate('element-markdown');
+    
     const headerLevel = this.options.headerLevel || 1;
-    const headerMark = "#".repeat(headerLevel);
+    const attributesHeaderLevel = headerLevel + 1;
 
-    // Make element name clickable if standard link is available
-    let content: string;
-    if (element.ref && this.data.metadata.baseUrl) {
-      const fullUrl = this.data.metadata.baseUrl + element.ref;
-      content = `${headerMark} [\`${element.name}\`](${fullUrl})\n\n`;
-    } else {
-      content = `${headerMark} \`${element.name}\`\n\n`;
-    }
-    content += `*Part of: ${groupName}*\n\n`;
-
-    if (element.attributes.length === 0) {
-      content += "*No attributes*\n\n";
-    } else {
-      content += "## Attributes\n\n";
-      content += this.generateAttributeTable(element.attributes);
-      content += "\n";
-    }
-
-    return content.trim();
+    return template({
+      headerLevel: headerLevel,
+      attributesHeaderLevel: attributesHeaderLevel,
+      name: element.name,
+      ref: element.ref,
+      groupName: groupName,
+      attributes: element.attributes.length > 0 ? element.attributes : null,
+      baseUrl: this.data.metadata.baseUrl
+    }).trim();
   }
 }
