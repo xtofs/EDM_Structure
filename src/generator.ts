@@ -92,60 +92,31 @@ export class MarkdownGenerator {
    * Generate element groups section
    */
   private generateElementGroups(): string {
-    const headerLevel = (this.options.headerLevel || 1) + 1;
-    const headerMark = "#".repeat(headerLevel);
-    const subHeaderMark = "#".repeat(headerLevel + 1);
-    const elementHeaderMark = "#".repeat(headerLevel + 2);
-
-    let content = `${headerMark} EDM Elements\n\n`;
-
-    for (const group of this.data.elementGroups) {
-      content += `${subHeaderMark} ${group.name}\n\n`;
-
-      if (group.description) {
-        content += `${group.description}\n\n`;
-      }
-
-      for (const element of group.elements) {
-        // Make element name clickable if standard link is available
-        if (element.ref && this.data.metadata.baseUrl) {
-          const fullUrl = this.data.metadata.baseUrl + element.ref;
-          content += `${elementHeaderMark} [\`${element.name}\`](${fullUrl})\n\n`;
-        } else {
-          content += `${elementHeaderMark} \`${element.name}\`\n\n`;
-        }
-
-        // Add permittedChildren as simple text with links
-        if (element.permittedChildren && element.permittedChildren.length > 0) {
-          const childrenLinks = element.permittedChildren.map(child => `[${child}](#${child.toLowerCase().replace(/:/g, '')})`);
-          content += `Permitted Children: ${childrenLinks.join(', ')}\n\n`;
-        } else {
-          content += "Permitted Children: None\n\n";
-        }
-
-        // Dynamically calculate permittedParents as simple text with links
+    const template = this.templateManager.getTemplate('element-groups');
+    
+    // Prepare data with calculated permittedParents
+    const elementGroupsWithParents = this.data.elementGroups.map(group => ({
+      ...group,
+      elements: group.elements.map(element => {
         const permittedParents = this.data.elementGroups
-          .flatMap((group) => group.elements)
+          .flatMap((g) => g.elements)
           .filter((e) => e.permittedChildren?.includes(element.name))
           .map((e) => e.name);
 
-        if (permittedParents.length > 0) {
-          const parentsLinks = permittedParents.map(parent => `[${parent}](#${parent.toLowerCase().replace(/:/g, '')})`);
-          content += `Permitted Parents: ${parentsLinks.join(', ')}\n\n`;
-        } else {
-          content += "Permitted Parents: None\n\n";
-        }
+        return {
+          ...element,
+          permittedParents: permittedParents.length > 0 ? permittedParents : null
+        };
+      })
+    }));
 
-        if (element.attributes.length === 0) {
-          content += "*No attributes*\n\n";
-        } else {
-          content += this.generateAttributeTable(element.attributes);
-          content += "\n";
-        }
-      }
-    }
-
-    return content.trim();
+    return template({
+      headerMark: '#'.repeat((this.options.headerLevel || 1) + 1),
+      subHeaderMark: '#'.repeat((this.options.headerLevel || 1) + 2),
+      elementHeaderMark: '#'.repeat((this.options.headerLevel || 1) + 3),
+      elementGroups: elementGroupsWithParents,
+      baseUrl: this.data.metadata.baseUrl
+    }).trim();
   }
 
   /**

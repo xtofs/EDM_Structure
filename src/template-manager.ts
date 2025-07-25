@@ -13,6 +13,19 @@ export class TemplateManager {
   constructor(templatesDir: string = path.join(__dirname, '../templates')) {
     this.templatesDir = templatesDir;
     this.registerHelpers();
+    this.registerPartials();
+  }
+
+  /**
+   * Register partial templates
+   */
+  private registerPartials(): void {
+    // Register attribute-table as a partial
+    const attributeTablePath = path.join(this.templatesDir, 'attribute-table.hbs');
+    if (fs.existsSync(attributeTablePath)) {
+      const attributeTableSource = fs.readFileSync(attributeTablePath, 'utf-8');
+      Handlebars.registerPartial('attribute-table', attributeTableSource);
+    }
   }
 
   /**
@@ -75,6 +88,16 @@ export class TemplateManager {
     // Helper for generating header marks
     Handlebars.registerHelper('headerMark', (level: number) => {
       return '#'.repeat(level);
+    });
+
+    // Helper for lowercase conversion
+    Handlebars.registerHelper('lower', (str: string) => {
+      return str.toLowerCase();
+    });
+
+    // Helper for string replacement
+    Handlebars.registerHelper('replace', (str: string, searchValue: string, replaceValue: string) => {
+      return str.replace(new RegExp(searchValue, 'g'), replaceValue);
     });
   }
 

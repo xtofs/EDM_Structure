@@ -1,0 +1,32 @@
+{{headerMark}} EDM Elements
+
+{{#each elementGroups}}
+{{../subHeaderMark}} {{name}}
+
+{{#if description}}
+{{description}}
+
+{{/if}}
+{{#each elements}}
+{{../../elementHeaderMark}} {{elementLink name ref ../../baseUrl}}
+
+{{#if permittedChildren}}
+Permitted Children: {{#each permittedChildren}}[{{this}}](#{{lower (replace this ":" "")}}){{#unless @last}}, {{/unless}}{{/each}}
+{{else}}
+Permitted Children: None
+{{/if}}
+
+{{#if permittedParents}}
+Permitted Parents: {{#each permittedParents}}[{{this}}](#{{lower (replace this ":" "")}}){{#unless @last}}, {{/unless}}{{/each}}
+{{else}}
+Permitted Parents: None
+{{/if}}
+
+{{#if attributes}}
+{{> attribute-table attributes=attributes baseUrl=../../../baseUrl}}
+{{else}}
+*No attributes*
+{{/if}}
+
+{{/each}}
+{{/each}}
