@@ -48,20 +48,21 @@ export class ODataEdmParser {
    * Get all elements of a specific category
    */
   public getElementsByCategory(
-    category: "basic" | "reference" | "path",
+    categoryType: "basic" | "reference" | "path",
   ): EdmElement[] {
     const data = this.getData();
-    const elements: EdmElement[] = [];
+    const filteredElements: EdmElement[] = [];
 
-    for (const group of data.elementGroups) {
-      for (const element of group.elements) {
-        if (element.attributes.some((attr) => attr.category === category)) {
-          elements.push(element);
-        }
+    for (const element of data.elements) {
+      const hasCategory = element.attributes.some(
+        (attr) => attr.category === categoryType,
+      );
+      if (hasCategory) {
+        filteredElements.push(element);
       }
     }
 
-    return elements;
+    return filteredElements;
   }
 
   /**
@@ -70,94 +71,74 @@ export class ODataEdmParser {
   public getElementsByGroup(groupName: string): EdmElement[] {
     const data = this.getData();
     const group = data.elementGroups.find((g) => g.name === groupName);
-    return group ? group.elements : [];
-  }
-
-  /**
-   * Find an element by name
-   */
-  public findElement(elementName: string): EdmElement | null {
-    const data = this.getData();
-
-    for (const group of data.elementGroups) {
-      const element = group.elements.find((e) => e.name === elementName);
-      if (element) {
-        return element;
-      }
+    if (!group) {
+      return [];
     }
-
-    return null;
+    
+    return data.elements.filter(element => element.group === group.id);
   }
 
   /**
-   * Get statistics about the loaded data
+   * Get a specific element by name
    */
-  public getStatistics(): {
-    totalGroups: number;
+  public getElementByName(elementName: string): EdmElement | null {
+    const data = this.getData();
+    return data.elements.find(element => element.name === elementName) || null;
+  }
+
+  /**
+   * Generate summary statistics
+   */
+  public generateSummary(): {
     totalElements: number;
-    elementsWithAttributes: number;
-    totalAttributes: number;
-    attributesByCategory: Record<string, number>;
+    totalGroups: number;
+    basicAttributesCount: number;
+    referenceAttributesCount: number;
+    pathAttributesCount: number;
   } {
     const data = this.getData();
+    let totalElements = data.elements.length;
+    let basicAttributesCount = 0;
+    let referenceAttributesCount = 0;
+    let pathAttributesCount = 0;
 
-    let totalElements = 0;
-    let elementsWithAttributes = 0;
-    let totalAttributes = 0;
-    const attributesByCategory: Record<string, number> = {
-      basic: 0,
-      reference: 0,
-      path: 0,
-    };
-
-    for (const group of data.elementGroups) {
-      totalElements += group.elements.length;
-
-      for (const element of group.elements) {
-        if (element.attributes.length > 0) {
-          elementsWithAttributes++;
-          totalAttributes += element.attributes.length;
-
-          for (const attribute of element.attributes) {
-            attributesByCategory[attribute.category]++;
-          }
-        } 
-      }
-    }
-
-    return {
-      totalGroups: data.elementGroups.length,
-      totalElements,
-      elementsWithAttributes,
-      totalAttributes,
-      attributesByCategory,
-    };
-  }
-
-  /**
-   * Get all unique attribute names by category
-   */
-  public getAttributeNamesByCategory(): Record<string, string[]> {
-    const data = this.getData();
-    const attributeNames: Record<string, Set<string>> = {
-      basic: new Set(),
-      reference: new Set(),
-      path: new Set(),
-    };
-
-    for (const group of data.elementGroups) {
-      for (const element of group.elements) {
-        for (const attribute of element.attributes) {
-          attributeNames[attribute.category].add(attribute.name);
+    for (const element of data.elements) {
+      for (const attribute of element.attributes) {
+        switch (attribute.category) {
+          case "basic":
+            basicAttributesCount++;
+            break;
+          case "reference":
+            referenceAttributesCount++;
+            break;
+          case "path":
+            pathAttributesCount++;
+            break;
         }
       }
     }
 
     return {
-      basic: Array.from(attributeNames.basic).sort(),
-      reference: Array.from(attributeNames.reference).sort(),
-      path: Array.from(attributeNames.path).sort(),
+      totalElements,
+      totalGroups: data.elementGroups.length,
+      basicAttributesCount,
+      referenceAttributesCount,
+      pathAttributesCount,
     };
+  }    /**
+   * Get all unique attribute names used across elements
+   */
+  public getAllAttributeNames(): string[] {
+    const data = this.getData();
+    const attributeNames = new Set<string>();
+
+    for (const element of data.elements) {
+      for (const attribute of element.attributes) {
+        attributeNames.add(attribute.name);
+      }
+    }
+
+    return Array.from(attributeNames).sort();
   }
 
   /**
@@ -190,48 +171,36 @@ export class ODataEdmParser {
       );
     }
 
-    // Validate element groups
+    // Validate elementGroups
     if (!Array.isArray(data.elementGroups) || data.elementGroups.length === 0) {
-      errors.push("Invalid element groups: must be a non-empty array");
+      errors.push("elementGroups array is missing or empty");
     } else {
       for (let i = 0; i < data.elementGroups.length; i++) {
         const group = data.elementGroups[i];
-        if (!group.name || !Array.isArray(group.elements)) {
+        if (!group.name || !group.id) {
           errors.push(
-            `Invalid element group at index ${i}: name and elements array are required`,
+            `elementGroups[${i}] is missing required 'name' or 'id' property`,
           );
-        }
-
-        for (let j = 0; j < group.elements.length; j++) {
-          const element = group.elements[j];
-          if (!element.name) {
-            errors.push(
-              `Invalid element at group ${i}, element ${j}: name is required`,
-            );
-          }
-
-          if (!Array.isArray(element.attributes)) {
-            errors.push(
-              `Invalid element at group ${i}, element ${j}: attributes must be an array`,
-            );
-          } else {
-            for (let k = 0; k < element.attributes.length; k++) {
-              const attribute = element.attributes[k];
-              if (
-                !attribute.name ||
-                !attribute.category ||
-                !["basic", "reference", "path"].includes(attribute.category)
-              ) {
-                errors.push(
-                  `Invalid attribute at group ${i}, element ${j}, attribute ${k}: name and valid category are required`,
-                );
-              }
-            }
-          }
         }
       }
     }
 
-    return { isValid: errors.length === 0, errors };
+    // Validate elements array
+    if (!Array.isArray(data.elements) || data.elements.length === 0) {
+      errors.push("elements array is missing or empty");
+    } else {
+      for (let i = 0; i < data.elements.length; i++) {
+        const element = data.elements[i];
+        if (!element.name || !element.group) {
+          errors.push(
+            `elements[${i}] is missing required 'name' or 'group' property`,
+          );
+        }
+
+        if (!Array.isArray(element.attributes)) {
+          errors.push(`elements[${i}].attributes must be an array`);
+        }
+      }
+    }    return { isValid: errors.length === 0, errors };
   }
 }

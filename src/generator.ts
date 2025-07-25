@@ -1,6 +1,5 @@
 import {
   ODataEdmStructure,
-  EdmElement,
   MarkdownOptions,
 } from "./types";
 import { TemplateManager } from "./template-manager";
@@ -96,11 +95,12 @@ export class MarkdownGenerator {
     const elementHeaderLevel = headerLevel + 2;
     
     // Prepare data with calculated permittedParents
-    const elementGroupsWithParents = this.data.elementGroups.map(group => ({
-      ...group,
-      elements: group.elements.map(element => {
-        const permittedParents = this.data.elementGroups
-          .flatMap((g) => g.elements)
+    const elementGroupsWithParents = this.data.elementGroups.map(group => {
+      // Get elements for this group
+      const groupElements = this.data.elements.filter(element => element.group === group.id);
+      
+      const elementsWithParents = groupElements.map(element => {
+        const permittedParents = this.data.elements
           .filter((e) => e.permittedChildren?.includes(element.name))
           .map((e) => e.name);
 
@@ -108,8 +108,13 @@ export class MarkdownGenerator {
           ...element,
           permittedParents: permittedParents.length > 0 ? permittedParents : null
         };
-      })
-    }));
+      });
+
+      return {
+        ...group,
+        elements: elementsWithParents
+      };
+    });
 
     return template({
       headerLevel: headerLevel,
@@ -134,12 +139,15 @@ export class MarkdownGenerator {
     const headerLevel = this.options.headerLevel || 1;
     const elementHeaderLevel = headerLevel + 1;
 
+    // Get elements for this group
+    const groupElements = this.data.elements.filter(element => element.group === group.id);
+
     return template({
       headerLevel: headerLevel,
       elementHeaderLevel: elementHeaderLevel,
       name: group.name,
       description: group.description,
-      elements: group.elements,
+      elements: groupElements,
       baseUrl: this.data.metadata.baseUrl
     }).trim();
   }
@@ -148,22 +156,15 @@ export class MarkdownGenerator {
    * Generate markdown for a specific element
    */
   public generateElementMarkdown(elementName: string): string {
-    let element: EdmElement | null = null;
-    let groupName = "";
-
     // Find the element
-    for (const group of this.data.elementGroups) {
-      const found = group.elements.find((e) => e.name === elementName);
-      if (found) {
-        element = found;
-        groupName = group.name;
-        break;
-      }
-    }
-
+    const element = this.data.elements.find(e => e.name === elementName);
     if (!element) {
       throw new Error(`Element '${elementName}' not found`);
     }
+
+    // Find the group name
+    const group = this.data.elementGroups.find(g => g.id === element.group);
+    const groupName = group ? group.name : element.group;
 
     const template = this.templateManager.getTemplate('element-markdown');
     

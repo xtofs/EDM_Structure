@@ -52,15 +52,18 @@ export interface ElementAttribute {
 
 export interface EdmElement {
   name: string;
+  group: string;  // Reference to elementGroup id
   attributes: ElementAttribute[];
   permittedChildren?: string[];
   ref?: string;
+  description?: string;
+  [key: string]: any; // Allow for additional properties
 }
 
 export interface ElementGroup {
   name: string;
   description?: string;
-  elements: EdmElement[];
+  id: string;  // Unique identifier for the group
 }
 
 export interface Metadata {
@@ -81,7 +84,8 @@ export interface Summary {
 export interface ODataEdmStructure {
   metadata: Metadata;
   attributeCategories: AttributeCategories;
-  elementGroups: ElementGroup[];
+  elementGroups: ElementGroup[];  // Array of group metadata
+  elements: EdmElement[];         // Flat array of all elements
 }
 
 /**

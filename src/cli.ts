@@ -61,19 +61,14 @@ class ODataEdmCli {
       // Show statistics
       if (options.showStats) {
         console.log("\n--- Statistics ---");
-        const stats = this.parser.getStatistics();
+        const stats = this.parser.generateSummary();
         console.log(`Total Groups: ${stats.totalGroups}`);
         console.log(`Total Elements: ${stats.totalElements}`);
-        console.log(
-          `Elements with Attributes: ${stats.elementsWithAttributes}`,
-        );
-        console.log(`Total Attributes: ${stats.totalAttributes}`);
+        console.log(`Total Attributes: ${stats.basicAttributesCount + stats.referenceAttributesCount + stats.pathAttributesCount}`);
         console.log("Attributes by Category:");
-        Object.entries(stats.attributesByCategory).forEach(
-          ([category, count]) => {
-            console.log(`  ${category}: ${count}`);
-          },
-        );
+        console.log(`  basic: ${stats.basicAttributesCount}`);
+        console.log(`  reference: ${stats.referenceAttributesCount}`);
+        console.log(`  path: ${stats.pathAttributesCount}`);
       }
     } catch (error) {
       console.error(

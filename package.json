@@ -15,7 +15,7 @@
     "clean": "rimraf dist",
     "generate": "npx ts-node generate.ts",
     "validate-links": "npx ts-node validate-links.ts",
-    "preview": "npm run build && cd generated && pandoc edm_structure.md -o edm_structure.pdf && start edm_structure.pdf"
+    "preview": "npm run build && cd generated && pandoc edm_structure.md -o edm_structure.html && start edm_structure.html"
   },
   "keywords": [
     "odata",
