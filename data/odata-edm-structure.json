@@ -1,7 +1,7 @@
 {
     "metadata": {
-        "title": "OASIS CSDL XML Elements and Attributes Classification",
-        "description": "This document lists all EDM model elements, their attributes and relatioships. It categorizes the attributes in different types (basic, reference, ..) and describes their semantic in detail. It is based on the OASIS OData CSDL XML Representation Version 4.02 specification, and adds the details about allowed values, symbolic references and constraints for elements and attributes.",
+        "title": "OData EDM model structure",
+        "description": "This document lists all EDM model elements, their attributes and relationships. It categorizes the attributes in different types (basic, reference, ..) and describes their semantic in detail. It is based on the OASIS OData CSDL XML Representation Version 4.02 specification, and adds the details about allowed values, symbolic references and constraints for elements and attributes.",
         "source": "OASIS OData CSDL XML Representation Version 4.02 specification",
         "sourceUrl": "https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#TableofXMLElementsandAttributes",
         "baseUrl": "https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html"
