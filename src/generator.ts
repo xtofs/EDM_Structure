@@ -156,6 +156,27 @@ export class MarkdownGenerator {
           content += `${elementHeaderMark} \`${element.name}\`\n\n`;
         }
 
+        // Add permittedChildren as simple text with links
+        if (element.permittedChildren && element.permittedChildren.length > 0) {
+          const childrenLinks = element.permittedChildren.map(child => `[${child}](#${child.toLowerCase().replace(/:/g, '')})`);
+          content += `Permitted Children: ${childrenLinks.join(', ')}\n\n`;
+        } else {
+          content += "Permitted Children: None\n\n";
+        }
+
+        // Dynamically calculate permittedParents as simple text with links
+        const permittedParents = this.data.elementGroups
+          .flatMap((group) => group.elements)
+          .filter((e) => e.permittedChildren?.includes(element.name))
+          .map((e) => e.name);
+
+        if (permittedParents.length > 0) {
+          const parentsLinks = permittedParents.map(parent => `[${parent}](#${parent.toLowerCase().replace(/:/g, '')})`);
+          content += `Permitted Parents: ${parentsLinks.join(', ')}\n\n`;
+        } else {
+          content += "Permitted Parents: None\n\n";
+        }
+
         if (element.attributes.length === 0) {
           content += "*No attributes*\n\n";
         } else {
@@ -196,7 +217,7 @@ export class MarkdownGenerator {
    * Convert kebab-case to readable format (e.g., "simple-identifier" -> "simple identifier")
    */
   private kebabToReadable(text: string): string {
-    return text.replace(/-/g, ' ');
+    return text.replace(/-/g, " ");
   }
 
   /**
@@ -209,7 +230,7 @@ export class MarkdownGenerator {
       const readableSubcategory = this.kebabToReadable(attribute.subcategory);
       if (attribute.symbols && attribute.symbols.length > 0) {
         // Format as "subcategory or symbol1, symbol2"
-        const symbolList = attribute.symbols.map(s => `\`${s}\``).join(", ");
+        const symbolList = attribute.symbols.map((s) => `\`${s}\``).join(", ");
         type += ` (${readableSubcategory} or ${symbolList})`;
       } else {
         type += ` (${readableSubcategory})`;

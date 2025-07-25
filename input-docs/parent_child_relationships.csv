@@ -34,6 +34,4 @@ edm:EntityContainer,edm:ActionImport
 edm:EntityContainer,edm:FunctionImport
 edm:EntityContainer,edm:Annotation
 edm:Annotations,edm:Annotation
-edm:Annotation,edm:Record
-edm:Annotation,edm:Collection
 edm:Annotation,edm:Annotation

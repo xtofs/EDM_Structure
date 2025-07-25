@@ -53,6 +53,7 @@ export interface ElementAttribute {
 export interface EdmElement {
   name: string;
   attributes: ElementAttribute[];
+  permittedChildren?: string[];
   ref?: string;
 }
 

@@ -82,6 +82,17 @@
             "elements": [
                 {
                     "name": "edm:Schema",
+                    "permittedChildren": [
+                        "edm:EntityType",
+                        "edm:ComplexType",
+                        "edm:EnumType",
+                        "edm:TypeDefinition",
+                        "edm:Action",
+                        "edm:Function",
+                        "edm:EntityContainer",
+                        "edm:Term",
+                        "edm:Annotations"
+                    ],
                     "attributes": [
                         {
                             "name": "Namespace",
@@ -102,6 +113,9 @@
                 },
                 {
                     "name": "edm:Annotations",
+                    "permittedChildren": [
+                        "edm:Annotation"
+                    ],
                     "attributes": [
                         {
                             "name": "Target",
@@ -128,6 +142,12 @@
             "elements": [
                 {
                     "name": "edm:EntityType",
+                    "permittedChildren": [
+                        "edm:Annotation",
+                        "edm:Key",
+                        "edm:Property",
+                        "edm:NavigationProperty"
+                    ],
                     "attributes": [
                         {
                             "name": "Name",
@@ -146,19 +166,19 @@
                         {
                             "name": "Abstract",
                             "category": "basic",
-                            "description": "boolean",
+                            "subcategory": "boolean",
                             "ref": "#AttributeAbstract.9.3"
                         },
                         {
                             "name": "OpenType",
                             "category": "basic",
-                            "description": "boolean",
+                            "subcategory": "boolean",
                             "ref": "#AttributeOpenType.9.4"
                         },
                         {
                             "name": "HasStream",
                             "category": "basic",
-                            "description": "boolean",
+                            "subcategory": "boolean",
                             "ref": "#AttributeHasStream.9.5"
                         }
                     ],
@@ -167,7 +187,10 @@
                 {
                     "name": "edm:Key",
                     "attributes": [],
-                    "ref": "#ElementedmKey.10"
+                    "ref": "#ElementedmKey.10",
+                    "permittedChildren": [
+                        "edm:PropertyRef"
+                    ]
                 },
                 {
                     "name": "edm:PropertyRef",
@@ -177,7 +200,7 @@
                             "category": "path",
                             "subcategory": "Relative Path",
                             "description": "path to structural property",
-                            "context": "relative to the containing entity/complex type",
+                            "context": "relative to the containing entity type",
                             "ref": "#AttributeName.9.1"
                         },
                         {
@@ -191,6 +214,9 @@
                 },
                 {
                     "name": "edm:Property",
+                    "permittedChildren": [
+                        "edm:Annotation"
+                    ],
                     "attributes": [
                         {
                             "name": "Name",
@@ -201,13 +227,13 @@
                         {
                             "name": "Type",
                             "category": "reference",
-                            "description": "qualified type name or collection",
+                            "description": "qualified type name or collection of that",
                             "ref": "#AttributeType.12.2"
                         },
                         {
                             "name": "Nullable",
                             "category": "basic",
-                            "description": "boolean",
+                            "subcategory": "boolean",
                             "ref": "#AttributeNullable.12.3"
                         },
                         {
@@ -233,6 +259,7 @@
                 },
                 {
                     "name": "edm:NavigationProperty",
+                    "permittedChildren":["edm:OnDelete", "edm:ReferentialConstraint", "edm:Annotation"],
                     "attributes": [
                         {
                             "name": "Name",
@@ -244,13 +271,13 @@
                             "name": "Type",
                             "category": "reference",
                             "subcategory": "Absolute Reference",
-                            "description": "qualified entity type name or collection thereof",
+                            "description": "qualified entity type name or collection of that",
                             "ref": "#AttributeType.12.2"
                         },
                         {
                             "name": "Nullable",
                             "category": "basic",
-                            "description": "boolean",
+                            "subcategory": "boolean",
                             "ref": "#AttributeNullable.12.3"
                         },
                         {
@@ -264,7 +291,7 @@
                         {
                             "name": "ContainsTarget",
                             "category": "basic",
-                            "description": "boolean",
+                            "subcategory": "boolean",
                             "ref": "#AttributeContainsTarget.13.5"
                         }
                     ],
@@ -272,6 +299,9 @@
                 },
                 {
                     "name": "edm:ReferentialConstraint",
+                    "permittedChildren": [
+                        "edm:Annotation"
+                    ],
                     "attributes": [
                         {
                             "name": "Property",
@@ -298,7 +328,9 @@
                         {
                             "name": "Action",
                             "category": "basic",
-                            "description": "action enum: Cascade, None, SetNull, SetDefault",
+                            "subcategory": "enum",
+                            "symbols": ["Cascade", "None", "SetNull", "SetDefault"],
+                            "description": "action the service will take on related entities when the entity is deleted.",
                             "ref": "#AttributeAction.15.1"
                         }
                     ],
@@ -306,6 +338,11 @@
                 },
                 {
                     "name": "edm:ComplexType",
+                    "permittedChildren": [
+                        "edm:Annotation",
+                        "edm:Property",
+                        "edm:NavigationProperty"
+                    ],
                     "attributes": [
                         {
                             "name": "Name",
@@ -323,13 +360,13 @@
                         {
                             "name": "Abstract",
                             "category": "basic",
-                            "description": "boolean",
+                            "subcategory": "boolean",
                             "ref": "#AttributeAbstract.9.3"
                         },
                         {
                             "name": "OpenType",
                             "category": "basic",
-                            "description": "boolean",
+                            "subcategory": "boolean",
                             "ref": "#AttributeOpenType.9.4"
                         }
                     ],
@@ -354,11 +391,15 @@
                         {
                             "name": "IsFlags",
                             "category": "basic",
-                            "description": "boolean",
+                            "subcategory": "boolean",
                             "ref": "#AttributeIsFlags.17.3"
                         }
                     ],
-                    "ref": "#ElementedmEnumType.17"
+                    "ref": "#ElementedmEnumType.17",
+                    "permittedChildren": [
+                        "edm:Annotation",
+                        "edm:Member"
+                    ]
                 },
                 {
                     "name": "edm:Member",
@@ -415,7 +456,7 @@
                         {
                             "name": "IsBound",
                             "category": "basic",
-                            "description": "boolean",
+                            "subcategory": "boolean",
                             "ref": "#AttributeIsBound.21.2"
                         },
                         {
@@ -427,7 +468,12 @@
                             "ref": "#AttributeEntitySetPath.21.3"
                         }
                     ],
-                    "ref": "#ElementedmAction.20"
+                    "ref": "#ElementedmAction.20",
+                    "permittedChildren": [
+                        "edm:Annotation",
+                        "edm:Parameter",
+                        "edm:ReturnType"
+                    ]
                 },
                 {
                     "name": "edm:Function",
@@ -441,7 +487,7 @@
                         {
                             "name": "IsBound",
                             "category": "basic",
-                            "description": "boolean",
+                            "subcategory": "boolean",
                             "ref": "#AttributeIsBound.21.2"
                         },
                         {
@@ -455,11 +501,16 @@
                         {
                             "name": "IsComposable",
                             "category": "basic",
-                            "description": "boolean",
+                            "subcategory": "boolean",
                             "ref": "#AttributeIsComposable.21.4"
                         }
                     ],
-                    "ref": "#ElementedmFunction.21"
+                    "ref": "#ElementedmFunction.21",
+                    "permittedChildren": [
+                        "edm:Annotation",
+                        "edm:Parameter",
+                        "edm:ReturnType"
+                    ]
                 },
                 {
                     "name": "edm:ReturnType",
@@ -473,7 +524,7 @@
                         {
                             "name": "Nullable",
                             "category": "basic",
-                            "description": "boolean",
+                            "subcategory": "boolean",
                             "ref": "#AttributeNullable.12.3"
                         }
                     ],
@@ -497,7 +548,7 @@
                         {
                             "name": "Nullable",
                             "category": "basic",
-                            "description": "boolean",
+                            "subcategory": "boolean",
                             "ref": "#AttributeNullable.12.3"
                         }
                     ],
@@ -526,7 +577,14 @@
                             "ref": "#AttributeExtends.24.2"
                         }
                     ],
-                    "ref": "#ElementedmEntityContainer.24"
+                    "ref": "#ElementedmEntityContainer.24",
+                    "permittedChildren": [
+                        "edm:ActionImport",
+                        "edm:Annotation",
+                        "edm:EntitySet",
+                        "edm:FunctionImport",
+                        "edm:Singleton"
+                    ]
                 },
                 {
                     "name": "edm:EntitySet",
@@ -547,7 +605,7 @@
                         {
                             "name": "IncludeInServiceDocument",
                             "category": "basic",
-                            "description": "boolean",
+                            "subcategory": "boolean",
                             "ref": "#AttributeIncludeInServiceDocument.25.3"
                         }
                     ],
@@ -572,7 +630,7 @@
                         {
                             "name": "Nullable",
                             "category": "basic",
-                            "description": "boolean",
+                            "subcategory": "boolean",
                             "ref": "#AttributeNullable.12.3"
                         }
                     ],
@@ -654,7 +712,7 @@
                         {
                             "name": "IncludeInServiceDocument",
                             "category": "basic",
-                            "description": "boolean",
+                            "subcategory": "boolean",
                             "ref": "#AttributeIncludeInServiceDocument.25.3"
                         }
                     ],
@@ -684,7 +742,7 @@
                         {
                             "name": "Nullable",
                             "category": "basic",
-                            "description": "boolean",
+                            "subcategory": "boolean",
                             "ref": "#AttributeNullable.30.3"
                         },
                         {
@@ -759,6 +817,9 @@
                             "ref": "#Qualifier"
                         }
                     ],
+                    "permittedChildren": [
+                        "edm:Annotation"
+                    ],
                     "ref": "#ElementedmAnnotation.31"
                 }
             ]
@@ -777,7 +838,11 @@
                             "ref": "#AttributeVersion.2.1"
                         }
                     ],
-                    "ref": "#ElementedmxEdmx.2"
+                    "ref": "#ElementedmxEdmx.2",
+                    "permittedChildren": [
+                        "edmx:DataServices",
+                        "edmx:Reference"
+                    ]
                 },
                 {
                     "name": "edmx:DataServices",
@@ -794,7 +859,11 @@
                             "ref": "#AttributeUri.4.1"
                         }
                     ],
-                    "ref": "#ElementedmxReference.4"
+                    "ref": "#ElementedmxReference.4",
+                    "permittedChildren": [
+                        "edmx:Include",
+                        "edmx:IncludeAnnotations"
+                    ]
                 },
                 {
                     "name": "edmx:Include",

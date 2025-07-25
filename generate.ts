@@ -61,38 +61,6 @@ async function generateDocumentation() {
       console.log(`📊 ${category.charAt(0).toUpperCase() + category.slice(1)}: ${count}`);
     });
 
-    // Generate individual group documentation as examples
-    console.log('\n--- Generating Individual Group Examples ---');
-    const groupsToGenerate = ['Schema Elements', 'Entity Model Elements', 'Action and Function Elements'];
-    
-    for (const groupName of groupsToGenerate) {
-      try {
-        const groupMarkdown = generator.generateGroupMarkdown(groupName);
-        const groupFileName = groupName.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-') + '.md';
-        const groupOutputPath = path.join(outputDir, groupFileName);
-        fs.writeFileSync(groupOutputPath, groupMarkdown, 'utf-8');
-        console.log(`✓ Generated ${groupName} documentation: ${groupOutputPath}`);
-      } catch (error) {
-        console.error(`❌ Failed to generate ${groupName}:`, error);
-      }
-    }
-
-    // Generate sample element documentation
-    console.log('\n--- Generating Individual Element Examples ---');
-    const elementsToGenerate = ['edm:EntityType', 'edm:Property', 'edm:NavigationProperty'];
-    
-    for (const elementName of elementsToGenerate) {
-      try {
-        const elementMarkdown = generator.generateElementMarkdown(elementName);
-        const elementFileName = elementName.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-') + '.md';
-        const elementOutputPath = path.join(outputDir, elementFileName);
-        fs.writeFileSync(elementOutputPath, elementMarkdown, 'utf-8');
-        console.log(`✓ Generated ${elementName} documentation: ${elementOutputPath}`);
-      } catch (error) {
-        console.error(`❌ Failed to generate ${elementName}:`, error);
-      }
-    }
-
     console.log('\n🎉 Documentation generation completed successfully!');
     console.log(`📁 All files saved in: ${outputDir}`);
 
