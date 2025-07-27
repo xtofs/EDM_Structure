@@ -8,7 +8,14 @@
 
 {{/if}}
 {{#each elements}}
-{{headerMark ../../elementHeaderLevel}} {{elementLink name ref ../../baseUrl}}
+{{headerMark ../../elementHeaderLevel}} {{name}}
+
+{{#if description}}
+{{description}} {{externalElementLink name ref ../../baseUrl}}
+{{else}}
+{{externalElementLink name ref ../../baseUrl}}
+{{/if}}
+
 
 {{#if permittedChildren}}
 Permitted Children: {{#each permittedChildren}}[{{this}}](#{{lower (replace this ":" "")}}){{#unless @last}}, {{/unless}}{{/each}}
@@ -23,7 +30,7 @@ Permitted Parents: None
 {{/if}}
 
 {{#if attributes}}
-{{> attribute-table attributes=attributes baseUrl=../../../baseUrl}}
+{{> attribute-table attributes=attributes baseUrl=../../baseUrl}}
 {{else}}
 *No attributes*
 {{/if}}

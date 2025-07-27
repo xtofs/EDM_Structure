@@ -137,7 +137,7 @@
                 }
             ],
             "ref": "#ElementedmSchema.7",
-            "TODO_DESCRIPTION": "Add description explaining what edm:Schema represents",
+            "description": "One or more schemas describe the entity model exposed by an OData service. The schema acts as a namespace for elements of the entity model such as entity types, complex types, enumerations and terms.",
             "group": "schema-elements"
         },
         {
@@ -168,6 +168,7 @@
         },
         {
             "name": "edm:EntityType",
+            
             "permittedChildren": [
                 "edm:Annotation",
                 "edm:Key",
@@ -213,6 +214,7 @@
             ],
             "ref": "#ElementedmEntityType.9",
             "TODO_DESCRIPTION": "Add description explaining what edm:EntityType represents",
+            "description": "An entity type is the template for an entity: any uniquely identifiable record.",
             "group": "entity-model-elements"
         },
         {

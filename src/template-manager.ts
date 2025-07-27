@@ -68,19 +68,20 @@ export class TemplateManager {
     });
 
     // Helper for creating attribute links
-    Handlebars.registerHelper('attributeLink', (attribute: ElementAttribute, baseUrl?: string) => {
+    Handlebars.registerHelper('externalAttributeLink', (attribute: ElementAttribute, baseUrl?: string) => {
       if (attribute.ref && baseUrl) {
         const fullUrl = baseUrl + attribute.ref;
-        return new Handlebars.SafeString(`[${attribute.name}](${fullUrl})`);
+        return new Handlebars.SafeString(`[\`${attribute.name} ↗\`](${fullUrl})`);
       }
-      return attribute.name;
+      return new Handlebars.SafeString(`${attribute.ref} ${attribute.name} ${baseUrl}`);
     });
 
     // Helper for element links
-    Handlebars.registerHelper('elementLink', (elementName: string, ref?: string, baseUrl?: string) => {
+    Handlebars.registerHelper('externalElementLink', (elementName: string, ref?: string, baseUrl?: string) => {
       if (ref && baseUrl) {
         const fullUrl = baseUrl + ref;
-        return new Handlebars.SafeString(`[\`${elementName}\`](${fullUrl})`);
+        // return new Handlebars.SafeString(`[\`${elementName}\`](${fullUrl})`);
+        return new Handlebars.SafeString(`[\`${elementName} ↗\`](${fullUrl})`);
       }
       return `\`${elementName}\``;
     });

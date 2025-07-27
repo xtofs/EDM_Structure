@@ -47,17 +47,17 @@ async function generateDocumentation() {
     fs.writeFileSync(outputPath, markdown, 'utf-8');
     console.log(`✓ Generated markdown saved to: ${outputPath}`);
 
-    // Show statistics
-    const stats = parser.getStatistics();
-    console.log('\n--- Generation Statistics ---');
-    console.log(`📊 Total Groups: ${stats.totalGroups}`);
-    console.log(`📊 Total Elements: ${stats.totalElements}`);
-    console.log(`📊 Elements with Attributes: ${stats.elementsWithAttributes}`);
-    console.log(`📊 Total Attributes: ${stats.totalAttributes}`);
-    console.log('\n--- Attributes by Category ---');
-    Object.entries(stats.attributesByCategory).forEach(([category, count]) => {
-      console.log(`📊 ${category.charAt(0).toUpperCase() + category.slice(1)}: ${count}`);
-    });
+    // // Show statistics
+    // const stats = parser.getStatistics();
+    // console.log('\n--- Generation Statistics ---');
+    // console.log(`📊 Total Groups: ${stats.totalGroups}`);
+    // console.log(`📊 Total Elements: ${stats.totalElements}`);
+    // console.log(`📊 Elements with Attributes: ${stats.elementsWithAttributes}`);
+    // console.log(`📊 Total Attributes: ${stats.totalAttributes}`);
+    // console.log('\n--- Attributes by Category ---');
+    // Object.entries(stats.attributesByCategory).forEach(([category, count]) => {
+    //   console.log(`📊 ${category.charAt(0).toUpperCase() + category.slice(1)}: ${count}`);
+    // });
 
     console.log('\n🎉 Documentation generation completed successfully!');
     console.log(`📁 All files saved in: ${outputDir}`);

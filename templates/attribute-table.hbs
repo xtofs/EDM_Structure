@@ -1,5 +1,5 @@
-| Attribute | Type | Description |
-|-----------|------|-------------|
+| Name | Type | Description | standard |
+|------|------|-------------|----------|
 {{#each attributes}}
-| **{{attributeLink this ../baseUrl}}** | {{formatAttributeType this}} | {{formatAttributeDescription this}} |
+| {{name}} | {{formatAttributeType this}} | {{formatAttributeDescription this}} | {{externalAttributeLink this ../baseUrl}} |
 {{/each}}
