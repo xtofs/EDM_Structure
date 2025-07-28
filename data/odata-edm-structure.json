@@ -1,67 +1,11 @@
 {
-    "attributeCategories": {
-        "basic": {
-            "description": "Basic Attribute are primitive like strings, booleans, numbers, ... that are just data, associated with the model element ( )",
-            "name": "Basic Attributes",
-            "subcategories": [
-                {
-                    "description": "truth value:  true of false",
-                    "name": "boolean"
-                },
-                {
-                    "description": "Simple name identifier following XML naming rules",
-                    "name": "simple-identifier"
-                },
-                {
-                    "description": "Whole number value",
-                    "name": "integer"
-                },
-                {
-                    "description": "Integer value greater than zero",
-                    "name": "positive-integer"
-                },
-                {
-                    "description": "Integer value greater than or equal to zero",
-                    "name": "non-negative-integer"
-                },
-                {
-                    "description": "Uniform Resource Identifier",
-                    "name": "uri"
-                },
-                {
-                    "description": "any primitive value (string, number, boolean, etc.)",
-                    "name": "primitive-value"
-                }
-            ]
-        },
-        "path": {
-            "description": "Path expressions in form of a sequence of model element names. Represented in XML/JSON as a string of element names with delimiters",
-            "name": "Path Attributes",
-            "subcategories": [
-                {
-                    "description": "Paths that are naming connected elements by starting from the root of the model",
-                    "name": "Absolute Path"
-                },
-                {
-                    "description": "Paths that are resolved relative to a specific element context",
-                    "name": "Relative Path"
-                }
-            ]
-        },
-        "reference": {
-            "description": "Reference Attributes are symbolic references to model elements. They are epresented in CSDL XML/JSON as qualified names, type names, target paths, etc.",
-            "name": "Reference Attributes",
-            "subcategories": [
-                {
-                    "description": "symbolic references that reference elements anywhere in the model",
-                    "name": "Absolute Reference"
-                },
-                {
-                    "description": "symbolic references that reference elements relative to a specific ancestor (or related) context element",
-                    "name": "Relative Reference"
-                }
-            ]
-        }
+    "metadata": {
+        "title": "OData EDM model structure",
+        "description": "This document lists all EDM model elements, their attributes and relationships. It [categorizes the attributes](#attribute-categories) in different types (basic, reference, ..) and describes their semantics in detail . It is based on the OASIS OData CSDL XML Representation Version 4.02 specification, and adds the details about allowed values, symbolic references and constraints for elements and attributes.",
+        "baseUrl": "https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html",
+        "source": "odata-edm-structure.json",
+        "sourceUrl": "https://github.com/xtofs/EDM_Structure/blob/953bf6fea5979ef0c4824aac2493c2e4c8ede60e/data/odata-edm-structure.json",
+        "version": "4.02"
     },
     "elements": [
         {
@@ -558,7 +502,7 @@
             "children": [
                 "edm:Annotation"
             ],
-            "ref": "#ElementedmReturnType.22", 
+            "ref": "#ElementedmReturnType.22",
             "description": "The return type of an action or function overload may be any type in scope, or a collection of any type in scope."
         },
         {
@@ -737,7 +681,9 @@
             "name": "edm:ActionImport",
             "ref": "#ElementedmActionImport.28",
             "description": "Action imports allow exposing actions from an entity container. Each action import must specify the action it imports and the EntitySet or Singleton that exposes it.",
-            "children": ["edm:Annotation"]            
+            "children": [
+                "edm:Annotation"
+            ]
         },
         {
             "attributes": [
@@ -774,7 +720,9 @@
             "name": "edm:FunctionImport",
             "ref": "#ElementedmFunctionImport.29",
             "description": "Function imports allow exposing functions from an entity container. All unbound overloads of the imported function can be invoked from the entity container.",
-            "children": ["edm:Annotation"]
+            "children": [
+                "edm:Annotation"
+            ]
         },
         {
             "attributes": [
@@ -856,7 +804,7 @@
             "name": "edm:Term",
             "ref": "#ElementedmTerm.30",
             "description": "A term allows annotating a model element or OData resource representation with additional data.",
-            "children":  [
+            "children": [
                 "edm:Annotation"
             ]
         },
@@ -906,7 +854,9 @@
             "name": "edmx:DataServices",
             "ref": "#ElementedmxDataServices.3",
             "description": "The edmx:DataServices contains one or more edm:Schema elements.",
-            "children": ["edm:Schema"]
+            "children": [
+                "edm:Schema"
+            ]
         },
         {
             "attributes": [
@@ -945,8 +895,8 @@
             "name": "edmx:Include",
             "ref": "#ElementedmxInclude.5",
             "description": "Specifies a schema to include from the referenced CSDL document.",
-             "children": [
-                "edm:Annotation"             
+            "children": [
+                "edm:Annotation"
             ]
         },
         {
@@ -977,11 +927,68 @@
             "description": "Specifies the annotations to include from the referenced CSDL document. Add"
         }
     ],
-    "metadata": {
-        "baseUrl": "https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html",
-        "description": "This document lists all EDM model elements, their attributes and relationships. It categorizes the attributes in different types (basic, reference, ..) and describes their semantic in detail. It is based on the OASIS OData CSDL XML Representation Version 4.02 specification, and adds the details about allowed values, symbolic references and constraints for elements and attributes.",
-        "source": "OASIS OData CSDL XML Representation Version 4.02 specification",
-        "sourceUrl": "https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#TableofXMLElementsandAttributes",
-        "title": "OData EDM model structure"
+    "attributeCategories": {
+        "basic": {
+            "description": "Basic Attribute are primitive like strings, booleans, numbers, ... that are just data, associated with the model element ( )",
+            "name": "Basic Attributes",
+            "subcategories": [
+                {
+                    "description": "truth value:  true of false",
+                    "name": "boolean"
+                },
+                {
+                    "description": "Simple name identifier following XML naming rules",
+                    "name": "simple-identifier"
+                },
+                {
+                    "description": "Whole number value",
+                    "name": "integer"
+                },
+                {
+                    "description": "Integer value greater than zero",
+                    "name": "positive-integer"
+                },
+                {
+                    "description": "Integer value greater than or equal to zero",
+                    "name": "non-negative-integer"
+                },
+                {
+                    "description": "Uniform Resource Identifier",
+                    "name": "uri"
+                },
+                {
+                    "description": "any primitive value (string, number, boolean, etc.)",
+                    "name": "primitive-value"
+                }
+            ]
+        },
+        "path": {
+            "description": "Path expressions in form of a sequence of model element names. Represented in XML/JSON as a string of element names with delimiters",
+            "name": "Path Attributes",
+            "subcategories": [
+                {
+                    "description": "Paths that are naming connected elements by starting from the root of the model",
+                    "name": "Absolute Path"
+                },
+                {
+                    "description": "Paths that are resolved relative to a specific element context",
+                    "name": "Relative Path"
+                }
+            ]
+        },
+        "reference": {
+            "description": "Reference Attributes are symbolic references to model elements. They are epresented in CSDL XML/JSON as qualified names, type names, target paths, etc.",
+            "name": "Reference Attributes",
+            "subcategories": [
+                {
+                    "description": "symbolic references that reference elements anywhere in the model",
+                    "name": "Absolute Reference"
+                },
+                {
+                    "description": "symbolic references that reference elements relative to a specific ancestor (or related) context element",
+                    "name": "Relative Reference"
+                }
+            ]
+        }
     }
 }

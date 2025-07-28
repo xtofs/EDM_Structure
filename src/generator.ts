@@ -34,16 +34,18 @@ export class MarkdownGenerator {
       sections.push(this.generateMetadata());
     }
 
-
-    // Attribute categories overview
-    sections.push(this.generateAttributeCategories());
-
     // Header before elements list
     const headerLevel = (this.options.headerLevel || 1) + 1;
     sections.push(`${'#'.repeat(headerLevel)} EDM Model Elements`);
 
     // Elements overview
     sections.push(this.generateElementsOverview());
+
+    // Attribute categories overview
+    sections.push(this.generateAttributeCategories());
+
+    // Footer
+    sections.push(this.generateFooter());
 
     return sections.join("\n\n");
   }
@@ -56,6 +58,25 @@ export class MarkdownGenerator {
     const headerMark = "#".repeat(this.options.headerLevel || 1);
     return `${headerMark} ${title}`;
   }
+
+    /**
+   * Generate the footer
+   */
+  private generateFooter(): string {
+   
+    // // return `<hr/>Document generated from [${source}](${sourceUrl})`;
+    // return `<hr/>Document generated from <a href=\"${sourceUrl}\" target="_blank" rel="noopener noreferrer">${source} ↗</a>` ;
+
+    const template = this.templateManager.getTemplate('footer');
+
+    // const headerLevel = (this.options.headerLevel || 1) + 1;
+
+    return template({
+      source: this.data.metadata.source,
+      sourceUrl: this.data.metadata.sourceUrl
+    }).trim();
+  }
+
 
   /**
    * Generate metadata section
@@ -90,8 +111,6 @@ export class MarkdownGenerator {
   }
 
 
-
-
   /**
    * Generate elements overview section (flat, no grouping)
    */
@@ -99,7 +118,7 @@ export class MarkdownGenerator {
     const template = this.templateManager.getTemplate('element-markdown');
     const headerLevel = (this.options.headerLevel || 1) + 1;
 
-    const parentsLookup = this.pivotToParentsLookup(this.data)
+    const parentsLookup = this.createParentsLookup(this.data)
 
 
     return this.data.elements
@@ -119,7 +138,7 @@ export class MarkdownGenerator {
   }
 
 
-  private pivotToParentsLookup(data: ODataEdmStructure): Map<string, string[]> {
+  private createParentsLookup(data: ODataEdmStructure): Map<string, string[]> {
 
     const elements = data.elements;
 

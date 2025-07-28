@@ -1,4 +1,4 @@
-{{headerMark headerLevel}} {{name}}
+{{headerMark headerLevel}} {{name}} Element
 
 {{#if description}}
 {{description}} {{externalElementLink name ref baseUrl}}
@@ -7,17 +7,16 @@
 {{/if}}
 
 
-{{#if children}}
-Permitted Children: {{#each children}}[{{this}}](#{{lower (replace this ":" "")}}){{#unless @last}}, {{/unless}}{{/each}}
-{{else}}
-Permitted Children: None
+{{#if parents}}
+{{headerMark attributesHeaderLevel}} Parent Elements: {{#each parents}}[{{this}}](#{{lower (replace this ":" "")}}-element){{#unless @last}}, {{/unless}}{{/each}}
 {{/if}}
 
-{{#if parents}}
-Permitted Parents: {{#each parents}}[{{this}}](#{{lower (replace this ":" "")}}){{#unless @last}}, {{/unless}}{{/each}}
+{{#if children}}
+{{headerMark attributesHeaderLevel}} Child Elements: {{#each children}}[{{this}}](#{{lower (replace this ":" "")}}-element){{#unless @last}}, {{/unless}}{{/each}}
 {{else}}
-Permitted Parents: None
+{{headerMark attributesHeaderLevel}}  No Child Elements
 {{/if}}
+
 
 {{#if attributes}}
 {{headerMark attributesHeaderLevel}} Attributes

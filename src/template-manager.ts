@@ -57,11 +57,11 @@ export class TemplateManager {
       let description = attribute.description || "";
 
       if (attribute.constraints) {
-        description += ` *Constraints: ${attribute.constraints}*`;
+        description += `<br/>*Constraints: ${attribute.constraints}*`;
       }
 
       if (attribute.context) {
-        description += ` *Context: ${attribute.context}*`;
+        description += `<br/>*Context: ${attribute.context}*`;
       }
 
       return new Handlebars.SafeString(description);
@@ -71,7 +71,8 @@ export class TemplateManager {
     Handlebars.registerHelper('externalAttributeLink', (attribute: ElementAttribute, baseUrl?: string) => {
       if (attribute.ref && baseUrl) {
         const fullUrl = baseUrl + attribute.ref;
-        return new Handlebars.SafeString(`[\`${attribute.name} ↗\`](${fullUrl})`);
+        // return new Handlebars.SafeString(`[\`${attribute.name} ↗\`](${fullUrl})`);
+        return new Handlebars.SafeString(`<a href="${fullUrl}" target="_blank" rel="noopener noreferrer">${attribute.name} ↗</a>`);
       }
       return new Handlebars.SafeString(`${attribute.ref} ${attribute.name} ${baseUrl}`);
     });
@@ -79,9 +80,10 @@ export class TemplateManager {
     // Helper for element links
     Handlebars.registerHelper('externalElementLink', (elementName: string, ref?: string, baseUrl?: string) => {
       if (ref && baseUrl) {
-        const fullUrl = baseUrl + ref;
-        // return new Handlebars.SafeString(`[\`${elementName}\`](${fullUrl})`);
-        return new Handlebars.SafeString(`[\`${elementName} ↗\`](${fullUrl})`);
+        const fullUrl = baseUrl + ref;        
+        // return new Handlebars.SafeString(`[\`${elementName} ↗\`](${fullUrl})`);
+
+        return new Handlebars.SafeString(`<a href="${fullUrl}" target="_blank" rel="noopener noreferrer">${elementName} ↗</a>`);
       }
       return `\`${elementName}\``;
     });

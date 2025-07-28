@@ -13,9 +13,10 @@
     "lint": "eslint src/**/*.ts",
     "format": "prettier --write src/**/*.ts",
     "clean": "rimraf dist",
-    "generate": "npx ts-node generate.ts",
+    "generate": "npm run build && npx ts-node generate.ts",
     "validate-links": "npx ts-node validate-links.ts",
-    "preview": "npm run build && npm run generate && cd generated && pandoc edm_structure.md -o edm_structure.html"
+    "html" : "pandoc ./generated/edm_structure.md -o generated/edm_structure.html -c css/article.css --embed-resources -s",
+    "preview": "npm run generate && npm run html"
   },
   "keywords": [
     "odata",
