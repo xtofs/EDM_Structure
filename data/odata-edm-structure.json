@@ -1,113 +1,87 @@
 {
-    "metadata": {
-        "title": "OData EDM model structure",
-        "description": "This document lists all EDM model elements, their attributes and relationships. It categorizes the attributes in different types (basic, reference, ..) and describes their semantic in detail. It is based on the OASIS OData CSDL XML Representation Version 4.02 specification, and adds the details about allowed values, symbolic references and constraints for elements and attributes.",
-        "source": "OASIS OData CSDL XML Representation Version 4.02 specification",
-        "sourceUrl": "https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#TableofXMLElementsandAttributes",
-        "baseUrl": "https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html"
-    },
     "attributeCategories": {
-        "reference": {
-            "name": "Reference Attributes",
-            "description": "Reference Attributes are symbolic references to model elements. They are epresented in CSDL XML/JSON as qualified names, type names, target paths, etc.",
+        "basic": {
+            "description": "Basic Attribute are primitive like strings, booleans, numbers, ... that are just data, associated with the model element ( )",
+            "name": "Basic Attributes",
             "subcategories": [
                 {
-                    "name": "Absolute Reference",
-                    "description": "symbolic references that reference elements anywhere in the model"
+                    "description": "truth value:  true of false",
+                    "name": "boolean"
                 },
                 {
-                    "name": "Relative Reference",
-                    "description": "symbolic references that reference elements relative to a specific ancestor (or related) context element"
+                    "description": "Simple name identifier following XML naming rules",
+                    "name": "simple-identifier"
+                },
+                {
+                    "description": "Whole number value",
+                    "name": "integer"
+                },
+                {
+                    "description": "Integer value greater than zero",
+                    "name": "positive-integer"
+                },
+                {
+                    "description": "Integer value greater than or equal to zero",
+                    "name": "non-negative-integer"
+                },
+                {
+                    "description": "Uniform Resource Identifier",
+                    "name": "uri"
+                },
+                {
+                    "description": "any primitive value (string, number, boolean, etc.)",
+                    "name": "primitive-value"
                 }
             ]
         },
         "path": {
-            "name": "Path Attributes",
             "description": "Path expressions in form of a sequence of model element names. Represented in XML/JSON as a string of element names with delimiters",
+            "name": "Path Attributes",
             "subcategories": [
                 {
-                    "name": "Absolute Path",
-                    "description": "Paths that are naming connected elements by starting from the root of the model"
+                    "description": "Paths that are naming connected elements by starting from the root of the model",
+                    "name": "Absolute Path"
                 },
                 {
-                    "name": "Relative Path",
-                    "description": "Paths that are resolved relative to a specific element context"
+                    "description": "Paths that are resolved relative to a specific element context",
+                    "name": "Relative Path"
                 }
             ]
         },
-        "basic": {
-            "name": "Basic Attributes",
-            "description": "Basic Attribute are primitive like strings, booleans, numbers, ... that are just data, associated with the model element ( )",
+        "reference": {
+            "description": "Reference Attributes are symbolic references to model elements. They are epresented in CSDL XML/JSON as qualified names, type names, target paths, etc.",
+            "name": "Reference Attributes",
             "subcategories": [
                 {
-                    "name": "boolean",
-                    "description": "True or false value"
+                    "description": "symbolic references that reference elements anywhere in the model",
+                    "name": "Absolute Reference"
                 },
                 {
-                    "name": "string",
-                    "description": "Text value"
-                },
-                {
-                    "name": "simple-identifier",
-                    "description": "Simple name identifier following XML naming rules"
-                },
-                {
-                    "name": "integer",
-                    "description": "Whole number value"
-                },
-                {
-                    "name": "positive-integer",
-                    "description": "Integer value greater than zero"
-                },
-                {
-                    "name": "non-negative-integer",
-                    "description": "Integer value greater than or equal to zero"
-                },
-                {
-                    "name": "uri",
-                    "description": "Uniform Resource Identifier"
-                },
-                {
-                    "name": "primitive-value",
-                    "description": "any primitive value (string, number, boolean, etc.)"
+                    "description": "symbolic references that reference elements relative to a specific ancestor (or related) context element",
+                    "name": "Relative Reference"
                 }
             ]
         }
     },
-    "elementGroups": [
-        {
-            "name": "Schema Elements",
-            "description": "Core schema definition elements",
-            "id": "schema-elements"
-        },
-        {
-            "name": "Entity Model Elements",
-            "description": "Core entity and type definition elements",
-            "id": "entity-model-elements"
-        },
-        {
-            "name": "Action and Function Elements",
-            "description": "Action and function definition elements",
-            "id": "action-and-function-elements"
-        },
-        {
-            "name": "Entity Container Elements",
-            "description": "Entity container and related elements",
-            "id": "entity-container-elements"
-        },
-        {
-            "name": "Vocabulary and Annotation Elements",
-            "description": "Vocabulary terms and annotation elements",
-            "id": "vocabulary-and-annotation-elements"
-        },
-        {
-            "name": "Core EDMX Elements",
-            "description": "Core EDMX wrapper elements",
-            "id": "core-edmx-elements"
-        }
-    ],
     "elements": [
         {
+            "attributes": [
+                {
+                    "category": "basic",
+                    "description": "A simple identifier used to uniquely identify the element within its containing scope.",
+                    "name": "Namespace",
+                    "ref": "#AttributeNamespace.5.1",
+                    "subcategory": "simple-identifier"
+                },
+                {
+                    "category": "basic",
+                    "description": "The alias of a schema MAY be used instead of the namespaceto identify model elements of that schema.",
+                    "name": "Alias",
+                    "ref": "#AttributeAlias.5.2",
+                    "subcategory": "simple-identifier"
+                }
+            ],
+            "description": "One or more schemas describe the entity model exposed by an OData service. The schema acts as a namespace for elements of the entity model such as entity types, complex types, enumerations and terms.",
             "name": "edm:Schema",
             "permittedChildren": [
                 "edm:EntityType",
@@ -120,558 +94,521 @@
                 "edm:Term",
                 "edm:Annotations"
             ],
-            "attributes": [
-                {
-                    "name": "Namespace",
-                    "category": "basic",
-                    "description": "A simple identifier used to uniquely identify the element within its containing scope.",
-                    "subcategory": "simple-identifier",
-                    "ref": "#AttributeNamespace.5.1"
-                },
-                {
-                    "name": "Alias",
-                    "category": "basic",
-                    "subcategory": "simple-identifier",
-                    "description": "The alias of a schema MAY be used instead of the namespaceto identify model elements of that schema.",
-                    "ref": "#AttributeAlias.5.2"
-                }
-            ],
-            "ref": "#ElementedmSchema.7",
-            "description": "One or more schemas describe the entity model exposed by an OData service. The schema acts as a namespace for elements of the entity model such as entity types, complex types, enumerations and terms.",
-            "group": "schema-elements"
+            "ref": "#ElementedmSchema.7"
         },
         {
+            "attributes": [
+                {
+                    "category": "path",
+                    "context": "can reference any model element",
+                    "description": "target path expression",
+                    "name": "Target",
+                    "ref": "#AttributeTarget.8.1",
+                    "subcategory": "Absolute Path"
+                },
+                {
+                    "category": "basic",
+                    "description": "Optional qualifier to distinguish multiple instances",
+                    "name": "Qualifier",
+                    "ref": "#AttributeQualifier.6.2",
+                    "subcategory": "simple-identifier"
+                }
+            ],
             "name": "edm:Annotations",
             "permittedChildren": [
                 "edm:Annotation"
             ],
-            "attributes": [
-                {
-                    "name": "Target",
-                    "category": "path",
-                    "subcategory": "Absolute Path",
-                    "description": "target path expression",
-                    "context": "can reference any model element",
-                    "ref": "#AttributeTarget.8.1"
-                },
-                {
-                    "name": "Qualifier",
-                    "category": "basic",
-                    "subcategory": "simple-identifier",
-                    "description": "Optional qualifier to distinguish multiple instances",
-                    "ref": "#AttributeQualifier.6.2"
-                }
-            ],
             "ref": "#ElementedmAnnotations.8",
-            "TODO_DESCRIPTION": "Add description explaining what edm:Annotations represents",
-            "group": "schema-elements"
+            "description": "Used to apply a group of annotations to a single model element."
         },
         {
+            "attributes": [
+                {
+                    "category": "basic",
+                    "description": "The entity type’s name that MUST be unique within its schema.",
+                    "name": "Name",
+                    "ref": "#AttributeName.9.1",
+                    "subcategory": "simple-identifier"
+                },
+                {
+                    "category": "reference",
+                    "description": "qualified name of an edm:EntityType",
+                    "name": "BaseType",
+                    "ref": "#AttributeBaseType.9.2",
+                    "subcategory": "Absolute Reference"
+                },
+                {
+                    "category": "basic",
+                    "description": "Whether the type is abstract and cannot be instantiated directly",
+                    "name": "Abstract",
+                    "ref": "#AttributeAbstract.9.3",
+                    "subcategory": "boolean"
+                },
+                {
+                    "category": "basic",
+                    "description": "Whether the type allows additional properties not explicitly declared",
+                    "name": "OpenType",
+                    "ref": "#AttributeOpenType.9.4",
+                    "subcategory": "boolean"
+                },
+                {
+                    "category": "basic",
+                    "description": "Whether the entity type supports media resources",
+                    "name": "HasStream",
+                    "ref": "#AttributeHasStream.9.5",
+                    "subcategory": "boolean"
+                }
+            ],
+            "description": "An entity type is the template for an entity: any uniquely identifiable record.",
             "name": "edm:EntityType",
-            
             "permittedChildren": [
                 "edm:Annotation",
                 "edm:Key",
                 "edm:Property",
                 "edm:NavigationProperty"
             ],
-            "attributes": [
-                {
-                    "name": "Name",
-                    "category": "basic",
-                    "subcategory": "simple-identifier",
-                    "description": "The entity type’s name that MUST be unique within its schema.",
-                    "ref": "#AttributeName.9.1"
-                },
-                {
-                    "name": "BaseType",
-                    "category": "reference",
-                    "subcategory": "Absolute Reference",
-                    "description": "qualified name of an edm:EntityType",
-                    "ref": "#AttributeBaseType.9.2"
-                },
-                {
-                    "name": "Abstract",
-                    "category": "basic",
-                    "subcategory": "boolean",
-                    "description": "Whether the type is abstract and cannot be instantiated directly",
-                    "ref": "#AttributeAbstract.9.3"
-                },
-                {
-                    "name": "OpenType",
-                    "category": "basic",
-                    "subcategory": "boolean",
-                    "description": "Whether the type allows additional properties not explicitly declared",
-                    "ref": "#AttributeOpenType.9.4"
-                },
-                {
-                    "name": "HasStream",
-                    "category": "basic",
-                    "subcategory": "boolean",
-                    "description": "Whether the entity type supports media resources",
-                    "ref": "#AttributeHasStream.9.5"
-                }
-            ],
-            "ref": "#ElementedmEntityType.9",
-            "TODO_DESCRIPTION": "Add description explaining what edm:EntityType represents",
-            "description": "An entity type is the template for an entity: any uniquely identifiable record.",
-            "group": "entity-model-elements"
+            "ref": "#ElementedmEntityType.9"
         },
         {
-            "name": "edm:Key",
             "attributes": [],
-            "ref": "#ElementedmKey.10",
+            "name": "edm:Key",
             "permittedChildren": [
                 "edm:PropertyRef"
             ],
-            "TODO_DESCRIPTION": "Add description explaining what edm:Key represents",
-            "group": "entity-model-elements"
+            "ref": "#ElementedmKey.10",
+            "description": "An entity is uniquely identified within an entity set by its key."
         },
         {
-            "name": "edm:PropertyRef",
-            "permittedChildren": [],
             "attributes": [
                 {
-                    "name": "Name",
                     "category": "path",
-                    "subcategory": "Relative Path",
-                    "description": "path to structural property",
                     "context": "relative to the containing entity type",
-                    "ref": "#AttributeName.9.1"
+                    "description": "path to structural property",
+                    "name": "Name",
+                    "ref": "#AttributeName.9.1",
+                    "subcategory": "Relative Path"
                 },
                 {
-                    "name": "Alias",
                     "category": "basic",
-                    "subcategory": "simple-identifier",
                     "description": "Alternative name that can be used to reference the property",
-                    "ref": "#AttributeAlias.5.2"
+                    "name": "Alias",
+                    "ref": "#AttributeAlias.5.2",
+                    "subcategory": "simple-identifier"
                 }
             ],
+            "name": "edm:PropertyRef",
+            "permittedChildren": [],
             "ref": "#ElementedmPropertyRef.11",
-            "TODO_DESCRIPTION": "Add description explaining what edm:PropertyRef represents",
-            "group": "entity-model-elements"
+            "description": "An entity type’s key refers to the set of properties whose values uniquely identify an instance of the entity type within an entity set."
         },
         {
-            "name": "edm:Property",
-            "permittedChildren": [
-                "edm:Annotation"
-            ],
             "attributes": [
                 {
-                    "name": "Name",
                     "category": "basic",
-                    "subcategory": "simple-identifier",
                     "description": "The name identifier of the element",
-                    "ref": "#AttributeName.9.1"
+                    "name": "Name",
+                    "ref": "#AttributeName.9.1",
+                    "subcategory": "simple-identifier"
                 },
                 {
-                    "name": "Type",
                     "category": "reference",
                     "description": "qualified type name or collection of that",
+                    "name": "Type",
                     "ref": "#AttributeType.12.2"
                 },
                 {
-                    "name": "Nullable",
                     "category": "basic",
-                    "subcategory": "boolean",
                     "description": "Whether the property can have null values",
-                    "ref": "#AttributeNullable.12.3"
+                    "name": "Nullable",
+                    "ref": "#AttributeNullable.12.3",
+                    "subcategory": "boolean"
                 },
                 {
-                    "name": "DefaultValue",
                     "category": "basic",
-                    "subcategory": "primitive-value",
                     "description": "the model's value of the attribute when the attribute is not present in CSDL",
-                    "ref": "#AttributeDefaultValue.12.4"
+                    "name": "DefaultValue",
+                    "ref": "#AttributeDefaultValue.12.4",
+                    "subcategory": "primitive-value"
                 },
                 {
-                    "name": "Scale",
                     "category": "basic",
+                    "description": "specifies the maximum number of digits allowed to the right of the decimal point.",
+                    "name": "Scale",
+                    "ref": "#AttributeDefaultValue.12.4",
                     "subcategory": "non-negative-integer",
                     "symbols": [
                         "floating",
                         "variable"
-                    ],
-                    "description": "specifies the maximum number of digits allowed to the right of the decimal point.",
-                    "ref": "#AttributeDefaultValue.12.4"
+                    ]
                 }
             ],
-            "ref": "#ElementedmProperty.12",
             "description": "A structural property is a property of a structured type",
-            "group": "entity-model-elements"
+            "name": "edm:Property",
+            "permittedChildren": [
+                "edm:Annotation"
+            ],
+            "ref": "#ElementedmProperty.12"
         },
         {
+            "attributes": [
+                {
+                    "category": "basic",
+                    "description": "The name identifier of the element",
+                    "name": "Name",
+                    "ref": "#AttributeName.9.1",
+                    "subcategory": "simple-identifier"
+                },
+                {
+                    "category": "reference",
+                    "description": "qualified entity type name or collection of that",
+                    "name": "Type",
+                    "ref": "#AttributeType.12.2",
+                    "subcategory": "Absolute Reference"
+                },
+                {
+                    "category": "basic",
+                    "description": "Whether the property can have null values",
+                    "name": "Nullable",
+                    "ref": "#AttributeNullable.12.3",
+                    "subcategory": "boolean"
+                },
+                {
+                    "category": "path",
+                    "context": "relative to the target entity type specified in Type attribute",
+                    "description": "path to partner navigation property",
+                    "name": "Partner",
+                    "ref": "#AttributePartner.13.4",
+                    "subcategory": "Relative Path"
+                },
+                {
+                    "category": "basic",
+                    "description": "Whether the navigation property contains its target entities",
+                    "name": "ContainsTarget",
+                    "ref": "#AttributeContainsTarget.13.5",
+                    "subcategory": "boolean"
+                }
+            ],
             "name": "edm:NavigationProperty",
             "permittedChildren": [
                 "edm:OnDelete",
                 "edm:ReferentialConstraint",
                 "edm:Annotation"
             ],
-            "attributes": [
-                {
-                    "name": "Name",
-                    "category": "basic",
-                    "subcategory": "simple-identifier",
-                    "description": "The name identifier of the element",
-                    "ref": "#AttributeName.9.1"
-                },
-                {
-                    "name": "Type",
-                    "category": "reference",
-                    "subcategory": "Absolute Reference",
-                    "description": "qualified entity type name or collection of that",
-                    "ref": "#AttributeType.12.2"
-                },
-                {
-                    "name": "Nullable",
-                    "category": "basic",
-                    "subcategory": "boolean",
-                    "description": "Whether the property can have null values",
-                    "ref": "#AttributeNullable.12.3"
-                },
-                {
-                    "name": "Partner",
-                    "category": "path",
-                    "subcategory": "Relative Path",
-                    "description": "path to partner navigation property",
-                    "context": "relative to the target entity type specified in Type attribute",
-                    "ref": "#AttributePartner.13.4"
-                },
-                {
-                    "name": "ContainsTarget",
-                    "category": "basic",
-                    "subcategory": "boolean",
-                    "description": "Whether the navigation property contains its target entities",
-                    "ref": "#AttributeContainsTarget.13.5"
-                }
-            ],
             "ref": "#ElementedmNavigationProperty.13",
-            "TODO_DESCRIPTION": "Add description explaining what edm:NavigationProperty represents",
-            "group": "entity-model-elements"
+            "description": "A navigation property allows navigation to related entities."
         },
         {
+            "attributes": [
+                {
+                    "category": "path",
+                    "context": "relative to the containing navigation property's source entity type",
+                    "description": "path to dependent property",
+                    "name": "Property",
+                    "ref": "#AttributeProperty.14.1",
+                    "subcategory": "Relative Path"
+                },
+                {
+                    "category": "path",
+                    "context": "relative to the containing navigation property's target entity type",
+                    "description": "path to principal property",
+                    "name": "ReferencedProperty",
+                    "ref": "#AttributeReferencedProperty.14.2",
+                    "subcategory": "Relative Path"
+                }
+            ],
+            "description": "Entity containers define the entity sets, singletons, function and action imports exposed by the service.",
             "name": "edm:ReferentialConstraint",
             "permittedChildren": [
                 "edm:Annotation"
             ],
-            "attributes": [
-                {
-                    "name": "Property",
-                    "category": "path",
-                    "subcategory": "Relative Path",
-                    "description": "path to dependent property",
-                    "context": "relative to the containing navigation property's source entity type",
-                    "ref": "#AttributeProperty.14.1"
-                },
-                {
-                    "name": "ReferencedProperty",
-                    "category": "path",
-                    "subcategory": "Relative Path",
-                    "description": "path to principal property",
-                    "context": "relative to the containing navigation property's target entity type",
-                    "ref": "#AttributeReferencedProperty.14.2"
-                }
-            ],
-            "ref": "#ElementedmReferentialConstraint.14",
-            "TODO_DESCRIPTION": "Add description explaining what edm:ReferentialConstraint represents",
-            "group": "entity-model-elements"
+            "ref": "#ElementedmReferentialConstraint.14"
         },
         {
-            "name": "edm:OnDelete",
-            "permittedChildren": [],
             "attributes": [
                 {
-                    "name": "Action",
                     "category": "basic",
+                    "description": "action the service will take on related entities when the entity is deleted.",
+                    "name": "Action",
+                    "ref": "#AttributeAction.15.1",
                     "symbols": [
                         "Cascade",
                         "None",
                         "SetNull",
                         "SetDefault"
-                    ],
-                    "description": "action the service will take on related entities when the entity is deleted.",
-                    "ref": "#AttributeAction.15.1"
+                    ]
                 }
             ],
+            "name": "edm:OnDelete",
+            "permittedChildren": [],
             "ref": "#ElementedmOnDelete.15",
-            "TODO_DESCRIPTION": "Add description explaining what edm:OnDelete represents",
-            "group": "entity-model-elements"
+            "description": "The action the service will take on related entities when the entity on which the navigation property is defined is deleted."
         },
         {
+            "attributes": [
+                {
+                    "category": "basic",
+                    "description": "The name identifier of the element",
+                    "name": "Name",
+                    "ref": "#AttributeName.9.1",
+                    "subcategory": "simple-identifier"
+                },
+                {
+                    "category": "reference",
+                    "description": "qualified name of a edm:ComplexType",
+                    "name": "BaseType",
+                    "ref": "#AttributeBaseType.9.2",
+                    "subcategory": "Absolute Reference"
+                },
+                {
+                    "category": "basic",
+                    "description": "Whether the type is abstract and cannot be instantiated directly",
+                    "name": "Abstract",
+                    "ref": "#AttributeAbstract.9.3",
+                    "subcategory": "boolean"
+                },
+                {
+                    "category": "basic",
+                    "description": "Whether the type allows additional properties not explicitly declared",
+                    "name": "OpenType",
+                    "ref": "#AttributeOpenType.9.4",
+                    "subcategory": "boolean"
+                }
+            ],
             "name": "edm:ComplexType",
             "permittedChildren": [
                 "edm:Annotation",
                 "edm:Property",
                 "edm:NavigationProperty"
             ],
-            "attributes": [
-                {
-                    "name": "Name",
-                    "category": "basic",
-                    "subcategory": "simple-identifier",
-                    "description": "The name identifier of the element",
-                    "ref": "#AttributeName.9.1"
-                },
-                {
-                    "name": "BaseType",
-                    "category": "reference",
-                    "subcategory": "Absolute Reference",
-                    "description": "qualified name of a edm:ComplexType",
-                    "ref": "#AttributeBaseType.9.2"
-                },
-                {
-                    "name": "Abstract",
-                    "category": "basic",
-                    "subcategory": "boolean",
-                    "description": "Whether the type is abstract and cannot be instantiated directly",
-                    "ref": "#AttributeAbstract.9.3"
-                },
-                {
-                    "name": "OpenType",
-                    "category": "basic",
-                    "subcategory": "boolean",
-                    "description": "Whether the type allows additional properties not explicitly declared",
-                    "ref": "#AttributeOpenType.9.4"
-                }
-            ],
             "ref": "#ElementedmComplexType.16",
-            "TODO_DESCRIPTION": "Add description explaining what edm:ComplexType represents",
-            "group": "entity-model-elements"
+            "description": "Complex types are keyless nominal structured types. The lack of a key means that instances of complex types cannot be referenced, created, updated or deleted independently of an entity type. Complex types allow entity models to group properties into common structures."
         },
         {
-            "name": "edm:EnumType",
             "attributes": [
                 {
-                    "name": "Name",
                     "category": "basic",
-                    "subcategory": "simple-identifier",
+                    "name": "Name",
                     "ref": "#AttributeName.9.1",
-                    "TODO_DESCRIPTION": "Add description for edm:EnumType.Name (basic - simple-identifier)"
+                    "subcategory": "simple-identifier",
+                    "description": "The enumeration type’s name"
                 },
                 {
-                    "name": "UnderlyingType",
                     "category": "reference",
-                    "description": "qualified name of and integer type",
                     "constraints": "restricted to: Edm.Byte, Edm.SByte, Edm.Int16, Edm.Int32, or Edm.Int64",
+                    "description": "qualified name of and integer type",
+                    "name": "UnderlyingType",
                     "ref": "#AttributeUnderlyingType.17.2"
                 },
                 {
-                    "name": "IsFlags",
                     "category": "basic",
-                    "subcategory": "boolean",
                     "description": "Whether the enumeration supports bitwise operations",
-                    "ref": "#AttributeIsFlags.17.3"
+                    "name": "IsFlags",
+                    "ref": "#AttributeIsFlags.17.3",
+                    "subcategory": "boolean"
                 }
             ],
-            "ref": "#ElementedmEnumType.17",
+            "name": "edm:EnumType",
             "permittedChildren": [
                 "edm:Annotation",
                 "edm:Member"
             ],
-            "TODO_DESCRIPTION": "Add description explaining what edm:EnumType represents",
-            "group": "entity-model-elements"
+            "ref": "#ElementedmEnumType.17",
+            "description": "Enumeration types are nominal types that represent a non-empty series of related values. Enumeration types expose these related values as members of the enumeration."
         },
         {
+            "attributes": [
+                {
+                    "category": "basic",
+                    "description": "The name identifier of the element",
+                    "name": "Name",
+                    "ref": "#AttributeName.9.1",
+                    "subcategory": "simple-identifier"
+                },
+                {
+                    "category": "basic",
+                    "description": "integer value",
+                    "name": "Value",
+                    "ref": "#AttributeValue.18.2",
+                    "subcategory": "integer"
+                }
+            ],
             "name": "edm:Member",
             "permittedChildren": [
                 "edm:Annotation"
             ],
-            "attributes": [
-                {
-                    "name": "Name",
-                    "category": "basic",
-                    "subcategory": "simple-identifier",
-                    "description": "The name identifier of the element",
-                    "ref": "#AttributeName.9.1"
-                },
-                {
-                    "name": "Value",
-                    "category": "basic",
-                    "subcategory": "integer",
-                    "description": "integer value",
-                    "ref": "#AttributeValue.18.2"
-                }
-            ],
             "ref": "#ElementedmMember.18",
-            "TODO_DESCRIPTION": "Add description explaining what edm:Member represents",
-            "group": "entity-model-elements"
+            "description": "Enumeration type values consist of discrete members. Each member is identified by its name and must specify an associated numeric value."
         },
         {
+            "attributes": [
+                {
+                    "category": "basic",
+                    "description": "The name identifier of the element",
+                    "name": "Name",
+                    "ref": "#AttributeName.9.1",
+                    "subcategory": "simple-identifier"
+                },
+                {
+                    "category": "reference",
+                    "constraints": "cannot be another type definition",
+                    "description": "qualified name of primitive type",
+                    "name": "UnderlyingType",
+                    "ref": "#AttributeUnderlyingType.17.2"
+                }
+            ],
             "name": "edm:TypeDefinition",
             "permittedChildren": [
                 "edm:Annotation"
             ],
-            "attributes": [
-                {
-                    "name": "Name",
-                    "category": "basic",
-                    "subcategory": "simple-identifier",
-                    "description": "The name identifier of the element",
-                    "ref": "#AttributeName.9.1"
-                },
-                {
-                    "name": "UnderlyingType",
-                    "category": "reference",
-                    "description": "qualified name of primitive type",
-                    "constraints": "cannot be another type definition",
-                    "ref": "#AttributeUnderlyingType.17.2"
-                }
-            ],
             "ref": "#ElementedmTypeDefinition.19",
-            "TODO_DESCRIPTION": "Add description explaining what edm:TypeDefinition represents",
-            "group": "entity-model-elements"
+            "description": "A type definition defines a specialization of one of the primitive types."
         },
         {
-            "name": "edm:Action",
             "attributes": [
                 {
+                    "category": "basic",
                     "name": "Name",
-                    "category": "basic",
-                    "subcategory": "simple-identifier",
                     "ref": "#AttributeName.9.1",
-                    "TODO_DESCRIPTION": "Add description for edm:Action.Name (basic - simple-identifier)"
+                    "subcategory": "simple-identifier",
+                    "description": "The action’s name."
                 },
                 {
-                    "name": "IsBound",
                     "category": "basic",
-                    "subcategory": "boolean",
                     "description": "Whether the action/function is bound to a specific entity type",
-                    "ref": "#AttributeIsBound.21.2"
+                    "name": "IsBound",
+                    "ref": "#AttributeIsBound.21.2",
+                    "subcategory": "boolean"
                 },
                 {
-                    "name": "EntitySetPath",
                     "category": "path",
-                    "subcategory": "Relative Path",
-                    "description": "entity set path expression",
                     "context": "relative to the action's parameters when bound",
-                    "ref": "#AttributeEntitySetPath.21.3"
+                    "description": "entity set path expression",
+                    "name": "EntitySetPath",
+                    "ref": "#AttributeEntitySetPath.21.3",
+                    "subcategory": "Relative Path"
                 }
+            ],
+            "name": "edm:Action",
+            "permittedChildren": [
+                "edm:Annotation",
+                "edm:Parameter",
+                "edm:ReturnType"
             ],
             "ref": "#ElementedmAction.20",
-            "permittedChildren": [
-                "edm:Annotation",
-                "edm:Parameter",
-                "edm:ReturnType"
-            ],
-            "TODO_DESCRIPTION": "Add description explaining what edm:Action represents",
-            "group": "action-and-function-elements"
+            "description": "Actions are service-defined operations that may have observable side effects and may return a single instance or a collection of instances of any type."
         },
         {
-            "name": "edm:Function",
             "attributes": [
                 {
+                    "category": "basic",
                     "name": "Name",
-                    "category": "basic",
-                    "subcategory": "simple-identifier",
                     "ref": "#AttributeName.9.1",
-                    "TODO_DESCRIPTION": "Add description for edm:Function.Name (basic - simple-identifier)"
+                    "subcategory": "simple-identifier",
+                    "description": "The function's name."
                 },
                 {
-                    "name": "IsBound",
                     "category": "basic",
-                    "subcategory": "boolean",
                     "description": "Whether the action/function is bound to a specific entity type",
-                    "ref": "#AttributeIsBound.21.2"
+                    "name": "IsBound",
+                    "ref": "#AttributeIsBound.21.2",
+                    "subcategory": "boolean"
                 },
                 {
-                    "name": "EntitySetPath",
                     "category": "path",
-                    "subcategory": "Relative Path",
-                    "description": "entity set path expression",
                     "context": "relative to the function's parameters when bound",
-                    "ref": "#AttributeEntitySetPath.21.3"
+                    "description": "entity set path expression",
+                    "name": "EntitySetPath",
+                    "ref": "#AttributeEntitySetPath.21.3",
+                    "subcategory": "Relative Path"
                 },
                 {
-                    "name": "IsComposable",
                     "category": "basic",
-                    "subcategory": "boolean",
                     "description": "Whether the function can be used in composition with other functions",
-                    "ref": "#AttributeIsComposable.21.4"
+                    "name": "IsComposable",
+                    "ref": "#AttributeIsComposable.21.4",
+                    "subcategory": "boolean"
                 }
             ],
-            "ref": "#ElementedmFunction.21",
+            "name": "edm:Function",
             "permittedChildren": [
                 "edm:Annotation",
                 "edm:Parameter",
                 "edm:ReturnType"
             ],
-            "TODO_DESCRIPTION": "Add description explaining what edm:Function represents",
-            "group": "action-and-function-elements"
+            "ref": "#ElementedmFunction.21",
+            "description": "Function overloads allow functions to be defined with multiple different parameter sets."
         },
         {
+            "attributes": [
+                {
+                    "category": "reference",
+                    "description": "qualified type name or collection",
+                    "name": "Type",
+                    "ref": "#AttributeType.12.2"
+                },
+                {
+                    "category": "basic",
+                    "description": "Whether the property can have null values",
+                    "name": "Nullable",
+                    "ref": "#AttributeNullable.12.3",
+                    "subcategory": "boolean"
+                }
+            ],
             "name": "edm:ReturnType",
             "permittedChildren": [
                 "edm:Annotation"
             ],
+            "ref": "#ElementedmReturnType.22", 
+            "description": "The return type of an action or function overload may be any type in scope, or a collection of any type in scope."
+        },
+        {
             "attributes": [
                 {
-                    "name": "Type",
+                    "category": "basic",
+                    "description": "The name identifier of the element",
+                    "name": "Name",
+                    "ref": "#AttributeName.9.1",
+                    "subcategory": "simple-identifier"
+                },
+                {
                     "category": "reference",
                     "description": "qualified type name or collection",
+                    "name": "Type",
                     "ref": "#AttributeType.12.2"
                 },
                 {
-                    "name": "Nullable",
                     "category": "basic",
-                    "subcategory": "boolean",
                     "description": "Whether the property can have null values",
-                    "ref": "#AttributeNullable.12.3"
+                    "name": "Nullable",
+                    "ref": "#AttributeNullable.12.3",
+                    "subcategory": "boolean"
                 }
             ],
-            "ref": "#ElementedmReturnType.22",
-            "TODO_DESCRIPTION": "Add description explaining what edm:ReturnType represents",
-            "group": "action-and-function-elements"
-        },
-        {
             "name": "edm:Parameter",
             "permittedChildren": [
                 "edm:Annotation"
             ],
-            "attributes": [
-                {
-                    "name": "Name",
-                    "category": "basic",
-                    "subcategory": "simple-identifier",
-                    "description": "The name identifier of the element",
-                    "ref": "#AttributeName.9.1"
-                },
-                {
-                    "name": "Type",
-                    "category": "reference",
-                    "description": "qualified type name or collection",
-                    "ref": "#AttributeType.12.2"
-                },
-                {
-                    "name": "Nullable",
-                    "category": "basic",
-                    "subcategory": "boolean",
-                    "description": "Whether the property can have null values",
-                    "ref": "#AttributeNullable.12.3"
-                }
-            ],
             "ref": "#ElementedmParameter.23",
-            "TODO_DESCRIPTION": "Add description explaining what edm:Parameter represents",
-            "group": "action-and-function-elements"
+            "description": "An action or function overload may specify parameters. Each parameter must have a name that is a simple identifier and must specify a type."
         },
         {
-            "name": "edm:EntityContainer",
             "attributes": [
                 {
-                    "name": "Name",
                     "category": "basic",
-                    "subcategory": "simple-identifier",
+                    "name": "Name",
                     "ref": "#AttributeName.9.1",
-                    "TODO_DESCRIPTION": "Add description for edm:EntityContainer.Name (basic - simple-identifier)"
+                    "subcategory": "simple-identifier",
+                    "description": "The EntityContainer's name"
                 },
                 {
-                    "name": "Extends",
                     "category": "reference",
-                    "subcategory": "Absolute Reference",
                     "description": "qualified entity container name",
-                    "ref": "#AttributeExtends.24.2"
+                    "name": "Extends",
+                    "ref": "#AttributeExtends.24.2",
+                    "subcategory": "Absolute Reference"
                 }
             ],
-            "ref": "#ElementedmEntityContainer.24",
+            "name": "edm:EntityContainer",
             "permittedChildren": [
                 "edm:ActionImport",
                 "edm:Annotation",
@@ -679,202 +616,206 @@
                 "edm:FunctionImport",
                 "edm:Singleton"
             ],
-            "TODO_DESCRIPTION": "Add description explaining what edm:EntityContainer represents",
-            "group": "entity-container-elements"
+            "ref": "#ElementedmEntityContainer.24",
+            "description": "Entity containers define the entity sets, singletons, function and action imports exposed by the service."
         },
         {
-            "name": "edm:EntitySet",
             "attributes": [
                 {
-                    "name": "Name",
                     "category": "basic",
-                    "subcategory": "simple-identifier",
+                    "name": "Name",
                     "ref": "#AttributeName.9.1",
-                    "TODO_DESCRIPTION": "Add description for edm:EntitySet.Name (basic - simple-identifier)"
+                    "subcategory": "simple-identifier",
+                    "description": "The value of Name is the entity set’s name"
                 },
                 {
+                    "category": "reference",
+                    "description": "qualified entity type name",
                     "name": "EntityType",
-                    "category": "reference",
-                    "subcategory": "Absolute Reference",
-                    "description": "qualified entity type name",
-                    "ref": "#AttributeEntityType.25.2"
+                    "ref": "#AttributeEntityType.25.2",
+                    "subcategory": "Absolute Reference"
                 },
                 {
-                    "name": "IncludeInServiceDocument",
                     "category": "basic",
-                    "subcategory": "boolean",
                     "description": "Whether to include this element in the service document",
-                    "ref": "#AttributeIncludeInServiceDocument.25.3"
+                    "name": "IncludeInServiceDocument",
+                    "ref": "#AttributeIncludeInServiceDocument.25.3",
+                    "subcategory": "boolean"
                 }
             ],
+            "name": "edm:EntitySet",
             "ref": "#ElementedmEntitySet.25",
-            "TODO_DESCRIPTION": "Add description explaining what edm:EntitySet represents",
-            "TODO_PERMITTED_CHILDREN": "Add permittedChildren array - check OData spec for edm:EntitySet allowed children",
-            "group": "entity-container-elements"
+            "description": "Entity sets are top-level collection-valued resources. An entity set is identified by its name and must specify a type that must be an entity type in scope.",
+            "permittedChildren": [
+                "edm:NavigationPropertyBinding",
+                "edm:Annotation"
+            ]
         },
         {
-            "name": "edm:Singleton",
             "attributes": [
                 {
-                    "name": "Name",
                     "category": "basic",
-                    "subcategory": "simple-identifier",
+                    "name": "Name",
                     "ref": "#AttributeName.9.1",
-                    "TODO_DESCRIPTION": "Add description for edm:Singleton.Name (basic - simple-identifier)"
+                    "subcategory": "simple-identifier",
+                    "description": "The value of Name is the singleton's name"
                 },
                 {
-                    "name": "Type",
                     "category": "reference",
-                    "subcategory": "Absolute Reference",
                     "description": "qualified entity type name",
-                    "ref": "#AttributeType.12.2"
-                },
-                {
-                    "name": "Nullable",
-                    "category": "basic",
-                    "subcategory": "boolean",
-                    "description": "Whether the property can have null values",
-                    "ref": "#AttributeNullable.12.3"
-                }
-            ],
-            "ref": "#ElementedmSingleton.26",
-            "TODO_DESCRIPTION": "Add description explaining what edm:Singleton represents",
-            "TODO_PERMITTED_CHILDREN": "Add permittedChildren array - check OData spec for edm:Singleton allowed children",
-            "group": "entity-container-elements"
-        },
-        {
-            "name": "edm:NavigationPropertyBinding",
-            "attributes": [
-                {
-                    "name": "Path",
-                    "category": "path",
-                    "subcategory": "Relative Path",
-                    "description": "navigation property path expression",
-                    "context": "relative to the containing entity set's entity type",
-                    "ref": "#AttributePath.27.1"
-                },
-                {
-                    "name": "Target",
-                    "category": "path",
-                    "subcategory": "Relative Path",
-                    "description": "target path to entity set/singleton",
-                    "context": "relative to the containing entity container",
-                    "ref": "#AttributeTarget.27.2"
-                }
-            ],
-            "ref": "#ElementedmNavigationPropertyBinding.27",
-            "TODO_DESCRIPTION": "Add description explaining what edm:NavigationPropertyBinding represents",
-            "TODO_PERMITTED_CHILDREN": "Add permittedChildren array - check OData spec for edm:NavigationPropertyBinding allowed children",
-            "group": "entity-container-elements"
-        },
-        {
-            "name": "edm:ActionImport",
-            "attributes": [
-                {
-                    "name": "Name",
-                    "category": "basic",
-                    "subcategory": "simple-identifier",
-                    "ref": "#AttributeName.28.1",
-                    "TODO_DESCRIPTION": "Add description for edm:ActionImport.Name (basic - simple-identifier)"
-                },
-                {
-                    "name": "Action",
-                    "category": "reference",
-                    "subcategory": "Absolute Reference",
-                    "description": "qualified unbound action name",
-                    "ref": "#AttributeAction.28.2"
-                },
-                {
-                    "name": "EntitySet",
-                    "category": "reference",
-                    "subcategory": "Relative Reference",
-                    "description": "entity set name or target path",
-                    "context": "relative to the containing entity container",
-                    "ref": "#AttributeEntitySet.28.3"
-                }
-            ],
-            "ref": "#ElementedmActionImport.28",
-            "TODO_DESCRIPTION": "Add description explaining what edm:ActionImport represents",
-            "TODO_PERMITTED_CHILDREN": "Add permittedChildren array - check OData spec for edm:ActionImport allowed children",
-            "group": "entity-container-elements"
-        },
-        {
-            "name": "edm:FunctionImport",
-            "attributes": [
-                {
-                    "name": "Name",
-                    "category": "basic",
-                    "subcategory": "simple-identifier",
-                    "ref": "#AttributeName.29.1",
-                    "TODO_DESCRIPTION": "Add description for edm:FunctionImport.Name (basic - simple-identifier)"
-                },
-                {
-                    "name": "Function",
-                    "category": "reference",
-                    "subcategory": "Absolute Reference",
-                    "description": "qualified unbound function name",
-                    "ref": "#AttributeFunction.29.2"
-                },
-                {
-                    "name": "EntitySet",
-                    "category": "reference",
-                    "subcategory": "Relative Reference",
-                    "description": "entity set name or target path",
-                    "context": "relative to the containing entity container",
-                    "ref": "#AttributeIncludeInServiceDocument.29.4"
-                },
-                {
-                    "name": "IncludeInServiceDocument",
-                    "category": "basic",
-                    "subcategory": "boolean",
-                    "description": "Whether to include this element in the service document",
-                    "ref": "#AttributeIncludeInServiceDocument.25.3"
-                }
-            ],
-            "ref": "#ElementedmFunctionImport.29",
-            "TODO_DESCRIPTION": "Add description explaining what edm:FunctionImport represents",
-            "TODO_PERMITTED_CHILDREN": "Add permittedChildren array - check OData spec for edm:FunctionImport allowed children",
-            "group": "entity-container-elements"
-        },
-        {
-            "name": "edm:Term",
-            "attributes": [
-                {
-                    "name": "Name",
-                    "category": "basic",
-                    "subcategory": "simple-identifier",
-                    "ref": "#AttributeName.30.1",
-                    "TODO_DESCRIPTION": "Add description for edm:Term.Name (basic - simple-identifier)"
-                },
-                {
                     "name": "Type",
+                    "ref": "#AttributeType.12.2",
+                    "subcategory": "Absolute Reference"
+                },
+                {
+                    "category": "basic",
+                    "description": "Whether the property can have null values",
+                    "name": "Nullable",
+                    "ref": "#AttributeNullable.12.3",
+                    "subcategory": "boolean"
+                }
+            ],
+            "name": "edm:Singleton",
+            "ref": "#ElementedmSingleton.26",
+            "description": "Singletons are top-level single-valued resources. A singleton is identified by its name and must specify a type that must be an entity type in scope.",
+            "permittedChildren": [
+                "edm:NavigationPropertyBinding",
+                "edm:Annotation"
+            ]
+        },
+        {
+            "attributes": [
+                {
+                    "category": "path",
+                    "context": "relative to the containing entity set's entity type",
+                    "description": "navigation property path expression",
+                    "name": "Path",
+                    "ref": "#AttributePath.27.1",
+                    "subcategory": "Relative Path"
+                },
+                {
+                    "category": "path",
+                    "context": "relative to the containing entity container",
+                    "description": "target path to entity set/singleton",
+                    "name": "Target",
+                    "ref": "#AttributeTarget.27.2",
+                    "subcategory": "Relative Path"
+                }
+            ],
+            "name": "edm:NavigationPropertyBinding",
+            "ref": "#ElementedmNavigationPropertyBinding.27",
+            "description": "Navigation property bindings associate a navigation property with a target entity set or singleton, allowing navigation between entity sets.",
+            "permittedChildren": [
+                "edm:Annotation"
+            ]
+        },
+        {
+            "attributes": [
+                {
+                    "category": "basic",
+                    "name": "Name",
+                    "ref": "#AttributeName.28.1",
+                    "subcategory": "simple-identifier",
+                    "description": "The ActionImport's name."
+                },
+                {
+                    "category": "reference",
+                    "description": "qualified unbound action name",
+                    "name": "Action",
+                    "ref": "#AttributeAction.28.2",
+                    "subcategory": "Absolute Reference"
+                },
+                {
+                    "category": "reference",
+                    "context": "relative to the containing entity container",
+                    "description": "entity set name or target path",
+                    "name": "EntitySet",
+                    "ref": "#AttributeEntitySet.28.3",
+                    "subcategory": "Relative Reference"
+                }
+            ],
+            "name": "edm:ActionImport",
+            "ref": "#ElementedmActionImport.28",
+            "description": "Action imports allow exposing actions from an entity container. Each action import must specify the action it imports and the EntitySet or Singleton that exposes it.",
+            "permittedChildren": ["edm:Annotation"]            
+        },
+        {
+            "attributes": [
+                {
+                    "category": "basic",
+                    "name": "Name",
+                    "ref": "#AttributeName.29.1",
+                    "subcategory": "simple-identifier",
+                    "description": "The function import’s name."
+                },
+                {
+                    "category": "reference",
+                    "description": "qualified unbound function name",
+                    "name": "Function",
+                    "ref": "#AttributeFunction.29.2",
+                    "subcategory": "Absolute Reference"
+                },
+                {
+                    "category": "reference",
+                    "context": "relative to the containing entity container",
+                    "description": "entity set name or target path",
+                    "name": "EntitySet",
+                    "ref": "#AttributeIncludeInServiceDocument.29.4",
+                    "subcategory": "Relative Reference"
+                },
+                {
+                    "category": "basic",
+                    "description": "Whether to include this element in the service document",
+                    "name": "IncludeInServiceDocument",
+                    "ref": "#AttributeIncludeInServiceDocument.25.3",
+                    "subcategory": "boolean"
+                }
+            ],
+            "name": "edm:FunctionImport",
+            "ref": "#ElementedmFunctionImport.29",
+            "description": "Function imports allow exposing functions from an entity container. All unbound overloads of the imported function can be invoked from the entity container.",
+            "permittedChildren": ["edm:Annotation"]
+        },
+        {
+            "attributes": [
+                {
+                    "category": "basic",
+                    "name": "Name",
+                    "ref": "#AttributeName.30.1",
+                    "subcategory": "simple-identifier",
+                    "description": "The term’s name."
+                },
+                {
                     "category": "reference",
                     "description": "qualified type name or collection",
+                    "name": "Type",
                     "ref": "#AttributeType.30.2"
                 },
                 {
-                    "name": "Nullable",
                     "category": "basic",
-                    "subcategory": "boolean",
                     "description": "Whether the property can have null values",
-                    "ref": "#AttributeNullable.30.3"
+                    "name": "Nullable",
+                    "ref": "#AttributeNullable.30.3",
+                    "subcategory": "boolean"
                 },
                 {
-                    "name": "DefaultValue",
                     "category": "basic",
-                    "subcategory": "primitive-value",
                     "description": "primitive value",
-                    "ref": "#AttributeDefaultValue.30.4"
+                    "name": "DefaultValue",
+                    "ref": "#AttributeDefaultValue.30.4",
+                    "subcategory": "primitive-value"
                 },
                 {
-                    "name": "BaseTerm",
                     "category": "reference",
                     "description": "qualified term name",
+                    "name": "BaseTerm",
                     "ref": "#AttributeBaseTerm.30.5"
                 },
                 {
-                    "name": "AppliesTo",
                     "category": "basic",
+                    "description": "specifies a list of model elements to which the term MAY be applied to.",
+                    "name": "AppliesTo",
+                    "ref": "#Applicability",
                     "symbols": [
                         "Action",
                         "ActionImport",
@@ -909,135 +850,138 @@
                         "Term",
                         "TypeDefinition",
                         "UrlRef"
-                    ],
-                    "description": "specifies a list of model elements to which the term MAY be applied to.",
-                    "ref": "#Applicability"
+                    ]
                 }
             ],
+            "name": "edm:Term",
             "ref": "#ElementedmTerm.30",
-            "TODO_DESCRIPTION": "Add description explaining what edm:Term represents",
-            "TODO_PERMITTED_CHILDREN": "Add permittedChildren array - check OData spec for edm:Term allowed children",
-            "group": "vocabulary-and-annotation-elements"
+            "description": "A term allows annotating a model element or OData resource representation with additional data.",
+            "permittedChildren":  [
+                "edm:Annotation"
+            ]
         },
         {
-            "name": "edm:Annotation",
             "attributes": [
                 {
-                    "name": "Term",
                     "category": "reference",
                     "description": "qualified term name",
+                    "name": "Term",
                     "ref": "#AttributeTerm.31.1"
                 },
                 {
-                    "name": "Qualifier",
                     "category": "basic",
-                    "subcategory": "simple-identifier",
                     "description": "Optional qualifier to distinguish multiple instances",
-                    "ref": "#Qualifier"
+                    "name": "Qualifier",
+                    "ref": "#Qualifier",
+                    "subcategory": "simple-identifier"
                 }
             ],
+            "name": "edm:Annotation",
             "permittedChildren": [
                 "edm:Annotation"
             ],
             "ref": "#ElementedmAnnotation.31",
-            "TODO_DESCRIPTION": "Add description explaining what edm:Annotation represents",
-            "group": "vocabulary-and-annotation-elements"
+            "description": "An annotation applies a term to a model element and defines how to calculate a value for the term application."
         },
         {
-            "name": "edmx:Edmx",
             "attributes": [
                 {
-                    "name": "Version",
                     "category": "basic",
-                    "subcategory": "string",
                     "description": "version number string",
-                    "ref": "#AttributeVersion.2.1"
+                    "name": "Version",
+                    "ref": "#AttributeVersion.2.1",
+                    "subcategory": "string"
                 }
             ],
-            "ref": "#ElementedmxEdmx.2",
+            "name": "edmx:Edmx",
             "permittedChildren": [
                 "edmx:DataServices",
                 "edmx:Reference"
             ],
-            "TODO_DESCRIPTION": "Add description explaining what edmx:Edmx represents",
-            "group": "core-edmx-elements"
+            "ref": "#ElementedmxEdmx.2",
+            "description": "The root element of a CSDL XML document."
         },
         {
-            "name": "edmx:DataServices",
             "attributes": [],
+            "name": "edmx:DataServices",
             "ref": "#ElementedmxDataServices.3",
-            "TODO_DESCRIPTION": "Add description explaining what edmx:DataServices represents",
-            "TODO_PERMITTED_CHILDREN": "Add permittedChildren array - check OData spec for edmx:DataServices allowed children",
-            "group": "core-edmx-elements"
+            "description": "The edmx:DataServices contains one or more edm:Schema elements.",
+            "permittedChildren": ["edm:Schema"]
         },
         {
-            "name": "edmx:Reference",
-            "description": "specifies external CSDL documents",
             "attributes": [
                 {
-                    "name": "Uri",
                     "category": "basic",
-                    "subcategory": "uri",
                     "description": "URI string",
-                    "ref": "#AttributeUri.4.1"
+                    "name": "Uri",
+                    "ref": "#AttributeUri.4.1",
+                    "subcategory": "uri"
                 }
             ],
-            "ref": "#ElementedmxReference.4",
+            "description": "specifies external CSDL documents",
+            "name": "edmx:Reference",
             "permittedChildren": [
                 "edmx:Include",
                 "edmx:IncludeAnnotations"
             ],
-            "group": "core-edmx-elements"
+            "ref": "#ElementedmxReference.4"
         },
         {
-            "name": "edmx:Include",
             "attributes": [
                 {
-                    "name": "Namespace",
                     "category": "reference",
                     "description": "namespace reference",
+                    "name": "Namespace",
                     "ref": "#AttributeNamespace.5.1"
                 },
                 {
-                    "name": "Alias",
                     "category": "basic",
-                    "subcategory": "simple-identifier",
                     "description": "The value that can be used in qualified names instead of the namespace.",
-                    "ref": "#AttributeAlias.5.2"
+                    "name": "Alias",
+                    "ref": "#AttributeAlias.5.2",
+                    "subcategory": "simple-identifier"
                 }
             ],
+            "name": "edmx:Include",
             "ref": "#ElementedmxInclude.5",
-            "TODO_DESCRIPTION": "Add description explaining what edmx:Include represents",
-            "TODO_PERMITTED_CHILDREN": "Add permittedChildren array - check OData spec for edmx:Include allowed children",
-            "group": "core-edmx-elements"
+            "description": "Specifies a schema to include from the referenced CSDL document.",
+             "permittedChildren": [
+                "edm:Annotation"             
+            ]
         },
         {
-            "name": "edmx:IncludeAnnotations",
             "attributes": [
                 {
-                    "name": "TermNamespace",
                     "category": "reference",
                     "description": "namespace reference",
+                    "name": "TermNamespace",
                     "ref": "#AttributeTermNamespace.6.1"
                 },
                 {
-                    "name": "Qualifier",
                     "category": "basic",
-                    "subcategory": "simple-identifier",
                     "description": "Optional qualifier to distinguish multiple instances",
-                    "ref": "#AttributeQualifier.6.2"
+                    "name": "Qualifier",
+                    "ref": "#AttributeQualifier.6.2",
+                    "subcategory": "simple-identifier"
                 },
                 {
-                    "name": "TargetNamespace",
                     "category": "reference",
                     "description": "namespace reference",
+                    "name": "TargetNamespace",
                     "ref": "#AttributeTargetNamespace.6.3"
                 }
             ],
+            "name": "edmx:IncludeAnnotations",
             "ref": "#ElementedmxIncludeAnnotations.6",
-            "TODO_DESCRIPTION": "Add description explaining what edmx:IncludeAnnotations represents",
-            "TODO_PERMITTED_CHILDREN": "Add permittedChildren array - check OData spec for edmx:IncludeAnnotations allowed children",
-            "group": "core-edmx-elements"
+            "permittedChildren": [],
+            "description": "Specifies the annotations to include from the referenced CSDL document. Add"
         }
-    ]
+    ],
+    "metadata": {
+        "baseUrl": "https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html",
+        "description": "This document lists all EDM model elements, their attributes and relationships. It categorizes the attributes in different types (basic, reference, ..) and describes their semantic in detail. It is based on the OASIS OData CSDL XML Representation Version 4.02 specification, and adds the details about allowed values, symbolic references and constraints for elements and attributes.",
+        "source": "OASIS OData CSDL XML Representation Version 4.02 specification",
+        "sourceUrl": "https://docs.oasis-open.org/odata/odata-csdl-xml/v4.02/csd01/odata-csdl-xml-v4.02-csd01.html#TableofXMLElementsandAttributes",
+        "title": "OData EDM model structure"
+    }
 }
