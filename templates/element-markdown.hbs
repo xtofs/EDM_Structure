@@ -6,6 +6,19 @@
 *!!!!!Missing description !!!* {{externalElementLink name ref baseUrl}}
 {{/if}}
 
+
+{{#if children}}
+Permitted Children: {{#each children}}[{{this}}](#{{lower (replace this ":" "")}}){{#unless @last}}, {{/unless}}{{/each}}
+{{else}}
+Permitted Children: None
+{{/if}}
+
+{{#if parents}}
+Permitted Parents: {{#each parents}}[{{this}}](#{{lower (replace this ":" "")}}){{#unless @last}}, {{/unless}}{{/each}}
+{{else}}
+Permitted Parents: None
+{{/if}}
+
 {{#if attributes}}
 {{headerMark attributesHeaderLevel}} Attributes
 

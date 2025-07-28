@@ -62,9 +62,9 @@ export class MarkdownGenerator {
    */
   private generateMetadata(): string {
     const template = this.templateManager.getTemplate('metadata');
-    
+
     const headerLevel = (this.options.headerLevel || 1) + 1;
-    
+
     return template({
       headerLevel: headerLevel,
       description: this.data.metadata.description,
@@ -78,10 +78,10 @@ export class MarkdownGenerator {
    */
   private generateAttributeCategories(): string {
     const template = this.templateManager.getTemplate('attribute-categories');
-    
+
     const headerLevel = (this.options.headerLevel || 1) + 1;
     const subHeaderLevel = headerLevel + 1;
-    
+
     return template({
       headerLevel: headerLevel,
       subHeaderLevel: subHeaderLevel,
@@ -90,25 +90,55 @@ export class MarkdownGenerator {
   }
 
 
+
+
   /**
    * Generate elements overview section (flat, no grouping)
    */
   private generateElementsOverview(): string {
     const template = this.templateManager.getTemplate('element-markdown');
     const headerLevel = (this.options.headerLevel || 1) + 1;
-    return this.data.elements.map(element => {
+
+    const parentsLookup = this.pivotToParentsLookup(this.data)
+
+
+    return this.data.elements
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map(element => {
       return template({
         headerLevel: headerLevel,
         name: element.name,
         ref: element.ref,
         description: element.description,
         attributes: element.attributes.length > 0 ? element.attributes : null,
+        children: element.children,
+        parents: parentsLookup.get(element.name),
         baseUrl: this.data.metadata.baseUrl
       }).trim();
     }).join('\n\n');
   }
 
 
+  private pivotToParentsLookup(data: ODataEdmStructure): Map<string, string[]> {
+
+    const elements = data.elements;
+
+    // Step 1: Create [child, parent] pairs using flatMap
+    const childParentPairs = elements.flatMap(el =>
+      (el.children || []).map(child => [child, el.name] as [string, string])
+    );
+
+    // Step 2: Reduce to a Map of child -> list of parents
+    const childToParentsMap = childParentPairs.reduce((acc, [child, parent]) => {
+      if (!acc.has(child)) {
+        acc.set(child, []);
+      }
+      acc.get(child)!.push(parent);
+      return acc;
+    }, new Map<string, string[]>());
+
+    return childToParentsMap;
+  }
 
 
   /**

@@ -83,7 +83,7 @@
             ],
             "description": "One or more schemas describe the entity model exposed by an OData service. The schema acts as a namespace for elements of the entity model such as entity types, complex types, enumerations and terms.",
             "name": "edm:Schema",
-            "permittedChildren": [
+            "children": [
                 "edm:EntityType",
                 "edm:ComplexType",
                 "edm:EnumType",
@@ -115,7 +115,7 @@
                 }
             ],
             "name": "edm:Annotations",
-            "permittedChildren": [
+            "children": [
                 "edm:Annotation"
             ],
             "ref": "#ElementedmAnnotations.8",
@@ -161,7 +161,7 @@
             ],
             "description": "An entity type is the template for an entity: any uniquely identifiable record.",
             "name": "edm:EntityType",
-            "permittedChildren": [
+            "children": [
                 "edm:Annotation",
                 "edm:Key",
                 "edm:Property",
@@ -172,7 +172,7 @@
         {
             "attributes": [],
             "name": "edm:Key",
-            "permittedChildren": [
+            "children": [
                 "edm:PropertyRef"
             ],
             "ref": "#ElementedmKey.10",
@@ -197,7 +197,7 @@
                 }
             ],
             "name": "edm:PropertyRef",
-            "permittedChildren": [],
+            "children": [],
             "ref": "#ElementedmPropertyRef.11",
             "description": "An entity type’s key refers to the set of properties whose values uniquely identify an instance of the entity type within an entity set."
         },
@@ -244,7 +244,7 @@
             ],
             "description": "A structural property is a property of a structured type",
             "name": "edm:Property",
-            "permittedChildren": [
+            "children": [
                 "edm:Annotation"
             ],
             "ref": "#ElementedmProperty.12"
@@ -289,7 +289,7 @@
                 }
             ],
             "name": "edm:NavigationProperty",
-            "permittedChildren": [
+            "children": [
                 "edm:OnDelete",
                 "edm:ReferentialConstraint",
                 "edm:Annotation"
@@ -318,7 +318,7 @@
             ],
             "description": "Entity containers define the entity sets, singletons, function and action imports exposed by the service.",
             "name": "edm:ReferentialConstraint",
-            "permittedChildren": [
+            "children": [
                 "edm:Annotation"
             ],
             "ref": "#ElementedmReferentialConstraint.14"
@@ -339,7 +339,7 @@
                 }
             ],
             "name": "edm:OnDelete",
-            "permittedChildren": [],
+            "children": [],
             "ref": "#ElementedmOnDelete.15",
             "description": "The action the service will take on related entities when the entity on which the navigation property is defined is deleted."
         },
@@ -375,7 +375,7 @@
                 }
             ],
             "name": "edm:ComplexType",
-            "permittedChildren": [
+            "children": [
                 "edm:Annotation",
                 "edm:Property",
                 "edm:NavigationProperty"
@@ -408,7 +408,7 @@
                 }
             ],
             "name": "edm:EnumType",
-            "permittedChildren": [
+            "children": [
                 "edm:Annotation",
                 "edm:Member"
             ],
@@ -433,7 +433,7 @@
                 }
             ],
             "name": "edm:Member",
-            "permittedChildren": [
+            "children": [
                 "edm:Annotation"
             ],
             "ref": "#ElementedmMember.18",
@@ -457,7 +457,7 @@
                 }
             ],
             "name": "edm:TypeDefinition",
-            "permittedChildren": [
+            "children": [
                 "edm:Annotation"
             ],
             "ref": "#ElementedmTypeDefinition.19",
@@ -489,7 +489,7 @@
                 }
             ],
             "name": "edm:Action",
-            "permittedChildren": [
+            "children": [
                 "edm:Annotation",
                 "edm:Parameter",
                 "edm:ReturnType"
@@ -530,7 +530,7 @@
                 }
             ],
             "name": "edm:Function",
-            "permittedChildren": [
+            "children": [
                 "edm:Annotation",
                 "edm:Parameter",
                 "edm:ReturnType"
@@ -555,7 +555,7 @@
                 }
             ],
             "name": "edm:ReturnType",
-            "permittedChildren": [
+            "children": [
                 "edm:Annotation"
             ],
             "ref": "#ElementedmReturnType.22", 
@@ -585,7 +585,7 @@
                 }
             ],
             "name": "edm:Parameter",
-            "permittedChildren": [
+            "children": [
                 "edm:Annotation"
             ],
             "ref": "#ElementedmParameter.23",
@@ -609,7 +609,7 @@
                 }
             ],
             "name": "edm:EntityContainer",
-            "permittedChildren": [
+            "children": [
                 "edm:ActionImport",
                 "edm:Annotation",
                 "edm:EntitySet",
@@ -646,7 +646,7 @@
             "name": "edm:EntitySet",
             "ref": "#ElementedmEntitySet.25",
             "description": "Entity sets are top-level collection-valued resources. An entity set is identified by its name and must specify a type that must be an entity type in scope.",
-            "permittedChildren": [
+            "children": [
                 "edm:NavigationPropertyBinding",
                 "edm:Annotation"
             ]
@@ -678,7 +678,7 @@
             "name": "edm:Singleton",
             "ref": "#ElementedmSingleton.26",
             "description": "Singletons are top-level single-valued resources. A singleton is identified by its name and must specify a type that must be an entity type in scope.",
-            "permittedChildren": [
+            "children": [
                 "edm:NavigationPropertyBinding",
                 "edm:Annotation"
             ]
@@ -705,7 +705,7 @@
             "name": "edm:NavigationPropertyBinding",
             "ref": "#ElementedmNavigationPropertyBinding.27",
             "description": "Navigation property bindings associate a navigation property with a target entity set or singleton, allowing navigation between entity sets.",
-            "permittedChildren": [
+            "children": [
                 "edm:Annotation"
             ]
         },
@@ -737,7 +737,7 @@
             "name": "edm:ActionImport",
             "ref": "#ElementedmActionImport.28",
             "description": "Action imports allow exposing actions from an entity container. Each action import must specify the action it imports and the EntitySet or Singleton that exposes it.",
-            "permittedChildren": ["edm:Annotation"]            
+            "children": ["edm:Annotation"]            
         },
         {
             "attributes": [
@@ -774,7 +774,7 @@
             "name": "edm:FunctionImport",
             "ref": "#ElementedmFunctionImport.29",
             "description": "Function imports allow exposing functions from an entity container. All unbound overloads of the imported function can be invoked from the entity container.",
-            "permittedChildren": ["edm:Annotation"]
+            "children": ["edm:Annotation"]
         },
         {
             "attributes": [
@@ -856,7 +856,7 @@
             "name": "edm:Term",
             "ref": "#ElementedmTerm.30",
             "description": "A term allows annotating a model element or OData resource representation with additional data.",
-            "permittedChildren":  [
+            "children":  [
                 "edm:Annotation"
             ]
         },
@@ -877,7 +877,7 @@
                 }
             ],
             "name": "edm:Annotation",
-            "permittedChildren": [
+            "children": [
                 "edm:Annotation"
             ],
             "ref": "#ElementedmAnnotation.31",
@@ -894,7 +894,7 @@
                 }
             ],
             "name": "edmx:Edmx",
-            "permittedChildren": [
+            "children": [
                 "edmx:DataServices",
                 "edmx:Reference"
             ],
@@ -906,7 +906,7 @@
             "name": "edmx:DataServices",
             "ref": "#ElementedmxDataServices.3",
             "description": "The edmx:DataServices contains one or more edm:Schema elements.",
-            "permittedChildren": ["edm:Schema"]
+            "children": ["edm:Schema"]
         },
         {
             "attributes": [
@@ -920,7 +920,7 @@
             ],
             "description": "specifies external CSDL documents",
             "name": "edmx:Reference",
-            "permittedChildren": [
+            "children": [
                 "edmx:Include",
                 "edmx:IncludeAnnotations"
             ],
@@ -945,7 +945,7 @@
             "name": "edmx:Include",
             "ref": "#ElementedmxInclude.5",
             "description": "Specifies a schema to include from the referenced CSDL document.",
-             "permittedChildren": [
+             "children": [
                 "edm:Annotation"             
             ]
         },
@@ -973,7 +973,7 @@
             ],
             "name": "edmx:IncludeAnnotations",
             "ref": "#ElementedmxIncludeAnnotations.6",
-            "permittedChildren": [],
+            "children": [],
             "description": "Specifies the annotations to include from the referenced CSDL document. Add"
         }
     ],

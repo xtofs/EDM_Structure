@@ -98,6 +98,9 @@ export class TemplateManager {
 
     // Helper for string replacement
     Handlebars.registerHelper('replace', (str: string, searchValue: string, replaceValue: string) => {
+      if(!str) {
+        return "undefined"
+      }
       return str.replace(new RegExp(searchValue, 'g'), replaceValue);
     });
   }

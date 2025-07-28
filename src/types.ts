@@ -46,7 +46,7 @@ export interface ElementAttribute {
 export interface EdmElement {
   name: string;
   attributes: ElementAttribute[];
-  permittedChildren?: string[];
+  children?: string[];
   ref?: string;
   description: string;
   [key: string]: any; // Allow for additional properties
@@ -74,6 +74,7 @@ export interface ODataEdmStructure {
   metadata: Metadata;
   attributeCategories: AttributeCategories;
   elements: EdmElement[];         // Flat array of all elements
+
 }
 
 /**

@@ -68,5 +68,6 @@ async function generateDocumentation() {
   }
 }
 
+
 // Run the generation
 generateDocumentation();

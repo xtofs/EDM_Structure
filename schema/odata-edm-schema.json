@@ -97,7 +97,7 @@
               "properties": {
                 "name": { "type": "string" },
                 "ref": { "type": "string" },
-                "permittedChildren": {
+                "children": {
                   "type": "array",
                   "items": { "type": "string" }
                 },
