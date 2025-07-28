@@ -34,11 +34,16 @@ export class MarkdownGenerator {
       sections.push(this.generateMetadata());
     }
 
+
     // Attribute categories overview
     sections.push(this.generateAttributeCategories());
 
-    // Element groups
-    sections.push(this.generateElementGroups());
+    // Header before elements list
+    const headerLevel = (this.options.headerLevel || 1) + 1;
+    sections.push(`${'#'.repeat(headerLevel)} EDM Model Elements`);
+
+    // Elements overview
+    sections.push(this.generateElementsOverview());
 
     return sections.join("\n\n");
   }
@@ -84,76 +89,30 @@ export class MarkdownGenerator {
     }).trim();
   }
 
+
   /**
-   * Generate element groups section
+   * Generate elements overview section (flat, no grouping)
    */
-  private generateElementGroups(): string {
-    const template = this.templateManager.getTemplate('element-groups');
-    
+  private generateElementsOverview(): string {
+    const template = this.templateManager.getTemplate('element-markdown');
     const headerLevel = (this.options.headerLevel || 1) + 1;
-    const subHeaderLevel = headerLevel + 1;
-    const elementHeaderLevel = headerLevel + 2;
-    
-    // Prepare data with calculated permittedParents
-    const elementGroupsWithParents = this.data.elementGroups.map(group => {
-      // Get elements for this group
-      const groupElements = this.data.elements.filter(element => element.group === group.id);
-      
-      const elementsWithParents = groupElements.map(element => {
-        const permittedParents = this.data.elements
-          .filter((e) => e.permittedChildren?.includes(element.name))
-          .map((e) => e.name);
-
-        return {
-          ...element,
-          permittedParents: permittedParents.length > 0 ? permittedParents : null
-        };
-      });
-
-      return {
-        ...group,
-        elements: elementsWithParents
-      };
-    });
-
-    return template({
-      headerLevel: headerLevel,
-      subHeaderLevel: subHeaderLevel,
-      elementHeaderLevel: elementHeaderLevel,
-      elementGroups: elementGroupsWithParents,
-      baseUrl: this.data.metadata.baseUrl
-    }).trim();
+    return this.data.elements.map(element => {
+      return template({
+        headerLevel: headerLevel,
+        name: element.name,
+        ref: element.ref,
+        description: element.description,
+        attributes: element.attributes.length > 0 ? element.attributes : null,
+        baseUrl: this.data.metadata.baseUrl
+      }).trim();
+    }).join('\n\n');
   }
 
-  /**
-   * Generate markdown for a specific element group
-   */
-  public generateGroupMarkdown(groupName: string): string {
-    const group = this.data.elementGroups.find((g) => g.name === groupName);
-    if (!group) {
-      throw new Error(`Group '${groupName}' not found`);
-    }
 
-    const template = this.templateManager.getTemplate('group-markdown');
-    
-    const headerLevel = this.options.headerLevel || 1;
-    const elementHeaderLevel = headerLevel + 1;
 
-    // Get elements for this group
-    const groupElements = this.data.elements.filter(element => element.group === group.id);
-
-    return template({
-      headerLevel: headerLevel,
-      elementHeaderLevel: elementHeaderLevel,
-      name: group.name,
-      description: group.description,
-      elements: groupElements,
-      baseUrl: this.data.metadata.baseUrl
-    }).trim();
-  }
 
   /**
-   * Generate markdown for a specific element
+   * Generate markdown for a specific element (no group)
    */
   public generateElementMarkdown(elementName: string): string {
     // Find the element
@@ -162,12 +121,7 @@ export class MarkdownGenerator {
       throw new Error(`Element '${elementName}' not found`);
     }
 
-    // Find the group name
-    const group = this.data.elementGroups.find(g => g.id === element.group);
-    const groupName = group ? group.name : element.group;
-
     const template = this.templateManager.getTemplate('element-markdown');
-    
     const headerLevel = this.options.headerLevel || 1;
     const attributesHeaderLevel = headerLevel + 1;
 
@@ -176,7 +130,6 @@ export class MarkdownGenerator {
       attributesHeaderLevel: attributesHeaderLevel,
       name: element.name,
       ref: element.ref,
-      groupName: groupName,
       attributes: element.attributes.length > 0 ? element.attributes : null,
       baseUrl: this.data.metadata.baseUrl
     }).trim();

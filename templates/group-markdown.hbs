@@ -1,16 +1,1 @@
-{{headerMark headerLevel}} {{name}}
 
-{{#if description}}
-{{description}}
-
-{{/if}}
-{{#each elements}}
-{{headerMark ../elementHeaderLevel}} {{elementLink name ref ../baseUrl}}
-
-{{#if attributes}}
-{{> attribute-table attributes=attributes baseUrl=../baseUrl}}
-{{else}}
-*No attributes*
-{{/if}}
-
-{{/each}}

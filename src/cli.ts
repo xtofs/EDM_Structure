@@ -62,7 +62,7 @@ class ODataEdmCli {
       if (options.showStats) {
         console.log("\n--- Statistics ---");
         const stats = this.parser.generateSummary();
-        console.log(`Total Groups: ${stats.totalGroups}`);
+
         console.log(`Total Elements: ${stats.totalElements}`);
         console.log(`Total Attributes: ${stats.basicAttributesCount + stats.referenceAttributesCount + stats.pathAttributesCount}`);
         console.log("Attributes by Category:");

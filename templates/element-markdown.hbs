@@ -1,6 +1,10 @@
-{{headerMark headerLevel}} {{elementLink name ref baseUrl}}
+{{headerMark headerLevel}} {{name}}
 
-*Part of: {{groupName}}*
+{{#if description}}
+{{description}} {{externalElementLink name ref baseUrl}}
+{{else}}
+*!!!!!Missing description !!!* {{externalElementLink name ref baseUrl}}
+{{/if}}
 
 {{#if attributes}}
 {{headerMark attributesHeaderLevel}} Attributes

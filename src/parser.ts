@@ -65,18 +65,7 @@ export class ODataEdmParser {
     return filteredElements;
   }
 
-  /**
-   * Get all elements in a specific group
-   */
-  public getElementsByGroup(groupName: string): EdmElement[] {
-    const data = this.getData();
-    const group = data.elementGroups.find((g) => g.name === groupName);
-    if (!group) {
-      return [];
-    }
-    
-    return data.elements.filter(element => element.group === group.id);
-  }
+
 
   /**
    * Get a specific element by name
@@ -91,7 +80,6 @@ export class ODataEdmParser {
    */
   public generateSummary(): {
     totalElements: number;
-    totalGroups: number;
     basicAttributesCount: number;
     referenceAttributesCount: number;
     pathAttributesCount: number;
@@ -120,12 +108,12 @@ export class ODataEdmParser {
 
     return {
       totalElements,
-      totalGroups: data.elementGroups.length,
       basicAttributesCount,
       referenceAttributesCount,
       pathAttributesCount,
     };
-  }    /**
+  }
+  /**
    * Get all unique attribute names used across elements
    */
   public getAllAttributeNames(): string[] {
@@ -171,19 +159,7 @@ export class ODataEdmParser {
       );
     }
 
-    // Validate elementGroups
-    if (!Array.isArray(data.elementGroups) || data.elementGroups.length === 0) {
-      errors.push("elementGroups array is missing or empty");
-    } else {
-      for (let i = 0; i < data.elementGroups.length; i++) {
-        const group = data.elementGroups[i];
-        if (!group.name || !group.id) {
-          errors.push(
-            `elementGroups[${i}] is missing required 'name' or 'id' property`,
-          );
-        }
-      }
-    }
+
 
     // Validate elements array
     if (!Array.isArray(data.elements) || data.elements.length === 0) {
@@ -191,16 +167,16 @@ export class ODataEdmParser {
     } else {
       for (let i = 0; i < data.elements.length; i++) {
         const element = data.elements[i];
-        if (!element.name || !element.group) {
+        if (!element.name) {
           errors.push(
-            `elements[${i}] is missing required 'name' or 'group' property`,
+            `elements[${i}] is missing required 'name' property`,
           );
         }
-
         if (!Array.isArray(element.attributes)) {
           errors.push(`elements[${i}].attributes must be an array`);
         }
       }
-    }    return { isValid: errors.length === 0, errors };
+    }
+    return { isValid: errors.length === 0, errors };
   }
 }

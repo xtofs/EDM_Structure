@@ -1,14 +1,3 @@
-/**
- * TypeScript interfaces forexport interface ElementAttribute {
-  name: string;
-  category: 'basic' | 'reference' | 'path';
-  subcategory?: string;
-  description?: string;
-  constraints?: string;
-  context?: string;
-  ref?: string;
-}M Structure representation
- */
 
 export interface SymbolicValue {
   name: string;
@@ -39,32 +28,31 @@ export interface AttributeCategories {
   path: AttributeCategory;
 }
 
+
 export interface ElementAttribute {
   name: string;
+  description: string;
+  ref?: string;
+  
   category: "basic" | "reference" | "path";
   subcategory?: string;
   symbols?: string[];
-  description?: string;
+
   constraints?: string;
-  context?: string;
-  ref?: string;
+  context?: string;  
 }
+
 
 export interface EdmElement {
   name: string;
-  group: string;  // Reference to elementGroup id
   attributes: ElementAttribute[];
   permittedChildren?: string[];
   ref?: string;
-  description?: string;
+  description: string;
   [key: string]: any; // Allow for additional properties
 }
 
-export interface ElementGroup {
-  name: string;
-  description?: string;
-  id: string;  // Unique identifier for the group
-}
+
 
 export interface Metadata {
   title: string;
@@ -81,21 +69,21 @@ export interface Summary {
   totalElements: number;
 }
 
+
 export interface ODataEdmStructure {
   metadata: Metadata;
   attributeCategories: AttributeCategories;
-  elementGroups: ElementGroup[];  // Array of group metadata
   elements: EdmElement[];         // Flat array of all elements
 }
 
 /**
  * Configuration interface for markdown generation
  */
+
 export interface MarkdownGenerationConfig {
   includeTableOfContents: boolean;
   includeAttributeDetails: boolean;
   includeSummaryStatistics: boolean;
-  groupingStrategy: "byCategory" | "byType" | "alphabetical";
   outputFormat: "github" | "standard";
 }
 
