@@ -72,9 +72,8 @@ export interface Summary {
 
 export interface ODataEdmStructure {
   metadata: Metadata;
-  attributeCategories: AttributeCategories;
   elements: EdmElement[];         // Flat array of all elements
-
+  attributeCategories: AttributeCategories;
 }
 
 /**

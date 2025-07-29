@@ -64,16 +64,14 @@ export class MarkdownGenerator {
    */
   private generateFooter(): string {
    
-    // // return `<hr/>Document generated from [${source}](${sourceUrl})`;
-    // return `<hr/>Document generated from <a href=\"${sourceUrl}\" target="_blank" rel="noopener noreferrer">${source} ↗</a>` ;
-
     const template = this.templateManager.getTemplate('footer');
 
     // const headerLevel = (this.options.headerLevel || 1) + 1;
 
     return template({
       source: this.data.metadata.source,
-      sourceUrl: this.data.metadata.sourceUrl
+      sourceUrl: this.data.metadata.sourceUrl,
+      sourceContent: JSON.stringify(this.data, null, 2)
     }).trim();
   }
 
