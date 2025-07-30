@@ -11,7 +11,6 @@
     "elements": [
         {
             "name": "Edmx",
-            "xmlNamespace": "edmx",
             "description": "The root element of a CSDL XML document.",
             "ref": "#ElementedmxEdmx.2",
             "children": [
@@ -30,7 +29,6 @@
         },
         {
             "name": "DataServices",
-            "xmlNamespace": "edmx",
             "description": "The edmx:DataServices contains one or more edm:Schema elements.",
             "ref": "#ElementedmxDataServices.3",
             "children": [
@@ -40,7 +38,6 @@
         },
         {
             "name": "Reference",
-            "xmlNamespace": "edmx",
             "description": "specifies external CSDL documents",
             "ref": "#ElementedmxReference.4",
             "children": [
@@ -59,7 +56,6 @@
         },
         {
             "name": "Schema",
-            "xmlNamespace": "edm",
             "description": "One or more schemas describe the entity model exposed by an OData service. The schema acts as a namespace for elements of the entity model such as entity types, complex types, enumerations and terms.",
             "ref": "#ElementedmSchema.7",
             "children": [
@@ -92,7 +88,6 @@
         },
         {
             "name": "Include",
-            "xmlNamespace": "edmx",
             "description": "Specifies a schema to include from the referenced CSDL document.",
             "ref": "#ElementedmxInclude.5",
             "children": [
@@ -119,7 +114,6 @@
         },
         {
             "name": "IncludeAnnotations",
-            "xmlNamespace": "edmx",
             "description": "Specifies the annotations to include from the referenced CSDL document. Add",
             "ref": "#ElementedmxIncludeAnnotations.6",
             "children": [],
@@ -153,7 +147,6 @@
         },
         {
             "name": "Action",
-            "xmlNamespace": "edm",
             "description": "Actions are service-defined operations that may have observable side effects and may return a single instance or a collection of instances of any type.",
             "ref": "#ElementedmAction.20",
             "children": [
@@ -188,7 +181,6 @@
         },
         {
             "name": "Annotations",
-            "xmlNamespace": "edm",
             "description": "Used to apply a group of annotations to a single model element.",
             "ref": "#ElementedmAnnotations.8",
             "children": [
@@ -214,7 +206,6 @@
         },
         {
             "name": "ComplexType",
-            "xmlNamespace": "edm",
             "description": "Complex types are keyless nominal structured types. The lack of a key means that instances of complex types cannot be referenced, created, updated or deleted independently of an entity type. Complex types allow entity models to group properties into common structures.",
             "ref": "#ElementedmComplexType.16",
             "children": [
@@ -259,7 +250,6 @@
         },
         {
             "name": "EntityContainer",
-            "xmlNamespace": "edm",
             "description": "Entity containers define the entity sets, singletons, function and action imports exposed by the service.",
             "ref": "#ElementedmEntityContainer.24",
             "children": [
@@ -291,7 +281,6 @@
         },
         {
             "name": "EntityType",
-            "xmlNamespace": "edm",
             "description": "An entity type is the template for an entity: any uniquely identifiable record.",
             "ref": "#ElementedmEntityType.9",
             "children": [
@@ -344,7 +333,6 @@
         },
         {
             "name": "EnumType",
-            "xmlNamespace": "edm",
             "description": "Enumeration types are nominal types that represent a non-empty series of related values. Enumeration types expose these related values as members of the enumeration.",
             "ref": "#ElementedmEnumType.17",
             "children": [
@@ -381,7 +369,6 @@
         },
         {
             "name": "Function",
-            "xmlNamespace": "edm",
             "description": "Function overloads allow functions to be defined with multiple different parameter sets.",
             "ref": "#ElementedmFunction.21",
             "children": [
@@ -423,7 +410,6 @@
         },
         {
             "name": "Term",
-            "xmlNamespace": "edm",
             "description": "A term allows annotating a model element or OData resource representation with additional data.",
             "ref": "#ElementedmTerm.30",
             "children": [
@@ -518,7 +504,6 @@
         },
         {
             "name": "TypeDefinition",
-            "xmlNamespace": "edm",
             "description": "A type definition defines a specialization of one of the primitive types.",
             "ref": "#ElementedmTypeDefinition.19",
             "children": [
@@ -547,7 +532,6 @@
         },
         {
             "name": "ActionImport",
-            "xmlNamespace": "edm",
             "description": "Action imports allow exposing actions from an entity container. Each action import must specify the action it imports and the EntitySet or Singleton that exposes it.",
             "ref": "#ElementedmActionImport.28",
             "children": [
@@ -587,7 +571,6 @@
         },
         {
             "name": "EntitySet",
-            "xmlNamespace": "edm",
             "description": "Entity sets are top-level collection-valued resources. An entity set is identified by its name and must specify a type that must be an entity type in scope.",
             "ref": "#ElementedmEntitySet.25",
             "children": [
@@ -623,7 +606,6 @@
         },
         {
             "name": "FunctionImport",
-            "xmlNamespace": "edm",
             "description": "Function imports allow exposing functions from an entity container. All unbound overloads of the imported function can be invoked from the entity container.",
             "ref": "#ElementedmFunctionImport.29",
             "children": [
@@ -670,7 +652,6 @@
         },
         {
             "name": "Key",
-            "xmlNamespace": "edm",
             "description": "An entity is uniquely identified within an entity set by its key.",
             "ref": "#ElementedmKey.10",
             "children": [
@@ -680,7 +661,6 @@
         },
         {
             "name": "Member",
-            "xmlNamespace": "edm",
             "description": "Enumeration type values consist of discrete members. Each member is identified by its name and must specify an associated numeric value.",
             "ref": "#ElementedmMember.18",
             "children": [
@@ -705,7 +685,6 @@
         },
         {
             "name": "NavigationProperty",
-            "xmlNamespace": "edm",
             "description": "A navigation property allows navigation to related entities.",
             "ref": "#ElementedmNavigationProperty.13",
             "children": [
@@ -761,7 +740,6 @@
         },
         {
             "name": "Parameter",
-            "xmlNamespace": "edm",
             "description": "An action or function overload may specify parameters. Each parameter must have a name that is a simple identifier and must specify a type.",
             "ref": "#ElementedmParameter.23",
             "children": [
@@ -799,7 +777,6 @@
         },
         {
             "name": "Property",
-            "xmlNamespace": "edm",
             "description": "A structural property is a property of a structured type",
             "ref": "#ElementedmProperty.12",
             "children": [
@@ -855,7 +832,6 @@
         },
         {
             "name": "ReturnType",
-            "xmlNamespace": "edm",
             "description": "The return type of an action or function overload may be any type in scope, or a collection of any type in scope.",
             "ref": "#ElementedmReturnType.22",
             "children": [
@@ -886,7 +862,6 @@
         },
         {
             "name": "Singleton",
-            "xmlNamespace": "edm",
             "description": "Singletons are top-level single-valued resources. A singleton is identified by its name and must specify a type that must be an entity type in scope.",
             "ref": "#ElementedmSingleton.26",
             "children": [
@@ -926,7 +901,6 @@
         },
         {
             "name": "NavigationPropertyBinding",
-            "xmlNamespace": "edm",
             "description": "Navigation property bindings associate a navigation property with a target entity set or singleton, allowing navigation between entity sets.",
             "ref": "#ElementedmNavigationPropertyBinding.27",
             "children": [
@@ -953,7 +927,6 @@
         },
         {
             "name": "OnDelete",
-            "xmlNamespace": "edm",
             "description": "The action the service will take on related entities when the entity on which the navigation property is defined is deleted.",
             "ref": "#ElementedmOnDelete.15",
             "children": [],
@@ -974,7 +947,6 @@
         },
         {
             "name": "PropertyRef",
-            "xmlNamespace": "edm",
             "description": "An entity type’s key refers to the set of properties whose values uniquely identify an instance of the entity type within an entity set.",
             "ref": "#ElementedmPropertyRef.11",
             "children": [],
@@ -998,7 +970,6 @@
         },
         {
             "name": "ReferentialConstraint",
-            "xmlNamespace": "edm",
             "description": "Entity containers define the entity sets, singletons, function and action imports exposed by the service.",
             "ref": "#ElementedmReferentialConstraint.14",
             "children": [
@@ -1025,7 +996,6 @@
         },
         {
             "name": "Annotation",
-            "xmlNamespace": "edm",
             "description": "An annotation applies a term to a model element and defines how to calculate a value for the term application.",
             "ref": "#ElementedmAnnotation.31",
             "children": [
