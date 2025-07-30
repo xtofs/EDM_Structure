@@ -110,6 +110,77 @@ export class MarkdownGenerator {
 
 
   /**
+   * Sort elements topologically (parents before children), then alphabetically
+   */
+  private sortElementsTopologicallyThenAlphabetically(elements: any[]): any[] {
+    // Create a map of element name to element for quick lookup
+    const elementMap = new Map(elements.map(el => [el.name, el]));
+    
+    // Create adjacency list and in-degree count
+    const adjacencyList = new Map<string, string[]>();
+    const inDegree = new Map<string, number>();
+    
+    // Initialize adjacency list and in-degree count
+    elements.forEach(element => {
+      adjacencyList.set(element.name, element.children || []);
+      inDegree.set(element.name, 0);
+    });
+    
+    // Calculate in-degrees
+    elements.forEach(element => {
+      (element.children || []).forEach((child: string) => {
+        if (inDegree.has(child)) {
+          inDegree.set(child, inDegree.get(child)! + 1);
+        }
+      });
+    });
+    
+    // Topological sort using Kahn's algorithm with alphabetical secondary sort
+    const result: any[] = [];
+    const queue: string[] = [];
+    
+    // Start with elements that have no incoming edges, sorted alphabetically
+    elements
+      .filter(element => inDegree.get(element.name) === 0)
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .forEach(element => queue.push(element.name));
+    
+    while (queue.length > 0) {
+      // Sort queue alphabetically to ensure consistent ordering
+      queue.sort();
+      const currentName = queue.shift()!;
+      const currentElement = elementMap.get(currentName)!;
+      result.push(currentElement);
+      
+      // Process children of current element
+      const children = adjacencyList.get(currentName) || [];
+      const childrenToAdd: string[] = [];
+      
+      children.forEach(childName => {
+        if (inDegree.has(childName)) {
+          inDegree.set(childName, inDegree.get(childName)! - 1);
+          if (inDegree.get(childName) === 0) {
+            childrenToAdd.push(childName);
+          }
+        }
+      });
+      
+      // Add children with zero in-degree to queue (will be sorted in next iteration)
+      childrenToAdd.forEach(child => queue.push(child));
+    }
+    
+    // Handle any remaining elements (circular dependencies)
+    const remaining = elements.filter(element => !result.includes(element));
+    if (remaining.length > 0) {
+      // Sort remaining elements alphabetically and add them
+      remaining.sort((a, b) => a.name.localeCompare(b.name));
+      result.push(...remaining);
+    }
+    
+    return result;
+  }
+
+  /**
    * Generate elements overview section (flat, no grouping)
    */
   private generateElementsOverview(): string {
@@ -118,9 +189,10 @@ export class MarkdownGenerator {
 
     const parentsLookup = this.createParentsLookup(this.data)
 
+    // Sort elements topologically first, then alphabetically
+    const sortedElements = this.sortElementsTopologicallyThenAlphabetically(this.data.elements);
 
-    return this.data.elements
-      .sort((a, b) => a.name.localeCompare(b.name))
+    return sortedElements
       .map(element => {
       return template({
         headerLevel: headerLevel,
