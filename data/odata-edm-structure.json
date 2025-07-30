@@ -175,7 +175,7 @@
                     "description": "entity set path expression",
                     "name": "EntitySetPath",
                     "ref": "#AttributeEntitySetPath.21.3",
-                    "subcategory": "Relative Path"
+                    "subcategory": "relative"
                 }
             ]
         },
@@ -226,10 +226,9 @@
                     "description": "qualified name of a edm:ComplexType",
                     "name": "BaseType",
                     "ref": "#AttributeBaseType.9.2",
-                    "subcategory": "Absolute Reference",
+                    "subcategory": "absolute",
                     "targets": [
-                        "ComplexType",
-                        "EntityType"
+                        "ComplexType"
                     ]
                 },
                 {
@@ -272,7 +271,7 @@
                     "description": "qualified entity container name",
                     "name": "Extends",
                     "ref": "#AttributeExtends.24.2",
-                    "subcategory": "Absolute Reference",
+                    "subcategory": "absolute",
                     "targets": [
                         "EntityContainer"
                     ]
@@ -302,9 +301,8 @@
                     "description": "qualified name of an edm:EntityType",
                     "name": "BaseType",
                     "ref": "#AttributeBaseType.9.2",
-                    "subcategory": "Absolute Reference",
+                    "subcategory": "absolute",
                     "targets": [
-                        "ComplexType",
                         "EntityType"
                     ]
                 },
@@ -397,7 +395,7 @@
                     "description": "entity set path expression",
                     "name": "EntitySetPath",
                     "ref": "#AttributeEntitySetPath.21.3",
-                    "subcategory": "Relative Path"
+                    "subcategory": "relative"
                 },
                 {
                     "category": "basic",
@@ -550,7 +548,7 @@
                     "description": "qualified unbound action name",
                     "name": "Action",
                     "ref": "#AttributeAction.28.2",
-                    "subcategory": "Absolute Reference",
+                    "subcategory": "absolute",
                     "targets": [
                         "Action"
                     ]
@@ -560,7 +558,7 @@
                     "description": "entity set name or target path",
                     "name": "EntitySet",
                     "ref": "#AttributeEntitySet.28.3",
-                    "subcategory": "Relative Reference",
+                    "subcategory": "relative",
                     "targets": [
                         "EntitySet",
                         "Singleton"
@@ -590,7 +588,7 @@
                     "description": "qualified entity type name",
                     "name": "EntityType",
                     "ref": "#AttributeEntityType.25.2",
-                    "subcategory": "Absolute Reference",
+                    "subcategory": "absolute",
                     "targets": [
                         "EntityType"
                     ]
@@ -624,7 +622,7 @@
                     "description": "qualified unbound function name",
                     "name": "Function",
                     "ref": "#AttributeFunction.29.2",
-                    "subcategory": "Absolute Reference",
+                    "subcategory": "absolute",
                     "targets": [
                         "Function"
                     ]
@@ -634,7 +632,7 @@
                     "description": "entity set name or target path",
                     "name": "EntitySet",
                     "ref": "#AttributeIncludeInServiceDocument.29.4",
-                    "subcategory": "Relative Reference",
+                    "subcategory": "relative",
                     "targets": [
                         "EntitySet",
                         "Singleton"
@@ -705,7 +703,7 @@
                     "description": "qualified entity type name or collection of that",
                     "name": "Type",
                     "ref": "#AttributeType.12.2",
-                    "subcategory": "Absolute Reference",
+                    "subcategory": "absolute",
                     "targets": [
                         "EntityType",
                         "ComplexType",
@@ -727,7 +725,7 @@
                     "description": "path to partner navigation property",
                     "name": "Partner",
                     "ref": "#AttributePartner.13.4",
-                    "subcategory": "Relative Path"
+                    "subcategory": "relative"
                 },
                 {
                     "category": "basic",
@@ -881,7 +879,7 @@
                     "description": "qualified entity type name",
                     "name": "Type",
                     "ref": "#AttributeType.12.2",
-                    "subcategory": "Absolute Reference",
+                    "subcategory": "absolute",
                     "targets": [
                         "EntityType",
                         "ComplexType",
@@ -913,7 +911,7 @@
                     "description": "navigation property path expression",
                     "name": "Path",
                     "ref": "#AttributePath.27.1",
-                    "subcategory": "Relative Path"
+                    "subcategory": "relative"
                 },
                 {
                     "category": "path",
@@ -921,7 +919,7 @@
                     "description": "target path to entity set/singleton",
                     "name": "Target",
                     "ref": "#AttributeTarget.27.2",
-                    "subcategory": "Relative Path"
+                    "subcategory": "relative"
                 }
             ]
         },
@@ -957,7 +955,7 @@
                     "description": "path to structural property",
                     "name": "Name",
                     "ref": "#AttributeName.9.1",
-                    "subcategory": "Relative Path"
+                    "subcategory": "relative"
                 },
                 {
                     "category": "basic",
@@ -982,7 +980,7 @@
                     "description": "path to dependent property",
                     "name": "Property",
                     "ref": "#AttributeProperty.14.1",
-                    "subcategory": "Relative Path"
+                    "subcategory": "relative"
                 },
                 {
                     "category": "path",
@@ -990,7 +988,7 @@
                     "description": "path to principal property",
                     "name": "ReferencedProperty",
                     "ref": "#AttributeReferencedProperty.14.2",
-                    "subcategory": "Relative Path"
+                    "subcategory": "relative"
                 }
             ]
         },

@@ -68,38 +68,38 @@ export class TemplateManager {
 
     private static formatAttributeType(attribute: ElementAttribute): Handlebars.SafeString {
         let type = '';
-        const readableSubcategory = attribute.subcategory ? TemplateManager.kebabToReadable(attribute.subcategory) : '';
+        const readableSubcategory = TemplateManager.capitalizeFirst(attribute.subcategory ? TemplateManager.kebabToReadable(attribute.subcategory) : 'absolute');
+        const kind = `*${TemplateManager.capitalizeFirst(attribute.category)}*`;
 
         switch (attribute.category) {
             case 'basic':
                 // Handle basic attributes
-                const kind = 'Basic';
+                ;
                 if (attribute.symbols && attribute.subcategory) {
                     const symbolList = attribute.symbols.map((s) => `\`${s}\``).join(", ");
-                    type = `${kind} (${readableSubcategory} or ${symbolList})`;
+                    type = `${kind} ${readableSubcategory} or ${symbolList}`;
                 } else if (attribute.symbols && !attribute.subcategory) {
                     const symbolList = attribute.symbols.map((s) => `\`${s}\``).join(", ");
-                    type = `${kind} (${symbolList})`;
+                    type = `${kind} ${symbolList}`;
                 } else {
-                    type = `${kind} (${readableSubcategory})`;
+                    type = `${kind} ${readableSubcategory}`;
                 }
                 break;
             case 'path':
                 // Handle path attributes
-                type = `Path (${readableSubcategory})`;
+                type = `${readableSubcategory} ${kind}`;
                 break;
             case 'reference':
-                // Handle reference attributes          
-                type = `Reference (${readableSubcategory})`;
+                // Handle reference attributes                      
+                type = `${readableSubcategory} ${kind}`;
 
                 if (attribute.targets && attribute.targets.length > 0) {
                     const targetLinks = attribute.targets
-                        .filter(target => target !== 'PrimitiveType' && target !== 'Unknown') // Skip primitive types and unknown
                         .map(target => `[${target}](#${target.toLowerCase()}-element)`)
                         .join(', ');
                     
                     if (targetLinks) {
-                        type += ` → ${targetLinks}`;
+                        type += ` ${targetLinks}`;
                     }
                 }
                 break;
