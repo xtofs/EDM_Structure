@@ -37,6 +37,7 @@ export interface ElementAttribute {
   category: "basic" | "reference" | "path";
   subcategory?: string;
   symbols?: string[];
+  targets?: string[];  // Array of element names that reference attributes can point to
 
   constraints?: string;
   context?: string;  

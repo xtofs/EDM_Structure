@@ -38,7 +38,20 @@ export class TemplateManager {
 
       if (attribute.subcategory) {
         const readableSubcategory = this.kebabToReadable(attribute.subcategory);
-        if (attribute.symbols && attribute.symbols.length > 0) {
+        
+        // Add targets if this is a reference attribute
+        if (attribute.category === 'reference' && attribute.targets && attribute.targets.length > 0) {
+          const targetLinks = attribute.targets
+            .filter(target => target !== 'PrimitiveType' && target !== 'Unknown') // Skip primitive types and unknown
+            .map(target => `[${target}](#${target.toLowerCase()}-element)`)
+            .join(', ');
+          
+          if (targetLinks) {
+            type += ` (${readableSubcategory}) → ${targetLinks}`;
+          } else {
+            type += ` (${readableSubcategory})`;
+          }
+        } else if (attribute.symbols && attribute.symbols.length > 0) {
           const symbolList = attribute.symbols.map((s) => `\`${s}\``).join(", ");
           type += ` (${readableSubcategory} or ${symbolList})`;
         } else {

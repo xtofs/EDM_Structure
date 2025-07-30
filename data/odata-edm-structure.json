@@ -103,7 +103,10 @@
                     "category": "reference",
                     "description": "namespace reference",
                     "name": "Namespace",
-                    "ref": "#AttributeNamespace.5.1"
+                    "ref": "#AttributeNamespace.5.1",
+                    "targets": [
+                        "Schema"
+                    ]
                 },
                 {
                     "category": "basic",
@@ -125,7 +128,10 @@
                     "category": "reference",
                     "description": "namespace reference",
                     "name": "TermNamespace",
-                    "ref": "#AttributeTermNamespace.6.1"
+                    "ref": "#AttributeTermNamespace.6.1",
+                    "targets": [
+                        "Schema"
+                    ]
                 },
                 {
                     "category": "basic",
@@ -138,7 +144,10 @@
                     "category": "reference",
                     "description": "namespace reference",
                     "name": "TargetNamespace",
-                    "ref": "#AttributeTargetNamespace.6.3"
+                    "ref": "#AttributeTargetNamespace.6.3",
+                    "targets": [
+                        "Schema"
+                    ]
                 }
             ]
         },
@@ -226,7 +235,11 @@
                     "description": "qualified name of a edm:ComplexType",
                     "name": "BaseType",
                     "ref": "#AttributeBaseType.9.2",
-                    "subcategory": "Absolute Reference"
+                    "subcategory": "Absolute Reference",
+                    "targets": [
+                        "ComplexType",
+                        "EntityType"
+                    ]
                 },
                 {
                     "category": "basic",
@@ -269,7 +282,10 @@
                     "description": "qualified entity container name",
                     "name": "Extends",
                     "ref": "#AttributeExtends.24.2",
-                    "subcategory": "Absolute Reference"
+                    "subcategory": "Absolute Reference",
+                    "targets": [
+                        "EntityContainer"
+                    ]
                 }
             ]
         },
@@ -297,7 +313,11 @@
                     "description": "qualified name of an edm:EntityType",
                     "name": "BaseType",
                     "ref": "#AttributeBaseType.9.2",
-                    "subcategory": "Absolute Reference"
+                    "subcategory": "Absolute Reference",
+                    "targets": [
+                        "ComplexType",
+                        "EntityType"
+                    ]
                 },
                 {
                     "category": "basic",
@@ -341,10 +361,14 @@
                 },
                 {
                     "category": "reference",
-                    "constraints": "restricted to: Edm.Byte, Edm.SByte, Edm.Int16, Edm.Int32, or Edm.Int64",
                     "description": "qualified name of and integer type",
                     "name": "UnderlyingType",
-                    "ref": "#AttributeUnderlyingType.17.2"
+                    "ref": "#AttributeUnderlyingType.17.2",
+                    "targets": [
+                        "PrimitiveType",
+                        "EnumType"
+                    ],
+                    "constraints": "restricted to: Edm.Byte, Edm.SByte, Edm.Int16, Edm.Int32, or Edm.Int64"
                 },
                 {
                     "category": "basic",
@@ -417,7 +441,14 @@
                     "category": "reference",
                     "description": "qualified type name or collection",
                     "name": "Type",
-                    "ref": "#AttributeType.30.2"
+                    "ref": "#AttributeType.30.2",
+                    "targets": [
+                        "EntityType",
+                        "ComplexType",
+                        "EnumType",
+                        "TypeDefinition",
+                        "PrimitiveType"
+                    ]
                 },
                 {
                     "category": "basic",
@@ -437,7 +468,10 @@
                     "category": "reference",
                     "description": "qualified term name",
                     "name": "BaseTerm",
-                    "ref": "#AttributeBaseTerm.30.5"
+                    "ref": "#AttributeBaseTerm.30.5",
+                    "targets": [
+                        "Term"
+                    ]
                 },
                 {
                     "category": "basic",
@@ -500,10 +534,14 @@
                 },
                 {
                     "category": "reference",
-                    "constraints": "cannot be another type definition",
                     "description": "qualified name of primitive type",
                     "name": "UnderlyingType",
-                    "ref": "#AttributeUnderlyingType.17.2"
+                    "ref": "#AttributeUnderlyingType.17.2",
+                    "targets": [
+                        "PrimitiveType",
+                        "EnumType"
+                    ],
+                    "constraints": "cannot be another type definition"
                 }
             ]
         },
@@ -528,15 +566,22 @@
                     "description": "qualified unbound action name",
                     "name": "Action",
                     "ref": "#AttributeAction.28.2",
-                    "subcategory": "Absolute Reference"
+                    "subcategory": "Absolute Reference",
+                    "targets": [
+                        "Action"
+                    ]
                 },
                 {
                     "category": "reference",
-                    "context": "relative to the containing entity container",
                     "description": "entity set name or target path",
                     "name": "EntitySet",
                     "ref": "#AttributeEntitySet.28.3",
-                    "subcategory": "Relative Reference"
+                    "subcategory": "Relative Reference",
+                    "targets": [
+                        "EntitySet",
+                        "Singleton"
+                    ],
+                    "context": "relative to the containing entity container"
                 }
             ]
         },
@@ -562,7 +607,10 @@
                     "description": "qualified entity type name",
                     "name": "EntityType",
                     "ref": "#AttributeEntityType.25.2",
-                    "subcategory": "Absolute Reference"
+                    "subcategory": "Absolute Reference",
+                    "targets": [
+                        "EntityType"
+                    ]
                 },
                 {
                     "category": "basic",
@@ -594,15 +642,22 @@
                     "description": "qualified unbound function name",
                     "name": "Function",
                     "ref": "#AttributeFunction.29.2",
-                    "subcategory": "Absolute Reference"
+                    "subcategory": "Absolute Reference",
+                    "targets": [
+                        "Function"
+                    ]
                 },
                 {
                     "category": "reference",
-                    "context": "relative to the containing entity container",
                     "description": "entity set name or target path",
                     "name": "EntitySet",
                     "ref": "#AttributeIncludeInServiceDocument.29.4",
-                    "subcategory": "Relative Reference"
+                    "subcategory": "Relative Reference",
+                    "targets": [
+                        "EntitySet",
+                        "Singleton"
+                    ],
+                    "context": "relative to the containing entity container"
                 },
                 {
                     "category": "basic",
@@ -671,7 +726,14 @@
                     "description": "qualified entity type name or collection of that",
                     "name": "Type",
                     "ref": "#AttributeType.12.2",
-                    "subcategory": "Absolute Reference"
+                    "subcategory": "Absolute Reference",
+                    "targets": [
+                        "EntityType",
+                        "ComplexType",
+                        "EnumType",
+                        "TypeDefinition",
+                        "PrimitiveType"
+                    ]
                 },
                 {
                     "category": "basic",
@@ -717,7 +779,14 @@
                     "category": "reference",
                     "description": "qualified type name or collection",
                     "name": "Type",
-                    "ref": "#AttributeType.12.2"
+                    "ref": "#AttributeType.12.2",
+                    "targets": [
+                        "EntityType",
+                        "ComplexType",
+                        "EnumType",
+                        "TypeDefinition",
+                        "PrimitiveType"
+                    ]
                 },
                 {
                     "category": "basic",
@@ -748,7 +817,14 @@
                     "category": "reference",
                     "description": "qualified type name or collection of that",
                     "name": "Type",
-                    "ref": "#AttributeType.12.2"
+                    "ref": "#AttributeType.12.2",
+                    "targets": [
+                        "EntityType",
+                        "ComplexType",
+                        "EnumType",
+                        "TypeDefinition",
+                        "PrimitiveType"
+                    ]
                 },
                 {
                     "category": "basic",
@@ -790,7 +866,14 @@
                     "category": "reference",
                     "description": "qualified type name or collection",
                     "name": "Type",
-                    "ref": "#AttributeType.12.2"
+                    "ref": "#AttributeType.12.2",
+                    "targets": [
+                        "EntityType",
+                        "ComplexType",
+                        "EnumType",
+                        "TypeDefinition",
+                        "PrimitiveType"
+                    ]
                 },
                 {
                     "category": "basic",
@@ -823,7 +906,14 @@
                     "description": "qualified entity type name",
                     "name": "Type",
                     "ref": "#AttributeType.12.2",
-                    "subcategory": "Absolute Reference"
+                    "subcategory": "Absolute Reference",
+                    "targets": [
+                        "EntityType",
+                        "ComplexType",
+                        "EnumType",
+                        "TypeDefinition",
+                        "PrimitiveType"
+                    ]
                 },
                 {
                     "category": "basic",
@@ -946,7 +1036,10 @@
                     "category": "reference",
                     "description": "qualified term name",
                     "name": "Term",
-                    "ref": "#AttributeTerm.31.1"
+                    "ref": "#AttributeTerm.31.1",
+                    "targets": [
+                        "Term"
+                    ]
                 },
                 {
                     "category": "basic",
