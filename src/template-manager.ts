@@ -32,67 +32,17 @@ export class TemplateManager {
      * Register custom Handlebars helpers
      */
     private registerHelpers(): void {
-        // Helper for formatting attribute types
-        Handlebars.registerHelper('formatAttributeType', (attribute: ElementAttribute) => {
-
-            let type = '';
-            const readableSubcategory = attribute.subcategory ? this.kebabToReadable(attribute.subcategory) : '';
-
-            switch (attribute.category) {
-                case 'basic':
-                    // Handle basic attributes
-                    if (attribute.symbols && attribute.subcategory) {
-                        const symbolList = attribute.symbols.map((s) => `\`${s}\``).join(", ");
-                        type = `Basic (${readableSubcategory} or ${symbolList})`;
-                    } else if (attribute.symbols && !attribute.subcategory) {
-                        const symbolList = attribute.symbols.map((s) => `\`${s}\``).join(", ");
-                        type += `Basic (${symbolList})`;
-                    } else {
-                        type = `Basic (${readableSubcategory})`;
-                    }
-                    break;
-                case 'path':
-                    // Handle path attributes
-                    type = `${readableSubcategory} path`;
-                case 'reference':
-                    // Handle reference attributes          
-                    type = `${readableSubcategory} reference`;
-
-                    if (attribute.targets) {
-                        const targetLinks = attribute.targets
-                            .map(target => `[${target}](#${target.toLowerCase()}-element)`)
-                            .join(', ');
-                        type += ` to ${targetLinks}`;
-                    }
-            }
-            return new Handlebars.SafeString(type);
-        });
-
-        // Helper for formatting attribute descriptions
-        Handlebars.registerHelper('formatAttributeDescription', (attribute: ElementAttribute) => {
-            let description = attribute.description || "";
-
-            if (attribute.constraints) {
-                description += `<br/>*Constraints: ${attribute.constraints}*`;
-            }
-
-            if (attribute.context) {
-                description += `<br/>*Context: ${attribute.context}*`;
-            }
-
-            return new Handlebars.SafeString(description);
-        });
-
-        // Helper for creating attribute links
-        Handlebars.registerHelper('externalLink', this.externalLink);
-        Handlebars.registerHelper('headerMark', this.headerMark);
-        Handlebars.registerHelper('lower', this.lower);
-        Handlebars.registerHelper('replace', this.replace);
-        Handlebars.registerHelper('capitalizeFirst', this.capitalizeFirst);
+        Handlebars.registerHelper('formatAttributeType', TemplateManager.formatAttributeType);
+        Handlebars.registerHelper('formatAttributeDescription', TemplateManager.formatAttributeDescription);
+        Handlebars.registerHelper('externalLink', TemplateManager.externalLink);
+        Handlebars.registerHelper('headerMark', TemplateManager.headerMark);
+        Handlebars.registerHelper('lower', TemplateManager.lower);
+        Handlebars.registerHelper('replace', TemplateManager.replace);
+        Handlebars.registerHelper('capitalizeFirst', TemplateManager.capitalizeFirst);
     }
 
     // Helper for element links
-    public externalLink(name: string, ref?: string, baseUrl?: string): Handlebars.SafeString {
+    public static externalLink(name: string, ref?: string, baseUrl?: string): Handlebars.SafeString {
 
         if (ref && baseUrl) {
             const fullUrl = baseUrl + ref;
@@ -101,20 +51,76 @@ export class TemplateManager {
         return new Handlebars.SafeString(`\`${name}\``);
     }
 
-    private headerMark(level: number): Handlebars.SafeString {
+    private static headerMark(level: number): Handlebars.SafeString {
         return new Handlebars.SafeString('#'.repeat(level));
     }
 
-    public lower(str: string): string {
+    private static lower(str: string): string {
         return str.toLowerCase();
     }
 
-    public replace(str: string, searchValue: string, replaceValue: string): string {
+    private static replace(str: string, searchValue: string, replaceValue: string): string {
         if (!str) {
             return "undefined"
         }
         return str.replace(new RegExp(searchValue, 'g'), replaceValue);
     }
+
+    private static formatAttributeType(attribute: ElementAttribute): Handlebars.SafeString {
+        let type = '';
+        const readableSubcategory = attribute.subcategory ? TemplateManager.kebabToReadable(attribute.subcategory) : '';
+
+        switch (attribute.category) {
+            case 'basic':
+                // Handle basic attributes
+                const kind = 'Basic';
+                if (attribute.symbols && attribute.subcategory) {
+                    const symbolList = attribute.symbols.map((s) => `\`${s}\``).join(", ");
+                    type = `${kind} (${readableSubcategory} or ${symbolList})`;
+                } else if (attribute.symbols && !attribute.subcategory) {
+                    const symbolList = attribute.symbols.map((s) => `\`${s}\``).join(", ");
+                    type = `${kind} (${symbolList})`;
+                } else {
+                    type = `${kind} (${readableSubcategory})`;
+                }
+                break;
+            case 'path':
+                // Handle path attributes
+                type = `Path (${readableSubcategory})`;
+                break;
+            case 'reference':
+                // Handle reference attributes          
+                type = `Reference (${readableSubcategory})`;
+
+                if (attribute.targets && attribute.targets.length > 0) {
+                    const targetLinks = attribute.targets
+                        .filter(target => target !== 'PrimitiveType' && target !== 'Unknown') // Skip primitive types and unknown
+                        .map(target => `[${target}](#${target.toLowerCase()}-element)`)
+                        .join(', ');
+                    
+                    if (targetLinks) {
+                        type += ` → ${targetLinks}`;
+                    }
+                }
+                break;
+        }
+        return new Handlebars.SafeString(type);
+    }
+
+    private static formatAttributeDescription(attribute: ElementAttribute): Handlebars.SafeString {
+        let description = attribute.description || "";
+
+        if (attribute.constraints) {
+            description += `<br/>*Constraints: ${attribute.constraints}*`;
+        }
+
+        if (attribute.context) {
+            description += `<br/>*Context: ${attribute.context}*`;
+        }
+
+        return new Handlebars.SafeString(description);
+    }
+
 
     /**
      * Load and compile a template
@@ -135,11 +141,11 @@ export class TemplateManager {
         return this.templates.get(templateName)!;
     }
 
-    private capitalizeFirst(str: string): string {
+    private static capitalizeFirst(str: string): string {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
-    private kebabToReadable(text: string): string {
+    static kebabToReadable(text: string): string {
         return text.replace(/-/g, " ");
     }
 }
